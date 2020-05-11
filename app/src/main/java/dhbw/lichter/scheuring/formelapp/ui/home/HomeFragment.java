@@ -32,6 +32,8 @@ public class HomeFragment extends Fragment {
         editTextLength = (EditText) root.findViewById(R.id.editText_fartLength);
         editTextNumberKids = (EditText) root.findViewById(R.id.editText_number_kids_present);
         editTextAgeListeners = (EditText) root.findViewById(R.id.editText_age_of_listener);
+        spnSocailEmbarressment = (Spinner) root.findViewById(R.id.spn_social_embarressment);
+        spnGenderFactor = (Spinner) root.findViewById(R.id.spn_gender_factor);
         btnCreateFart = (Button) root.findViewById(R.id.btn_create_fart);
         //EventListener für Button hinzufügen
         btnCreateFart.setOnClickListener(new View.OnClickListener() {
