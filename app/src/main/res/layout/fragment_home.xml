@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    tools:context="ui.home.HomeFragment">
 
     <TextView
         android:id="@+id/text_home"
@@ -63,10 +63,10 @@
         app:layout_constraintVertical_bias="0.306" />
 
     <Spinner
-        android:id="@+id/spn_social_embarressment"
+        android:id="@+id/spn_social_embarrassment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:entries="@array/social_embarressment"
+        android:entries="@array/keys_social_embarrassment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +117,7 @@
         android:id="@+id/spn_gender_factor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:entries="@array/gender_factor"
+        android:entries="@array/keys_gender_factor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
