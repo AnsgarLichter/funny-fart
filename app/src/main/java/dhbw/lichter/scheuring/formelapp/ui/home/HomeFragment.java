@@ -1,6 +1,5 @@
 package dhbw.lichter.scheuring.formelapp.ui.home;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -9,12 +8,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
-import com.google.android.material.snackbar.Snackbar;
 
 import dhbw.lichter.scheuring.formelapp.R;
 
@@ -28,12 +26,13 @@ public class HomeFragment extends Fragment {
     public Spinner spnGenderFactor;
     private Button btnCreateFart;
     public Toast toast;
+    public TextView result;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        toast = Toast.makeText(getActivity(), getResources().getString(R.string.err),Toast.LENGTH_SHORT);
+        toast = Toast.makeText(getActivity(), "Es wurden nicht alle Felder ausgefüllt.",Toast.LENGTH_SHORT);
 
         //Mit View Elementen Verknüpfen
         editTextIntensity = (EditText) root.findViewById(R.id.editText_fartIntensity);
@@ -42,6 +41,7 @@ public class HomeFragment extends Fragment {
         editTextAgeListeners = (EditText) root.findViewById(R.id.editText_age_of_listener);
         spnSocialEmbarrassment = (Spinner) root.findViewById(R.id.spn_social_embarrassment);
         spnGenderFactor = (Spinner) root.findViewById(R.id.spn_gender_factor);
+        result = (TextView) root.findViewById(R.id.txtView_result);
         btnCreateFart = (Button) root.findViewById(R.id.btn_create_fart);
         //EventListener für Button hinzufügen
         btnCreateFart.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +112,7 @@ public class HomeFragment extends Fragment {
 
             //Furz berechnen
             double fart = (Math.pow((valueIntensity * valueLength), valueEmbarrassment) * valueNumberKids) / (valueAgeListeners * valueGenderFactor);
+            result.setText(Double.toString(fart));
         } else {
             toast.show();
         }
