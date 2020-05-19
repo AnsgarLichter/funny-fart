@@ -13,8 +13,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import dhbw.lichter.scheuring.formelapp.R;
+import dhbw.lichter.scheuring.formelapp.ui.database.DatabaseFragment;
+import dhbw.lichter.scheuring.formelapp.ui.detail.DetailFragment;
 
 public class HomeFragment extends Fragment {
 
@@ -113,6 +117,14 @@ public class HomeFragment extends Fragment {
             //Furz berechnen
             double fart = (Math.pow((valueIntensity * valueLength), valueEmbarrassment) * valueNumberKids) / (valueAgeListeners * valueGenderFactor);
             result.setText(Double.toString(fart));
+
+            //Detail Fragment aufrufen
+            Fragment fragment = new DetailFragment();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         } else {
             toast.show();
         }
