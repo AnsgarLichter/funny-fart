@@ -17,6 +17,7 @@
     <string name="nav_header_subtitle">Ist Ihr Furz wirklich witzig?</string>
     <string name="menu_database">Gespeicherte Fürze</string>
     <string name="menu_home">Neuen Furz berechnen</string>
+    <string name="menu_help">Hilfe-Seite</string>
 
 
     <!-- Fragment Home -->
