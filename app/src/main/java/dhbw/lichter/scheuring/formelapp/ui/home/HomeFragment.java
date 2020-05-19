@@ -32,7 +32,7 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        toast = Toast.makeText(getActivity(), "Es wurden nicht alle Felder ausgefüllt.",Toast.LENGTH_SHORT);
+        toast = Toast.makeText(getActivity(), getResources().getString(R.string.error_toast_field),Toast.LENGTH_SHORT);
 
         //Mit View Elementen Verknüpfen
         editTextIntensity = (EditText) root.findViewById(R.id.editText_fartIntensity);
