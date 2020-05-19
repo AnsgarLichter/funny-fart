@@ -12,5 +12,9 @@
             android:id="@+id/nav_database"
             android:icon="@drawable/ic_menu_save"
             android:title="@string/menu_database" />
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/ic_menu_add"
+            android:title="@string/menu_help" />
     </group>
 </menu>
