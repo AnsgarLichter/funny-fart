@@ -18,6 +18,7 @@
     <string name="menu_database">Gespeicherte Fürze</string>
     <string name="menu_home">Neuen Furz berechnen</string>
     <string name="menu_help">Hilfe-Seite</string>
+    <string name="menu_detail">Detailansicht</string>
 
 
     <!-- Fragment Home -->
@@ -38,6 +39,9 @@
 
     <!-- Fragment Database -->
     <string name="database_title">Suchen Sie hier Ihre gespeicherten Fürze.</string>
+
+    <!-- Fragment Detail -->
+    <string name="detail_title">Folgenden Furz haben Sie berechnet.</string>
 
 
 </resources>
