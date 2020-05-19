@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="social_embarressment">
+    <string-array name="keys_social_embarrassment">
         <item>Level 1</item>
         <item>Level 2</item>
         <item>Level 3</item>
     </string-array>
 
-    <string-array name="gender_factor">
-        <item>Männlich</item>
+    <string-array name="values_social_embarrassment">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="keys_gender_factor">
         <item>Weiblich</item>
+        <item>Männlich</item>
+    </string-array>
+
+    <string-array name="values_gender_factor">
+        <item>1.05</item>
+        <item>1</item>
     </string-array>
 </resources>

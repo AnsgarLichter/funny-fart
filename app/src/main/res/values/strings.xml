@@ -1,6 +1,5 @@
 <resources>
     <!-- Build Strings -->
-    <string name="app_name">formelapp</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_desc">Navigation header</string>
@@ -10,16 +9,35 @@
 
     <!-- Eigene Strings -->
     <string name="help_desk_title">Hilfe</string>
+    <string name="app_name">Funny Fart</string>
 
-    <string name="menu_database">Gespeicherte Fürze</string>
-    <string name="menu_home">Neuen Furz berechnen</string>
 
+    <!-- Sidebar Menu -->
     <string name="nav_header_title">Funny Fart</string>
     <string name="nav_header_subtitle">Ist Ihr Furz wirklich witzig?</string>
-    <string name="database_title">Suchen Sie hier Ihre gespeicherten Fürze.</string>
+    <string name="menu_database">Gespeicherte Fürze</string>
+    <string name="menu_home">Neuen Furz berechnen</string>
+    <string name="menu_help">Hilfe-Seite</string>
+
+
+    <!-- Fragment Home -->
     <string name="home_title">Berechnen Sie, wie witzig ihr Furz ist.</string>
+
     <string name="txt_social_embarressment">Peinlichkeitslevel</string>
     <string name="txt_gender_factor">Geschlecht der furzenden Person</string>
+
+    <string name="btn_create_fart">Berechne neuen Furz</string>
+
+    <string name="hint_intensity">Intensität</string>
+    <string name="hint_length">Länge</string>
+    <string name="hint_number_of_kids">Anwesende Kinder</string>
+    <string name="hint_age_of_listener">Alter der Zuhörer</string>
+
+    <string name="error_empty_field">Geben Sie einen Wert ein.</string>
+    <string name="error_toast_field">Es wurden nicht alle Felder ausgefüllt.</string>
+
+    <!-- Fragment Database -->
+    <string name="database_title">Suchen Sie hier Ihre gespeicherten Fürze.</string>
 
 
 </resources>

@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         //Menü ID jedes Menüs übergeben
         //Drawer Layout setzen
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_database)
+                R.id.nav_home, R.id.nav_database, R.id.nav_help)
                 .setDrawerLayout(drawer)
                 .build();
         //Element für Navigationsinhalt setzen
