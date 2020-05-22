@@ -17,7 +17,7 @@
     <string name="nav_header_subtitle">Ist Ihr Furz wirklich witzig?</string>
     <string name="menu_database">Gespeicherte Fürze</string>
     <string name="menu_home">Neuen Furz berechnen</string>
-    <string name="menu_help">Hilfe-Seite</string>
+    <string name="menu_help">Hilfe</string>
     <string name="menu_detail">Detailansicht</string>
 
 
@@ -43,5 +43,17 @@
     <!-- Fragment Detail -->
     <string name="detail_title">Folgenden Furz haben Sie berechnet.</string>
 
+    <!-- Fragment Help -->
+    <string name="help_title">Hilfe</string>
+    <string name="help_image_description">Funny Fart Formula</string>
+    <string name="help_parameters">Parameter</string>
+    <string name="help_i">I: Intensität des Furzes in Dezibel (dB) </string>
+    <string name="help_l">L: Länge des Furzes in Sekunden (s) </string>
+    <string name="help_s">S: Peinlichkeit in einer Skala von 1 bis 3 </string>
+    <string name="help_k">K: Anzahl an Kindern, die den Furz gehört haben </string>
+    <string name="help_a">A: Durchschnittsalter der Zuhöhrer in Jahren </string>
+    <string name="help_g">g: Geschlecht des Täters (männlich oder weiblich) </string>
+    <string name="help_result">Ergebnis</string>
+    <string name="help_f">F beschreibt als Ergebniswert, wie witzig der Furz zu bewerten ist. \nEs gilt: Je höher der Wert, desto witziger!</string>
 
 </resources>
