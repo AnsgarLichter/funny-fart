@@ -98,7 +98,7 @@ public class HomeFragment extends Fragment {
             int valueNumberKids = Integer.parseInt(stringNumberKids);
             int valueAgeListeners = Integer.parseInt(stringAgeListeners);
             int valueEmbarrassment;
-            int valueGenderFactor;
+            double valueGenderFactor;
 
             //Wert des Spinners bestimmmen über zweite Arraylist
             int counter = -1;
@@ -112,13 +112,13 @@ public class HomeFragment extends Fragment {
 
             //Wert des Spinners GenderFacotr bestimmner
             counter = -1;
-            for (String el : getResources().getStringArray(R.array.values_gender_factor)) {
+            for (String el : getResources().getStringArray(R.array.keys_gender_factor)) {
                 counter++;
                 if (el.equals(stringGenderFactor)) {
                     break;
                 }
             }
-            valueGenderFactor = Integer.parseInt(getResources().getStringArray(R.array.values_gender_factor)[counter]);
+            valueGenderFactor = Double.parseDouble(getResources().getStringArray(R.array.values_gender_factor)[counter]);
 
             //Furz berechnen
             double fart = (Math.pow((valueIntensity * valueLength), valueEmbarrassment) * valueNumberKids) / (valueAgeListeners * valueGenderFactor);
@@ -131,7 +131,7 @@ public class HomeFragment extends Fragment {
             bundle.putInt("embarrassment", valueEmbarrassment);
             bundle.putInt("numberKids", valueNumberKids);
             bundle.putInt("ageListeners", valueAgeListeners);
-            bundle.putInt("genderFactor", valueGenderFactor);
+            bundle.putDouble("genderFactor", valueGenderFactor);
             bundle.putDouble("result", fart);
 
             //Werte fuer die Anzeige
@@ -144,6 +144,7 @@ public class HomeFragment extends Fragment {
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
+            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         } else {
             toast = Toast.makeText(getActivity(), getResources().getString(R.string.error_toast_field),Toast.LENGTH_SHORT);
