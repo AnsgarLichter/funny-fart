@@ -42,6 +42,13 @@
 
     <!-- Fragment Detail -->
     <string name="detail_title">Folgenden Furz haben Sie berechnet.</string>
+    <string name="detail_intensity">Intensität: </string>
+    <string name="detail_length">Länge: </string>
+    <string name="detail_social_embarrassment">Peinlichkeitslevel: </string>
+    <string name="detail_number_kids">Anwesende Kinder: </string>
+    <string name="detail_age_listener">Durchschnittsalter der Zuhörer: </string>
+    <string name="detail_gender_factor">Geschlecht: </string>
+    <string name="detail_result">Wie witzig ist ihr Furz: </string>
 
     <!-- Fragment Help -->
     <string name="help_title">Hilfe</string>
