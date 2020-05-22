@@ -13,8 +13,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import dhbw.lichter.scheuring.formelapp.R;
+import dhbw.lichter.scheuring.formelapp.ui.database.DatabaseFragment;
+import dhbw.lichter.scheuring.formelapp.ui.detail.DetailFragment;
 
 public class HomeFragment extends Fragment {
 
@@ -54,6 +58,9 @@ public class HomeFragment extends Fragment {
     }
 
     public void createFart() {
+        //Bundle für Datenuebergabe für Detail View
+        Bundle bundle = new Bundle();
+
         //Werte einlesen
         String stringIntensity = editTextIntensity.getText().toString();
         String stringLength = editTextLength.getText().toString();
@@ -99,8 +106,9 @@ public class HomeFragment extends Fragment {
                     break;
                 }
             }
-            //Wert des Spinners GenderFacotr bestimmner
             valueEmbarrassment = Integer.parseInt(getResources().getStringArray(R.array.values_social_embarrassment)[counter]);
+
+            //Wert des Spinners GenderFacotr bestimmner
             counter = -1;
             for (String el : getResources().getStringArray(R.array.values_gender_factor)) {
                 counter++;
@@ -113,6 +121,28 @@ public class HomeFragment extends Fragment {
             //Furz berechnen
             double fart = (Math.pow((valueIntensity * valueLength), valueEmbarrassment) * valueNumberKids) / (valueAgeListeners * valueGenderFactor);
             result.setText(Double.toString(fart));
+
+            //Werte in Bundle schreiben für Datenuebergabe
+            //Werte fuer Berechnung
+            bundle.putInt("intensity", valueIntensity);
+            bundle.putInt("length", valueLength);
+            bundle.putInt("embarrassment", valueEmbarrassment);
+            bundle.putInt("numberKids", valueNumberKids);
+            bundle.putInt("ageListeners", valueAgeListeners);
+            bundle.putInt("genderFactor", valueGenderFactor);
+            bundle.putDouble("result", fart);
+
+            //Werte fuer die Anzeige
+            bundle.putString("strGenderFactor", stringGenderFactor);
+            bundle.putString("strSocialEmbarrassment", stringEmbarrassment);
+
+            //Detail Fragment aufrufen
+            Fragment fragment = new DetailFragment();
+            fragment.setArguments(bundle);
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
+            fragmentTransaction.commit();
         } else {
             toast.show();
         }
