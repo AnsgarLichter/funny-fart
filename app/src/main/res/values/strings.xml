@@ -42,7 +42,7 @@
     <string name="database_title">Suchen Sie hier Ihre gespeicherten Fürze.</string>
 
     <!-- Fragment Detail -->
-    <string name="detail_title">Folgenden Furz haben Sie berechnet.</string>
+    <string name="detail_title">Sie haben folgenden Furz berechnet.</string>
     <string name="detail_intensity">Intensität: </string>
     <string name="detail_length">Länge: </string>
     <string name="detail_social_embarrassment">Peinlichkeitslevel: </string>
@@ -50,6 +50,7 @@
     <string name="detail_age_listener">Durchschnittsalter der Zuhörer: </string>
     <string name="detail_gender_factor">Geschlecht: </string>
     <string name="detail_result">Wie witzig ist ihr Furz: </string>
+    <string name="detail_btn_save_fart">Furz speichern</string>
 
     <!-- Fragment Help -->
     <string name="help_title">Hilfe</string>

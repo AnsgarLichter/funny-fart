@@ -1,13 +1,37 @@
 <resources>
 
-    <!-- Base application theme. -->
+    <!-- Base application theme. Adding Global Styles -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:buttonStyle">@style/button</item>
+        <item name="android:fontFamily">@font/roboto</item>
     </style>
 
+
+    <!-- Global Styles -->
+    <style name="button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/buttonText</item>
+        <item name="android:background">@drawable/btn_rounded</item>
+    </style>
+
+
+    <!-- Element specific Styles -->
+    <style name="heading">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+
+
+    <!-- Project Styles -->
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -17,6 +41,8 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+
+    <!-- Material.io Styles -->
     <style name="TextAppearance.MdcTypographyStyles.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
         <item name="fontFamily">@font/roboto</item>
         <item name="android:fontFamily">@font/roboto</item>
