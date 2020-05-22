@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import io.github.kexanie.library.MathView;
 public class DetailFragment extends Fragment {
 
     public MathView formula;
+    public MathView formulaVal;
     public TextView intensity;
     public TextView length;
     public TextView embarrassment;
@@ -22,13 +24,15 @@ public class DetailFragment extends Fragment {
     public TextView ageListener;
     public TextView genderFactor;
     public TextView result;
+    private Button saveFart;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_detail, container, false);
 
         //Mit View Element verknüpfen
-        formula = (MathView) root.findViewById(R.id.detail_formula);
+        formula = (MathView) root.findViewById(R.id.detail_formula_keys);
+        formulaVal = (MathView) root.findViewById(R.id.detail_formula_values);
         intensity = (TextView) root.findViewById(R.id.txtView_detail_intensity);
         length = (TextView) root.findViewById(R.id.txtView_detail_length);
         embarrassment = (TextView) root.findViewById(R.id.txtView_detail_embarrassment);
@@ -36,6 +40,13 @@ public class DetailFragment extends Fragment {
         ageListener = (TextView) root.findViewById(R.id.txtView_detail_age_listeners);
         genderFactor = (TextView) root.findViewById(R.id.txtView_detail_gender_factor);
         result = (TextView) root.findViewById(R.id.txtView_detail_result);
+        saveFart = (Button) root.findViewById(R.id.btn_detail_save_fart);
+        saveFart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveFartInDb();
+            }
+        });
 
         //getData
         Bundle bundle = getArguments();
@@ -49,7 +60,8 @@ public class DetailFragment extends Fragment {
         String strGenderFactor = bundle.getString("strGenderFactor");
 
         //setData
-        String strFormula = "$$\\frac{("
+        String strFormula = "$$\\frac{(I * L)^S * K}{(A * g)} = F$$";
+        String strFormulaVal = "$$\\frac{("
                 .concat(String.valueOf(valueIntensity))
                 .concat(" * ")
                 .concat(String.valueOf(valueLength))
@@ -65,6 +77,7 @@ public class DetailFragment extends Fragment {
                 .concat(String.valueOf((int) valueResult))
                 .concat("$$");
         formula.setText(strFormula);
+        formulaVal.setText(strFormulaVal);
         intensity.setText(getResources().getString(R.string.detail_intensity).concat(String.valueOf(" " + valueIntensity + " db")));
         length.setText(getResources().getString(R.string.detail_length).concat(String.valueOf(" " + valueLength + " Sekunden")));
         embarrassment.setText(getResources().getString(R.string.detail_social_embarrassment).concat(String.valueOf(" " + valueEmbarrassment)));
@@ -74,5 +87,9 @@ public class DetailFragment extends Fragment {
         result.setText(getResources().getString(R.string.detail_result).concat(String.valueOf(" " + valueResult)));
 
         return root;
+    }
+
+    public void saveFartInDb() {
+
     }
 }

@@ -50,6 +50,7 @@
     <string name="detail_age_listener">Durchschnittsalter der Zuhörer: </string>
     <string name="detail_gender_factor">Geschlecht: </string>
     <string name="detail_result">Wie witzig ist ihr Furz: </string>
+    <string name="detail_btn_save_fart">Furz speichern</string>
 
     <!-- Fragment Help -->
     <string name="help_title">Hilfe</string>
