@@ -36,8 +36,6 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        toast = Toast.makeText(getActivity(), getResources().getString(R.string.error_toast_field),Toast.LENGTH_SHORT);
-
         //Mit View Elementen Verknüpfen
         editTextIntensity = (EditText) root.findViewById(R.id.editText_fartIntensity);
         editTextLength = (EditText) root.findViewById(R.id.editText_fartLength);
@@ -90,6 +88,10 @@ public class HomeFragment extends Fragment {
         }
 
         if(calculate) {
+            //Erfolgsanzeige
+            toast = Toast.makeText(getActivity(), getResources().getString(R.string.success_toast_field),Toast.LENGTH_SHORT);
+            toast.show();
+
             //Cast von String zu Int
             int valueIntensity = Integer.parseInt(stringIntensity);
             int valueLength = Integer.parseInt(stringLength);
@@ -144,6 +146,7 @@ public class HomeFragment extends Fragment {
             fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
             fragmentTransaction.commit();
         } else {
+            toast = Toast.makeText(getActivity(), getResources().getString(R.string.error_toast_field),Toast.LENGTH_SHORT);
             toast.show();
         }
     }
