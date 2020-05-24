@@ -10,7 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import dhbw.lichter.scheuring.formelapp.util.Fart;
 import dhbw.lichter.scheuring.formelapp.R;
+import dhbw.lichter.scheuring.formelapp.util.DatabaseManager;
 import io.github.kexanie.library.MathView;
 
 public class DetailFragment extends Fragment {
@@ -24,13 +26,17 @@ public class DetailFragment extends Fragment {
     public TextView ageListener;
     public TextView genderFactor;
     public TextView result;
+
     private Button saveFart;
+    private DatabaseManager dbHelper;
+    private Fart fart;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_detail, container, false);
 
-        //Mit View Element verknüpfen
+        dbHelper = new DatabaseManager(getActivity());
+
         formula = (MathView) root.findViewById(R.id.detail_formula_keys);
         formulaVal = (MathView) root.findViewById(R.id.detail_formula_values);
         intensity = (TextView) root.findViewById(R.id.txtView_detail_intensity);
@@ -58,6 +64,7 @@ public class DetailFragment extends Fragment {
         double valueGenderFactor = bundle.getDouble("genderFactor");
         double valueResult = bundle.getDouble("result");
         String strGenderFactor = bundle.getString("strGenderFactor");
+        this.fart = new Fart(valueIntensity, valueLength, valueEmbarrassment, valueNumberKids, valueAgeListeners, strGenderFactor);
 
         //setData
         String strFormula = "$$\\frac{(I * L)^S * K}{(A * g)} = F$$";
@@ -90,6 +97,6 @@ public class DetailFragment extends Fragment {
     }
 
     public void saveFartInDb() {
-
+            this.dbHelper.saveFart(fart);
     }
 }
