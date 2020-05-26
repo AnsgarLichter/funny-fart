@@ -64,7 +64,9 @@ public class DetailFragment extends Fragment {
         double valueGenderFactor = bundle.getDouble("genderFactor");
         double valueResult = bundle.getDouble("result");
         String strGenderFactor = bundle.getString("strGenderFactor");
-        this.fart = new Fart(valueIntensity, valueLength, valueEmbarrassment, valueNumberKids, valueAgeListeners, strGenderFactor);
+        //TODO
+        String valueName ="Name";
+        this.fart = new Fart(valueIntensity, valueLength, valueEmbarrassment, valueNumberKids, valueAgeListeners, valueResult, strGenderFactor, valueName);
 
         //setData
         String strFormula = "$$\\frac{(I * L)^S * K}{(A * g)} = F$$";
