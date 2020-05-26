@@ -41,8 +41,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
             COL_SOCIAL_EMBARRASSMENT + " NOT NULL, " +
             COL_COUNT_CHILDREN + " INTEGER NOT NULL, " +
             COL_AVERAGE_AGE + " INTEGER NOT NULL, " +
-            COL_SEX + " DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, " +
-            COL_CREATION_DATE + " DATE NOT NULL )";
+            COL_SEX + " TEXT NOT NULL, " +
+            COL_CREATION_DATE + " DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL )";
     private static final String CREATE_TABLE_SEX = "CREATE TABLE " + TABLE_SEX + " (" +
             COL_SEX + " PRIMARY KEY NOT NULL, " +
             COL_SEX_FACTOR + " REAL NOT NULL, " +
