@@ -57,7 +57,7 @@ public class FartAdapter extends RecyclerView.Adapter<FartAdapter.FartViewHolder
     @Override
     public void onBindViewHolder(FartViewHolder fartViewHolder, int i) {
         fartViewHolder.fartName.setText(farts.get(i).getName());
-        fartViewHolder.fartScore.setText("" + farts.get(i).getScore());
+        fartViewHolder.fartScore.setText("" + (int) farts.get(i).getScore());
         fartViewHolder.creationDate.setText(farts.get(i).getCreationDate());
         fartViewHolder.fartGif.setImageResource(R.drawable.im_funny_fart);
     }
