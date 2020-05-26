@@ -3,12 +3,8 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
-
-    <string name="home_second">Home Second</string>
 
     <!-- Eigene Strings -->
-    <string name="help_desk_title">Hilfe</string>
     <string name="app_name">Funny Fart</string>
 
 
@@ -64,5 +60,9 @@
     <string name="help_g">g: Geschlecht des Täters (männlich oder weiblich) </string>
     <string name="help_result">Ergebnis</string>
     <string name="help_f">F beschreibt als Ergebniswert, wie witzig der Furz zu bewerten ist. \nEs gilt: Je höher der Wert, desto witziger!</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 
 </resources>
