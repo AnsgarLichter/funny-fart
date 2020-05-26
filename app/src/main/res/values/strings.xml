@@ -8,7 +8,7 @@
     <string name="app_name">Funny Fart</string>
 
 
-    <!-- Sidebar Menu -->
+    <!-- Bottom Menu -->
     <string name="nav_header_title">Funny Fart</string>
     <string name="nav_header_subtitle">Ist Ihr Furz wirklich witzig?</string>
     <string name="menu_database">Gespeicherte Fürze</string>
