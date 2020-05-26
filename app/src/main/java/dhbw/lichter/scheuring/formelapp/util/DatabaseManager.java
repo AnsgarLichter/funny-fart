@@ -12,44 +12,82 @@ public class DatabaseManager extends SQLiteOpenHelper {
     private static final String DB_NAME = "FunnyFart";
     private static final int VERSION = 1;
 
-    private SQLiteStatement insertStatement;
+
+    public static final String TABLE_FART = "fart";
+    public static final String TABLE_SEX = "sex";
+    public static final String TABLE_SCORE_GIF = "score_gif";
+
+
+    public static final String COL_ID = "fart_id";
+    public static final String COL_FART_SCORE = "fart_score";
+    public static final String COL_INTENSITY = "intensity";
+    public static final String COL_LENGTH = "length";
+    public static final String COL_SOCIAL_EMBARRASSMENT = "social_embarrassment";
+    public static final String COL_COUNT_CHILDREN = "count_children";
+    public static final String COL_AVERAGE_AGE = "average_age";
+    public static final String COL_SEX = "sex";
+    public static final String COL_SEX_FACTOR = "sex_factor";
+    public static final String COL_FART_GIF = "fart_gif";
+
+
+    private static final String CREATE_TABLE_FART = "CREATE TABLE " + TABLE_FART + " (" +
+            COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            COL_FART_SCORE + " REAL NOT NULL," +
+            COL_INTENSITY + " INTEGER NOT NULL," +
+            COL_LENGTH + " INTEGER NOT NULL," +
+            COL_SOCIAL_EMBARRASSMENT + " NOT NULL," +
+            COL_COUNT_CHILDREN + " INTEGER NOT NULL," +
+            COL_AVERAGE_AGE + " INTEGER NOT NULL," +
+            COL_SEX + " TEXT NOT NULL )";
+    private static final String CREATE_TABLE_SEX = "CREATE TABLE " + TABLE_SEX + " (" +
+                            COL_SEX + " PRIMARY KEY NOT NULL, " +
+                            COL_SEX_FACTOR + " REAL NOT NULL)";
+    private static final String CREATE_TABLE_SCORE_GIF = "CREATE TABLE "+ TABLE_SCORE_GIF + " (" +
+                            COL_FART_SCORE + " PRIMARY KEY NOT NULL, " +
+                            COL_FART_GIF + " REAL NOT NULL)";
+
+
+    private static final String INSERT_FART = "INSERT INTO " + TABLE_FART +
+            "(" + COL_FART_SCORE + ", " + COL_INTENSITY + ", " + COL_LENGTH + ", " + COL_SOCIAL_EMBARRASSMENT + ", " + COL_COUNT_CHILDREN + ", " + COL_AVERAGE_AGE + ", " + COL_SEX + ")" +
+            "VALUES ( ?, ?, ?, ?, ?, ?, ? )";
+    private static final String INSERT_SEX = "INSERT INTO " + TABLE_SEX +
+            "(" + COL_SEX + ", " + COL_SEX_FACTOR + ") VALUES ( ?, ?)";
+    private static final String INSERT_SCORE_GIF = "INSERT INTO " + TABLE_SCORE_GIF +
+            " (" + COL_FART_SCORE + ", " + COL_FART_GIF + ") VALUES (?, ?)";
+
+
+    private SQLiteStatement insertFart;
+    private SQLiteStatement insertSex;
+    private SQLiteStatement insertScore;
+
 
     private Context context;
 
-    //TODO: Constants for column names
+
 
     public DatabaseManager(Context context) {
         super(context, DB_NAME, null, VERSION);
         this.context = context;
 
         SQLiteDatabase db = this.getReadableDatabase();
-        insertStatement  = db.compileStatement("INSERT INTO fart (fart_score, intensity, length, social_embarrassment, count_children, average_age, sex) VALUES ( ?, ?, ?, ?, ?, ?, ? )");
+        insertFart  = db.compileStatement(INSERT_FART);
+        insertSex  = db.compileStatement(INSERT_SEX);
+        insertScore  = db.compileStatement(INSERT_SCORE_GIF);
         //this.onCreate(this.getWritableDatabase());
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
-            db.execSQL("CREATE TABLE fart (" +
-                    "fart_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "fart_score REAL NOT NULL," +
-                    "intensity NOT NULL," +
-                    "length INTEGER NOT NULL," +
-                    "social_embarrassment NOT NULL," +
-                    "count_children NOT NULL," +
-                    "average_age NOT NULL," +
-                    "sex NOT NULL )"
-            );
-
-            //TODO: Create second table for sex & factor
-
-            //TODO: Add male / female entries to database
-
-            //TODO: Set second table read-only
+            this.createFartTable(db);
+            this.createSexTable(db);
+            this.createScoreGifTable(db);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
+
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -65,5 +103,23 @@ public class DatabaseManager extends SQLiteOpenHelper {
         if(id == -1) {
             throw new SQLException("Insert of the new fart resulted in an error!");
         }
+    }
+
+    private void createFartTable(SQLiteDatabase db) throws SQLException{
+        db.execSQL(CREATE_TABLE_FART);
+    }
+
+    private void createSexTable(SQLiteDatabase db) throws SQLException{
+        db.execSQL(CREATE_TABLE_SEX);
+        db.execSQL("INSERT INTO " + TABLE_SEX + " (" + COL_SEX + ", " + COL_SEX_FACTOR + ") + " +
+                "VALUES ( männlich, 1.00)");
+        db.execSQL("INSERT INTO " + TABLE_SEX + " (" + COL_SEX + ", " + COL_SEX_FACTOR + ") + " +
+                "VALUES ( weiblich, 1.05)");
+    }
+
+    private void createScoreGifTable(SQLiteDatabase db) throws SQLException{
+        db.execSQL(CREATE_TABLE_SCORE_GIF);
+
+        //TODO: Insert path to GIFs as soon as selected
     }
 }
