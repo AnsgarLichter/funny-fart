@@ -30,6 +30,12 @@
     </style>
 
 
+    <!-- Specific Styles -->
+    <style name="toolbar_title">
+        <item name="android:textSize">24dp</item>
+        <item name="android:textColor">@color/toolbarTitleColor</item>
+    </style>
+
 
     <!-- Project Styles -->
     <style name="AppTheme.NoActionBar">
