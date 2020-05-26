@@ -50,8 +50,7 @@ public class FartAdapter extends RecyclerView.Adapter<FartAdapter.FartViewHolder
 
     @Override
     public FartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = new TextView(parent.getContext());
-        LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_card_template, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_card_template, parent, false);
         return new FartViewHolder(view);
     }
 
