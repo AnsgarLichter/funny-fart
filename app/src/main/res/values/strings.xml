@@ -39,7 +39,8 @@
     <string name="success_toast_field">Furz berechnen ...</string>
 
     <!-- Fragment Database -->
-    <string name="database_title">Suchen Sie hier Ihre gespeicherten Fürze.</string>
+    <string name="database_search">Furz suchen</string>
+    <string name="database_filter">Filter</string>
 
     <!-- Fragment Detail -->
     <string name="detail_title">Sie haben folgenden Furz berechnet.</string>

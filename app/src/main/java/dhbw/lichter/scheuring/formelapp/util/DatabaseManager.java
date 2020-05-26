@@ -1,10 +1,14 @@
 package dhbw.lichter.scheuring.formelapp.util;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import dhbw.lichter.scheuring.formelapp.util.Fart;
 
@@ -60,6 +64,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
     private static final String INSERT_SCORE_GIF = "INSERT INTO " + TABLE_SCORE_GIF +
             " (" + COL_FART_SCORE + ", " + COL_FART_GIF + ") VALUES (?, ?)";
 
+    private static final String READ_ALL_FARTS = "SELECT * FROM " + TABLE_FART + ";";
+
 
     private SQLiteStatement insertFart;
     private SQLiteStatement insertSex;
@@ -105,6 +111,27 @@ public class DatabaseManager extends SQLiteOpenHelper {
         if(id == -1) {
             throw new SQLException("Insertion of the new fart resulted in an error!");
         }
+    }
+
+    public ArrayList<Fart> getFarts() throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery(READ_ALL_FARTS, null);
+        ArrayList<Fart> farts = new ArrayList<Fart>();
+
+        for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+            Fart fart = new Fart(cursor.getInt(cursor.getColumnIndex(COL_INTENSITY)),
+                    cursor.getInt(cursor.getColumnIndex(COL_LENGTH)),
+                    cursor.getInt(cursor.getColumnIndex(COL_SOCIAL_EMBARRASSMENT)),
+                    cursor.getInt(cursor.getColumnIndex(COL_COUNT_CHILDREN)),
+                    cursor.getInt(cursor.getColumnIndex(COL_AVERAGE_AGE)),
+                    cursor.getDouble(cursor.getColumnIndex(COL_FART_SCORE)),
+                    cursor.getString(cursor.getColumnIndex(COL_SEX)),
+                    cursor.getString(cursor.getColumnIndex(COL_FART_NAME)),
+                    cursor.getString(cursor.getColumnIndex(COL_CREATION_DATE)));
+            farts.add(fart);
+        }
+        return farts;
     }
 
     private void createFartTable(SQLiteDatabase db) throws SQLException{
