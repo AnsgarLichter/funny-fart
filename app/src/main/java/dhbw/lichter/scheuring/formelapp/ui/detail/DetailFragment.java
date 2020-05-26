@@ -78,13 +78,13 @@ public class DetailFragment extends Fragment {
                 .concat("$$");
         formula.setText(strFormula);
         formulaVal.setText(strFormulaVal);
-        intensity.setText(getResources().getString(R.string.detail_intensity).concat(String.valueOf(" " + valueIntensity + " db")));
-        length.setText(getResources().getString(R.string.detail_length).concat(String.valueOf(" " + valueLength + " Sekunden")));
-        embarrassment.setText(getResources().getString(R.string.detail_social_embarrassment).concat(String.valueOf(" " + valueEmbarrassment)));
-        numberKids.setText(getResources().getString(R.string.detail_number_kids).concat(String.valueOf(" " + valueNumberKids)));
-        ageListener.setText(getResources().getString(R.string.detail_age_listener).concat(String.valueOf(" " + valueAgeListeners)));
-        genderFactor.setText(getResources().getString(R.string.detail_gender_factor).concat(strGenderFactor + " mit Wert " + valueGenderFactor));
-        result.setText(getResources().getString(R.string.detail_result).concat(String.valueOf(" " + valueResult)));
+        intensity.setText(getString(R.string.detail_intensity).concat(String.valueOf(" " + valueIntensity + " db")));
+        length.setText(getString(R.string.detail_length).concat(String.valueOf(" " + valueLength + " Sekunden")));
+        embarrassment.setText(getString(R.string.detail_social_embarrassment).concat(String.valueOf(" " + valueEmbarrassment)));
+        numberKids.setText(getString(R.string.detail_number_kids).concat(String.valueOf(" " + valueNumberKids)));
+        ageListener.setText(getString(R.string.detail_age_listener).concat(String.valueOf(" " + valueAgeListeners)));
+        genderFactor.setText(getString(R.string.detail_gender_factor).concat(strGenderFactor + " mit Wert " + valueGenderFactor));
+        result.setText(getString(R.string.detail_result).concat(String.valueOf(" " + valueResult)));
 
         return root;
     }

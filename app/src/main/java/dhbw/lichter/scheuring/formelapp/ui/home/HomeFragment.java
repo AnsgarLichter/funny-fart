@@ -89,7 +89,7 @@ public class HomeFragment extends Fragment {
 
         if(calculate) {
             //Erfolgsanzeige
-            toast = Toast.makeText(getActivity(), getResources().getString(R.string.success_toast_field),Toast.LENGTH_SHORT);
+            toast = Toast.makeText(getActivity(), getString(R.string.success_toast_field),Toast.LENGTH_SHORT);
             toast.show();
 
             //Cast von String zu Int
@@ -147,7 +147,12 @@ public class HomeFragment extends Fragment {
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         } else {
+<<<<<<< Updated upstream
             toast = Toast.makeText(getActivity(), getResources().getString(R.string.error_toast_field),Toast.LENGTH_SHORT);
+=======
+            //TODO: Extract into MessageToastClass
+            toast = Toast.makeText(getActivity(), getString(R.string.error_toast_field),Toast.LENGTH_SHORT);
+>>>>>>> Stashed changes
             toast.show();
         }
     }
