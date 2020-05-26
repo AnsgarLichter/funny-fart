@@ -17,7 +17,6 @@ import io.github.kexanie.library.MathView;
 
 public class DetailFragment extends Fragment {
 
-    public MathView formula;
     public MathView formulaVal;
     public TextView intensity;
     public TextView length;
@@ -37,7 +36,6 @@ public class DetailFragment extends Fragment {
 
         dbHelper = new DatabaseManager(getActivity());
 
-        formula = (MathView) root.findViewById(R.id.detail_formula_keys);
         formulaVal = (MathView) root.findViewById(R.id.detail_formula_values);
         intensity = (TextView) root.findViewById(R.id.txtView_detail_intensity);
         length = (TextView) root.findViewById(R.id.txtView_detail_length);
@@ -54,7 +52,7 @@ public class DetailFragment extends Fragment {
             }
         });
 
-        //getData
+        //TODO: Extract into own method
         Bundle bundle = getArguments();
         int valueIntensity = bundle.getInt("intensity");
         int valueLength = bundle.getInt("length");
@@ -68,8 +66,7 @@ public class DetailFragment extends Fragment {
         String valueName ="Name";
         this.fart = new Fart(valueIntensity, valueLength, valueEmbarrassment, valueNumberKids, valueAgeListeners, valueResult, strGenderFactor, valueName);
 
-        //setData
-        String strFormula = "$$\\frac{(I * L)^S * K}{(A * g)} = F$$";
+        //TODO: Extract into own method
         String strFormulaVal = "$$\\frac{("
                 .concat(String.valueOf(valueIntensity))
                 .concat(" * ")
@@ -85,7 +82,6 @@ public class DetailFragment extends Fragment {
                 .concat(")} = ")
                 .concat(String.valueOf((int) valueResult))
                 .concat("$$");
-        formula.setText(strFormula);
         formulaVal.setText(strFormulaVal);
         intensity.setText(getString(R.string.detail_intensity).concat(String.valueOf(" " + valueIntensity + " db")));
         length.setText(getString(R.string.detail_length).concat(String.valueOf(" " + valueLength + " Sekunden")));
