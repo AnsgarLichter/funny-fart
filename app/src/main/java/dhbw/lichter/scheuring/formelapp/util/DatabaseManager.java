@@ -28,28 +28,33 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public static final String COL_SEX = "sex";
     public static final String COL_SEX_FACTOR = "sex_factor";
     public static final String COL_FART_GIF = "fart_gif";
+    public static final String COL_FART_NAME = "fart_name";
+    public static final String COL_CREATION_DATE = "creation_date";
 
 
     private static final String CREATE_TABLE_FART = "CREATE TABLE " + TABLE_FART + " (" +
-            COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-            COL_FART_SCORE + " REAL NOT NULL," +
-            COL_INTENSITY + " INTEGER NOT NULL," +
-            COL_LENGTH + " INTEGER NOT NULL," +
-            COL_SOCIAL_EMBARRASSMENT + " NOT NULL," +
-            COL_COUNT_CHILDREN + " INTEGER NOT NULL," +
-            COL_AVERAGE_AGE + " INTEGER NOT NULL," +
-            COL_SEX + " TEXT NOT NULL )";
+            COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COL_FART_SCORE + " REAL NOT NULL, " +
+            COL_FART_NAME + " TEXT NOT NULL, " +
+            COL_INTENSITY + " INTEGER NOT NULL, " +
+            COL_LENGTH + " INTEGER NOT NULL, " +
+            COL_SOCIAL_EMBARRASSMENT + " NOT NULL, " +
+            COL_COUNT_CHILDREN + " INTEGER NOT NULL, " +
+            COL_AVERAGE_AGE + " INTEGER NOT NULL, " +
+            COL_SEX + " DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, " +
+            COL_CREATION_DATE + " DATE NOT NULL )";
     private static final String CREATE_TABLE_SEX = "CREATE TABLE " + TABLE_SEX + " (" +
-                            COL_SEX + " PRIMARY KEY NOT NULL, " +
-                            COL_SEX_FACTOR + " REAL NOT NULL)";
+            COL_SEX + " PRIMARY KEY NOT NULL, " +
+            COL_SEX_FACTOR + " REAL NOT NULL, " +
+            "FOREIGN KEY (" + COL_SEX + ") REFERENCES " + TABLE_FART + "(" + COL_SEX + "));";
     private static final String CREATE_TABLE_SCORE_GIF = "CREATE TABLE "+ TABLE_SCORE_GIF + " (" +
-                            COL_FART_SCORE + " PRIMARY KEY NOT NULL, " +
-                            COL_FART_GIF + " REAL NOT NULL)";
+            COL_FART_SCORE + " PRIMARY KEY NOT NULL, " +
+            COL_FART_GIF + " REAL NOT NULL)";
 
 
     private static final String INSERT_FART = "INSERT INTO " + TABLE_FART +
-            "(" + COL_FART_SCORE + ", " + COL_INTENSITY + ", " + COL_LENGTH + ", " + COL_SOCIAL_EMBARRASSMENT + ", " + COL_COUNT_CHILDREN + ", " + COL_AVERAGE_AGE + ", " + COL_SEX + ")" +
-            "VALUES ( ?, ?, ?, ?, ?, ?, ? )";
+            "(" + COL_FART_SCORE + ", " + COL_FART_NAME + ", " + COL_INTENSITY + ", " + COL_LENGTH + ", " + COL_SOCIAL_EMBARRASSMENT + ", " + COL_COUNT_CHILDREN + ", " + COL_AVERAGE_AGE + ", " + COL_SEX + ")" +
+            "VALUES ( ?, ?, ?, ?, ?, ?, ?, ? ) ";
     private static final String INSERT_SEX = "INSERT INTO " + TABLE_SEX +
             "(" + COL_SEX + ", " + COL_SEX_FACTOR + ") VALUES ( ?, ?)";
     private static final String INSERT_SCORE_GIF = "INSERT INTO " + TABLE_SCORE_GIF +
@@ -73,7 +78,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
         insertFart  = db.compileStatement(INSERT_FART);
         insertSex  = db.compileStatement(INSERT_SEX);
         insertScore  = db.compileStatement(INSERT_SCORE_GIF);
-        //this.onCreate(this.getWritableDatabase());
     }
 
     @Override
@@ -91,17 +95,17 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //TODO
+
     }
 
     public void saveFart(final Fart fart) throws SQLException {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        insertStatement.bindString(1, fart.ToInsertString());
-        long id = insertStatement.executeInsert();
+        insertFart = fart.prepareInsertStatement(insertFart);
+        long id = insertFart.executeInsert();
 
         if(id == -1) {
-            throw new SQLException("Insert of the new fart resulted in an error!");
+            throw new SQLException("Insertion of the new fart resulted in an error!");
         }
     }
 
@@ -111,10 +115,18 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     private void createSexTable(SQLiteDatabase db) throws SQLException{
         db.execSQL(CREATE_TABLE_SEX);
-        db.execSQL("INSERT INTO " + TABLE_SEX + " (" + COL_SEX + ", " + COL_SEX_FACTOR + ") + " +
-                "VALUES ( männlich, 1.00)");
-        db.execSQL("INSERT INTO " + TABLE_SEX + " (" + COL_SEX + ", " + COL_SEX_FACTOR + ") + " +
-                "VALUES ( weiblich, 1.05)");
+
+        insertSex.bindString(1, "männlich");
+        insertSex.bindString(2, "1.00");
+        long idMale = insertSex.executeInsert();
+
+        insertSex.bindString(1, "weiblich");
+        insertSex.bindString(2, "1.05");
+        long idFemale = insertSex.executeInsert();
+
+        if(idMale == 0 || idFemale == 0) {
+            throw new SQLException("Could not insert male and female entry");
+        }
     }
 
     private void createScoreGifTable(SQLiteDatabase db) throws SQLException{
