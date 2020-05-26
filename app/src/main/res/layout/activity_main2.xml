@@ -18,7 +18,18 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
-            android:theme="@style/AppTheme.AppBarOverlay" />
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:titleTextAppearance="@style/toolbar_title">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/toolbar_title"
+                android:layout_gravity="center"
+                android:text="@string/app_name"
+                android:textAppearance="@style/toolbar_title"/>
+
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 

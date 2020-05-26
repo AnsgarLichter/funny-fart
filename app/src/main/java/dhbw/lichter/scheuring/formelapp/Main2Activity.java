@@ -29,6 +29,7 @@ public class Main2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
