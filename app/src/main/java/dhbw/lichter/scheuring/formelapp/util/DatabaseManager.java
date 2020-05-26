@@ -76,8 +76,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
         insertFart  = db.compileStatement(INSERT_FART);
-        insertSex  = db.compileStatement(INSERT_SEX);
-        insertScore  = db.compileStatement(INSERT_SCORE_GIF);
     }
 
     @Override
@@ -115,6 +113,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     private void createSexTable(SQLiteDatabase db) throws SQLException{
         db.execSQL(CREATE_TABLE_SEX);
+        insertSex  = db.compileStatement(INSERT_SEX);
 
         insertSex.bindString(1, "männlich");
         insertSex.bindString(2, "1.00");
@@ -131,6 +130,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     private void createScoreGifTable(SQLiteDatabase db) throws SQLException{
         db.execSQL(CREATE_TABLE_SCORE_GIF);
+        insertScore  = db.compileStatement(INSERT_SCORE_GIF);
 
         //TODO: Insert path to GIFs as soon as selected
     }
