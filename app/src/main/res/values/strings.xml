@@ -36,7 +36,10 @@
 
     <!-- Fragment Database -->
     <string name="database_search">Furz suchen</string>
-    <string name="database_filter">Filter</string>
+    <string name="database_sort_date">Datum</string>
+    <string name="database_sort_name">Name</string>
+    <string name="database_sort_score">Score</string>
+    <string name="database_sort_success">Erfolgreich sortiert</string>
 
     <!-- Fragment Detail -->
     <string name="detail_title">Sie haben folgenden Furz berechnet.</string>
