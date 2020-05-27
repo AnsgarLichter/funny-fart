@@ -44,7 +44,6 @@ public class DatabaseFragment extends Fragment implements View.OnClickListener {
 
         this.createCardsForFarts(root);
         this.addClickListenerToRadioButtons(root);
-        this.addClickListenerToCardViewButtons(root);
         return root;
     }
 
@@ -69,34 +68,8 @@ public class DatabaseFragment extends Fragment implements View.OnClickListener {
         rbScore.setOnClickListener(this);
     }
 
-    private void addClickListenerToCardViewButtons(View root) {
-        Button bDelete = root.findViewById(R.id.database_delete);
-        Button bDetail = root.findViewById(R.id.database_detail);
-
-        bDelete.setOnClickListener(this);
-        bDetail.setOnClickListener(this);
-    }
-
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.database_sort_date:
-            case R.id.database_sort_name:
-            case R.id.database_sort_score:
-                this.onSortButtonClicked(view);
-                break;
-            case R.id.database_delete:
-                this.onDeleteButtonClicked(view);
-                break;
-            case R.id.database_detail:
-                this.onDetailButtonClicked(view);
-                break;
-            default:
-                //Do nothing
-        }
-    }
-
-    private void onSortButtonClicked(View view) {
         RadioButton rbSort = (RadioButton) view;
 
         //TODO: determine property to apply sorting for
@@ -105,23 +78,5 @@ public class DatabaseFragment extends Fragment implements View.OnClickListener {
 
         //TODO: Positioning of message toast
         toaster.showSuccess(R.string.database_sort_success);
-    }
-
-    private void onDetailButtonClicked(View view) {
-        Button bDetail = (Button) view;
-        //TODO: get fart object
-
-        //TODO: navigate to details page
-
-        //TODO: transfer fart object to detail fragment
-    }
-
-    public void onDeleteButtonClicked(View view) {
-        Button bDelete = (Button) view;
-        //TODO: get id of fart object
-
-        //TODO: security query
-
-        //TODO: delete fart object if secuirty query was approved
     }
 }
