@@ -6,16 +6,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import dhbw.lichter.scheuring.formelapp.util.Fart;
 import dhbw.lichter.scheuring.formelapp.R;
+import dhbw.lichter.scheuring.formelapp.util.DatabaseManager;
 import io.github.kexanie.library.MathView;
 
 public class DetailFragment extends Fragment {
 
-    public MathView formula;
     public MathView formulaVal;
     public TextView intensity;
     public TextView length;
@@ -24,14 +27,26 @@ public class DetailFragment extends Fragment {
     public TextView ageListener;
     public TextView genderFactor;
     public TextView result;
+
     private Button saveFart;
+    private DatabaseManager dbHelper;
+    private Fart fart;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_detail, container, false);
 
-        //Mit View Element verknüpfen
-        formula = (MathView) root.findViewById(R.id.detail_formula_keys);
+        androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) getActivity().findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
+
+        dbHelper = new DatabaseManager(getActivity());
+
         formulaVal = (MathView) root.findViewById(R.id.detail_formula_values);
         intensity = (TextView) root.findViewById(R.id.txtView_detail_intensity);
         length = (TextView) root.findViewById(R.id.txtView_detail_length);
@@ -48,7 +63,7 @@ public class DetailFragment extends Fragment {
             }
         });
 
-        //getData
+        //TODO: Extract into own method
         Bundle bundle = getArguments();
         int valueIntensity = bundle.getInt("intensity");
         int valueLength = bundle.getInt("length");
@@ -58,9 +73,11 @@ public class DetailFragment extends Fragment {
         double valueGenderFactor = bundle.getDouble("genderFactor");
         double valueResult = bundle.getDouble("result");
         String strGenderFactor = bundle.getString("strGenderFactor");
+        //TODO
+        String valueName ="Name";
+        this.fart = new Fart(valueIntensity, valueLength, valueEmbarrassment, valueNumberKids, valueAgeListeners, valueResult, strGenderFactor, valueName);
 
-        //setData
-        String strFormula = "$$\\frac{(I * L)^S * K}{(A * g)} = F$$";
+        //TODO: Extract into own method
         String strFormulaVal = "$$\\frac{("
                 .concat(String.valueOf(valueIntensity))
                 .concat(" * ")
@@ -76,20 +93,19 @@ public class DetailFragment extends Fragment {
                 .concat(")} = ")
                 .concat(String.valueOf((int) valueResult))
                 .concat("$$");
-        formula.setText(strFormula);
         formulaVal.setText(strFormulaVal);
-        intensity.setText(getResources().getString(R.string.detail_intensity).concat(String.valueOf(" " + valueIntensity + " db")));
-        length.setText(getResources().getString(R.string.detail_length).concat(String.valueOf(" " + valueLength + " Sekunden")));
-        embarrassment.setText(getResources().getString(R.string.detail_social_embarrassment).concat(String.valueOf(" " + valueEmbarrassment)));
-        numberKids.setText(getResources().getString(R.string.detail_number_kids).concat(String.valueOf(" " + valueNumberKids)));
-        ageListener.setText(getResources().getString(R.string.detail_age_listener).concat(String.valueOf(" " + valueAgeListeners)));
-        genderFactor.setText(getResources().getString(R.string.detail_gender_factor).concat(strGenderFactor + " mit Wert " + valueGenderFactor));
-        result.setText(getResources().getString(R.string.detail_result).concat(String.valueOf(" " + valueResult)));
+        intensity.setText(getString(R.string.detail_intensity).concat(String.valueOf(" " + valueIntensity + " db")));
+        length.setText(getString(R.string.detail_length).concat(String.valueOf(" " + valueLength + " Sekunden")));
+        embarrassment.setText(getString(R.string.detail_social_embarrassment).concat(String.valueOf(" " + valueEmbarrassment)));
+        numberKids.setText(getString(R.string.detail_number_kids).concat(String.valueOf(" " + valueNumberKids)));
+        ageListener.setText(getString(R.string.detail_age_listener).concat(String.valueOf(" " + valueAgeListeners)));
+        genderFactor.setText(getString(R.string.detail_gender_factor).concat(strGenderFactor + " mit Wert " + valueGenderFactor));
+        result.setText(getString(R.string.detail_result).concat(String.valueOf(" " + valueResult)));
 
         return root;
     }
 
     public void saveFartInDb() {
-
+            this.dbHelper.saveFart(fart);
     }
 }

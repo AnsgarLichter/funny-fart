@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -22,19 +23,23 @@ import dhbw.lichter.scheuring.formelapp.ui.detail.DetailFragment;
 
 public class HomeFragment extends Fragment {
 
+    private Button btnCreateFart;
+
     public EditText editTextIntensity;
     public EditText editTextLength;
     public EditText editTextNumberKids;
     public EditText editTextAgeListeners;
     public Spinner spnSocialEmbarrassment;
     public Spinner spnGenderFactor;
-    private Button btnCreateFart;
     public Toast toast;
     public TextView result;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) getActivity().findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         //Mit View Elementen Verknüpfen
         editTextIntensity = (EditText) root.findViewById(R.id.editText_fartIntensity);
@@ -45,7 +50,7 @@ public class HomeFragment extends Fragment {
         spnGenderFactor = (Spinner) root.findViewById(R.id.spn_gender_factor);
         result = (TextView) root.findViewById(R.id.txtView_result);
         btnCreateFart = (Button) root.findViewById(R.id.btn_create_fart);
-        //EventListener für Button hinzufügen
+
         btnCreateFart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,8 +72,8 @@ public class HomeFragment extends Fragment {
         String stringEmbarrassment = spnSocialEmbarrassment.getSelectedItem().toString();
         String stringGenderFactor = spnGenderFactor.getSelectedItem().toString();
 
+        //TODO: Extract into own method
         boolean calculate = true;
-
         //Fehleranzeige bei leeren Feldern
         if(TextUtils.isEmpty(stringIntensity)) {
             editTextIntensity.setError(getResources().getString(R.string.error_empty_field));
@@ -87,9 +92,10 @@ public class HomeFragment extends Fragment {
             calculate = false;
         }
 
+        //TODO: Extract into own method
         if(calculate) {
             //Erfolgsanzeige
-            toast = Toast.makeText(getActivity(), getResources().getString(R.string.success_toast_field),Toast.LENGTH_SHORT);
+            toast = Toast.makeText(getActivity(), getString(R.string.success_toast_field),Toast.LENGTH_SHORT);
             toast.show();
 
             //Cast von String zu Int
@@ -138,7 +144,7 @@ public class HomeFragment extends Fragment {
             bundle.putString("strGenderFactor", stringGenderFactor);
             bundle.putString("strSocialEmbarrassment", stringEmbarrassment);
 
-            //Detail Fragment aufrufen
+            //TODO: Implement navigate method
             Fragment fragment = new DetailFragment();
             fragment.setArguments(bundle);
             FragmentManager fragmentManager = getFragmentManager();
@@ -147,7 +153,10 @@ public class HomeFragment extends Fragment {
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         } else {
+            //TODO: Extract into MessageToastClass
             toast = Toast.makeText(getActivity(), getResources().getString(R.string.error_toast_field),Toast.LENGTH_SHORT);
+            //TODO: Extract into MessageToastClass
+            toast = Toast.makeText(getActivity(), getString(R.string.error_toast_field),Toast.LENGTH_SHORT);
             toast.show();
         }
     }
