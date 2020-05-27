@@ -68,6 +68,6 @@ public class DatabaseFragment extends Fragment implements View.OnClickListener {
         //TODO: sort farts
 
         //TODO: Positioning of message toast
-        toaster.showSuccess(getString(R.string.database_sort_success));
+        toaster.showSuccess(R.string.database_sort_success);
     }
 }
