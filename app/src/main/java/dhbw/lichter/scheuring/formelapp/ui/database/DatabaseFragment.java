@@ -2,9 +2,12 @@ package dhbw.lichter.scheuring.formelapp.ui.database;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.RadioButton;
 
 import androidx.annotation.NonNull;
@@ -24,6 +27,8 @@ import dhbw.lichter.scheuring.formelapp.util.Toaster;
 public class DatabaseFragment extends Fragment implements View.OnClickListener {
     private Activity activity;
     private Toaster toaster;
+    private ArrayList<Fart> farts;
+    private FartAdapter fartAdapter;
 
     public DatabaseManager dbHelper;
 
@@ -41,18 +46,18 @@ public class DatabaseFragment extends Fragment implements View.OnClickListener {
 
         this.createCardsForFarts(root);
         this.addClickListenerToRadioButtons(root);
+        this.addTextChangedListenerToSearchInput(root);
         return root;
     }
-
 
     private void createCardsForFarts(View root) {
         RecyclerView fartItemsView = root.findViewById(R.id.fart_items);
         LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
         fartItemsView.setLayoutManager(layoutManager);
 
-        ArrayList<Fart> items = dbHelper.getFarts();
-        FartAdapter itemsAdapter = new FartAdapter(items, dbHelper, this);
-        fartItemsView.setAdapter(itemsAdapter);
+        farts = dbHelper.getFarts();
+        fartAdapter = new FartAdapter(farts, dbHelper, this);
+        fartItemsView.setAdapter(fartAdapter);
     }
 
     private void addClickListenerToRadioButtons(View root) {
@@ -63,6 +68,26 @@ public class DatabaseFragment extends Fragment implements View.OnClickListener {
         rbName.setOnClickListener(this);
         rbDate.setOnClickListener(this);
         rbScore.setOnClickListener(this);
+    }
+
+    private void addTextChangedListenerToSearchInput(View root) {
+        EditText searchInput = root.findViewById(R.id.database_search);
+        searchInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                fartAdapter.filter(s.toString());
+            }
+        });
     }
 
     @Override
