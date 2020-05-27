@@ -40,7 +40,12 @@ public class DatabaseFragment extends Fragment implements View.OnClickListener {
         dbHelper = new DatabaseManager(activity);
         toaster = new Toaster(activity);
 
+        this.createCardsForFarts(root);
         this.addClickListenerToRadioButtons(root);
+        return root;
+    }
+
+    private void createCardsForFarts(View root) {
         RecyclerView fartItemsView = root.findViewById(R.id.fart_items);
         LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
         fartItemsView.setLayoutManager(layoutManager);
@@ -48,7 +53,6 @@ public class DatabaseFragment extends Fragment implements View.OnClickListener {
         ArrayList<Fart> items = dbHelper.getFarts();
         FartAdapter itemsAdapter = new FartAdapter(items);
         fartItemsView.setAdapter(itemsAdapter);
-        return root;
     }
 
     private void addClickListenerToRadioButtons(View root) {
