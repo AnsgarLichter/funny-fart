@@ -1,24 +1,25 @@
 package dhbw.lichter.scheuring.formelapp.util;
 
 
-import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.provider.MediaStore;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioButton;
 
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.ParseException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import dhbw.lichter.scheuring.formelapp.R;
 import dhbw.lichter.scheuring.formelapp.ui.database.DatabaseFragment;
 import lombok.NonNull;
+import lombok.SneakyThrows;
 
 public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
 
@@ -49,8 +50,8 @@ public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
     public void onBindViewHolder(FartViewHolder fartViewHolder, int i) {
         fartViewHolder.fart = fartsView.get(i);
         fartViewHolder.fartName.setText(fartViewHolder.fart.getName());
-        fartViewHolder.fartScore.setText("" + (int) fartViewHolder.fart.getScore());
-        fartViewHolder.creationDate.setText(fartViewHolder.fart.getCreationDate());
+        fartViewHolder.fartScore.setText(String.format("%.2f", fartViewHolder.fart.getScore()));
+        fartViewHolder.creationDate.setText(formatDate(fartViewHolder.fart.getCreationDate()));
         fartViewHolder.fartGif.setImageResource(R.drawable.im_funny_fart);
     }
 
@@ -95,9 +96,20 @@ public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void applySort(String sortProperty, boolean sortAsc) {
-        if(sortAsc)
+        if (sortAsc)
             fartsView.sort(new FartComparator(sortProperty));
         else
             fartsView.sort(new FartComparator(sortProperty).reversed());
+    }
+
+    private String formatDate(String date) {
+        try {
+            SimpleDateFormat inputformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd.MM.yyyy");
+            Date creationDate = inputformat.parse(date);
+            return outputFormat.format(creationDate);
+        } catch (ParseException ex) {
+            return date;
+        }
     }
 }
