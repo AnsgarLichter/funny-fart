@@ -23,18 +23,48 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.043" />
 
-    <EditText
-        android:id="@+id/editText_fartIntensity"
-        android:layout_width="wrap_content"
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:id="@+id/layout_editText_fartIntensity"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:hintTextAppearance="@android:style/TextAppearance.Small"-->
+<!--        app:boxStrokeColor="#fff"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.164">-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/editText_fartIntensity"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:ems="5"-->
+<!--        android:inputType="number"-->
+<!--        android:hint="@string/hint_intensity" />-->
+
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textField"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:hint="@string/hint_intensity"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.164" />
+        app:layout_constraintVertical_bias="0.164">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText_fartIntensity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <EditText
         android:id="@+id/editText_fartLength"

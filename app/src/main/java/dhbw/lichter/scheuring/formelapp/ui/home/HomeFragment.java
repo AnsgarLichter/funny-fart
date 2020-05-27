@@ -18,7 +18,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import dhbw.lichter.scheuring.formelapp.R;
-import dhbw.lichter.scheuring.formelapp.ui.database.DatabaseFragment;
 import dhbw.lichter.scheuring.formelapp.ui.detail.DetailFragment;
 
 public class HomeFragment extends Fragment {
@@ -42,7 +41,7 @@ public class HomeFragment extends Fragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         //Mit View Elementen Verknüpfen
-        editTextIntensity = (EditText) root.findViewById(R.id.editText_fartIntensity);
+        editTextIntensity = (com.google.android.material.textfield.TextInputEditText) root.findViewById(R.id.editText_fartIntensity);
         editTextLength = (EditText) root.findViewById(R.id.editText_fartLength);
         editTextNumberKids = (EditText) root.findViewById(R.id.editText_number_kids_present);
         editTextAgeListeners = (EditText) root.findViewById(R.id.editText_age_of_listener);
