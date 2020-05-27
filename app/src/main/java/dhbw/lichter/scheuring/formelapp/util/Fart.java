@@ -23,6 +23,7 @@ public class Fart {
     @NonNull private String sex;
     @NonNull private String name;
     private String creationDate;
+    private long id;
 
     public SQLiteStatement prepareInsertStatement(SQLiteStatement insertFart) {
         insertFart.bindDouble(1, score);
