@@ -7,7 +7,7 @@
     tools:context=".ui.database.DatabaseFragment">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/database_search"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -31,7 +31,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText">
+        app:layout_constraintTop_toBottomOf="@+id/database_search">
 
         <RadioButton
             android:id="@+id/database_sort_date"
