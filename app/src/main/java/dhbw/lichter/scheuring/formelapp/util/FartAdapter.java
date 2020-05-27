@@ -1,13 +1,19 @@
 package dhbw.lichter.scheuring.formelapp.util;
 
 
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import dhbw.lichter.scheuring.formelapp.R;
@@ -68,6 +74,30 @@ public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
             fartsView = filteredFarts;
         }
         notifyDataSetChanged();
+    }
 
+    //TODO: Update to API24
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void sort(int id, boolean sortAsc) {
+        switch (id) {
+            case R.id.database_sort_score:
+                applySort(FartComparator.SORT_SCORE, sortAsc);
+                break;
+            case R.id.database_sort_date:
+                applySort(FartComparator.SORT_CREATON_DATE, sortAsc);
+                break;
+            case R.id.database_sort_name:
+                applySort(FartComparator.SORT_NAME, sortAsc);
+                break;
+        }
+        notifyDataSetChanged();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void applySort(String sortProperty, boolean sortAsc) {
+        if(sortAsc)
+            fartsView.sort(new FartComparator(sortProperty));
+        else
+            fartsView.sort(new FartComparator(sortProperty).reversed());
     }
 }
