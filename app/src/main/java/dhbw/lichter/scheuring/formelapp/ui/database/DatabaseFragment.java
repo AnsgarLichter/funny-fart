@@ -1,16 +1,20 @@
 package dhbw.lichter.scheuring.formelapp.ui.database;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,6 +33,9 @@ public class DatabaseFragment extends Fragment implements View.OnClickListener {
     private Toaster toaster;
     private ArrayList<Fart> farts;
     private FartAdapter fartAdapter;
+
+    private int sortProperty;
+    private boolean sortAsc;
 
     public DatabaseManager dbHelper;
 
@@ -90,15 +97,25 @@ public class DatabaseFragment extends Fragment implements View.OnClickListener {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onClick(View view) {
-        RadioButton rbSort = (RadioButton) view;
+        Drawable desc = activity.getDrawable(R.drawable.ic_arrow_downward_black_24dp);
+        Drawable asc = activity.getDrawable(R.drawable.ic_arrow_upward_black_24dp);
+        RadioButton rbClicked = (RadioButton) view;
+        int id = rbClicked.getId();
 
-        //TODO: determine property to apply sorting for
+        if (sortProperty == id && sortAsc) {
+            sortAsc = false;
+            rbClicked.setCompoundDrawablesWithIntrinsicBounds(null, null, desc, null);
+        } else {
+            sortAsc = true;
+            rbClicked.setCompoundDrawablesWithIntrinsicBounds(null, null, asc, null);
+        }
 
-        //TODO: sort farts
+        sortProperty = id;
+        fartAdapter.sort(id, sortAsc);
 
-        //TODO: Positioning of message toast
         toaster.showSuccess(R.string.database_sort_success);
     }
 }
