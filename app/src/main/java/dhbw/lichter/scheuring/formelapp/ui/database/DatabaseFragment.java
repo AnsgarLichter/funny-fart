@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RadioButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,10 +21,12 @@ import dhbw.lichter.scheuring.formelapp.R;
 import dhbw.lichter.scheuring.formelapp.util.DatabaseManager;
 import dhbw.lichter.scheuring.formelapp.util.Fart;
 import dhbw.lichter.scheuring.formelapp.util.FartAdapter;
+import dhbw.lichter.scheuring.formelapp.util.Toaster;
 
-public class DatabaseFragment extends Fragment {
+public class DatabaseFragment extends Fragment implements View.OnClickListener {
     private Activity activity;
-    protected DatabaseManager dbHelper;
+    private Toaster toaster;
+    private DatabaseManager dbHelper;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -35,7 +38,9 @@ public class DatabaseFragment extends Fragment {
 
         activity = getActivity();
         dbHelper = new DatabaseManager(activity);
+        toaster = new Toaster(activity);
 
+        this.addClickListenerToRadioButtons(root);
         RecyclerView fartItemsView = root.findViewById(R.id.fart_items);
         LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
         fartItemsView.setLayoutManager(layoutManager);
@@ -46,7 +51,23 @@ public class DatabaseFragment extends Fragment {
         return root;
     }
 
-    public void onRadioButtonClicked(View view) {
+    private void addClickListenerToRadioButtons(View root) {
+        RadioButton rbName = root.findViewById(R.id.database_sort_name);
+        RadioButton rbDate = root.findViewById(R.id.database_sort_date);
+        RadioButton rbScore = root.findViewById(R.id.database_sort_score);
 
+        rbName.setOnClickListener(this);
+        rbDate.setOnClickListener(this);
+        rbScore.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        //TODO: determine property to apply sorting for
+
+        //TODO: sort farts
+
+        //TODO: Positioning of message toast
+        toaster.showSuccess(getString(R.string.database_sort_success));
     }
 }

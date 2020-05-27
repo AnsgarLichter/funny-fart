@@ -34,36 +34,25 @@
         app:layout_constraintTop_toBottomOf="@+id/editText">
 
         <RadioButton
-            android:id="@+id/radio_filter1"
+            android:id="@+id/database_sort_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:onClick="onRadioButtonClicked"
-            android:text="@string/database_filter" />
+            android:layout_weight="0.33"
+            android:text="@string/database_sort_date" />
 
         <RadioButton
-            android:id="@+id/radio_filter2"
+            android:id="@+id/database_sort_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:onClick="onRadioButtonClicked"
-            android:text="@string/database_filter" />
+            android:layout_weight="0.33"
+            android:text="@string/database_sort_name" />
 
         <RadioButton
-            android:id="@+id/radio_filter3"
+            android:id="@+id/database_sort_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:onClick="onRadioButtonClicked"
-            android:text="@string/database_filter" />
-
-        <RadioButton
-            android:id="@+id/radio_filter4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:onClick="onRadioButtonClicked"
-            android:text="@string/database_filter" />
+            android:layout_weight="0.33"
+            android:text="@string/database_sort_score" />
     </RadioGroup>
 
 
@@ -78,5 +67,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup"></androidx.recyclerview.widget.RecyclerView>
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+    </androidx.recyclerview.widget.RecyclerView>
 </androidx.constraintlayout.widget.ConstraintLayout>
