@@ -103,9 +103,9 @@ public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
 
     private String formatDate(String date) {
         try {
-            SimpleDateFormat inputformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             SimpleDateFormat outputFormat = new SimpleDateFormat("dd.MM.yyyy");
-            Date creationDate = inputformat.parse(date);
+            Date creationDate = inputFormat.parse(date);
             return outputFormat.format(creationDate);
         } catch (ParseException ex) {
             return date;
