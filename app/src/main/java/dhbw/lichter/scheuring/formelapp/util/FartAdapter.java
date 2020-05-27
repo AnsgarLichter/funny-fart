@@ -1,64 +1,114 @@
 package dhbw.lichter.scheuring.formelapp.util;
 
-import android.content.Context;
-import android.media.Image;
+
+import android.os.Build;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import androidx.cardview.widget.CardView;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.ParseException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import dhbw.lichter.scheuring.formelapp.R;
+import dhbw.lichter.scheuring.formelapp.ui.database.DatabaseFragment;
 import lombok.NonNull;
+import lombok.SneakyThrows;
 
-public class FartAdapter extends RecyclerView.Adapter<FartAdapter.FartViewHolder> {
+public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
 
-    public static class FartViewHolder extends RecyclerView.ViewHolder {
-        CardView cardView;
-        ImageView fartGif;
-        TextView fartName;
-        TextView fartScore;
-        TextView creationDate;
-
-
-        FartViewHolder(View itemView) {
-            super(itemView);
-            cardView = (CardView) itemView.findViewById(R.id.fart_card);
-            fartGif = (ImageView) itemView.findViewById(R.id.fart_gif);
-            fartName = (TextView) itemView.findViewById(R.id.card_fart_name);
-            fartScore = (TextView) itemView.findViewById(R.id.card_fart_score);
-            creationDate = (TextView) itemView.findViewById(R.id.card_creation_date);
-        }
-    }
-
+    private final DatabaseFragment dbFragment;
     private List<Fart> farts;
+    private List<Fart> fartsView;
+    private DatabaseManager dbHelper;
 
-    public FartAdapter(List<Fart> farts){
+    public FartAdapter(List<Fart> farts, DatabaseManager dbHelper, DatabaseFragment dbFragment) {
         this.farts = farts;
+        this.fartsView = farts;
+        this.dbHelper = dbHelper;
+        this.dbFragment = dbFragment;
     }
 
     @Override
     public int getItemCount() {
-        return farts.size();
+        return fartsView.size();
     }
 
     @Override
     public FartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_card_template, parent, false);
-        return new FartViewHolder(view);
+        return new FartViewHolder(view, dbFragment, this);
     }
 
     @Override
     public void onBindViewHolder(FartViewHolder fartViewHolder, int i) {
-        fartViewHolder.fartName.setText(farts.get(i).getName());
-        fartViewHolder.fartScore.setText("" + (int) farts.get(i).getScore());
-        fartViewHolder.creationDate.setText(farts.get(i).getCreationDate());
+        fartViewHolder.fart = fartsView.get(i);
+        fartViewHolder.fartName.setText(fartViewHolder.fart.getName());
+        fartViewHolder.fartScore.setText(String.format("%.2f", fartViewHolder.fart.getScore()));
+        fartViewHolder.creationDate.setText(formatDate(fartViewHolder.fart.getCreationDate()));
         fartViewHolder.fartGif.setImageResource(R.drawable.im_funny_fart);
+    }
+
+    public void removeFart(int position) {
+        fartsView.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public void filter(String text) {
+        List<Fart> filteredFarts = new ArrayList<Fart>();
+
+        if (text == "") {
+            fartsView = farts;
+        } else {
+            for (Fart fart : farts) {
+                if (fart.getName().toLowerCase().contains(text.toLowerCase())) {
+                    filteredFarts.add(fart);
+                }
+            }
+            fartsView = filteredFarts;
+        }
+        notifyDataSetChanged();
+    }
+
+    //TODO: Update to API24
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void sort(int id, boolean sortAsc) {
+        switch (id) {
+            case R.id.database_sort_score:
+                applySort(FartComparator.SORT_SCORE, sortAsc);
+                break;
+            case R.id.database_sort_date:
+                applySort(FartComparator.SORT_CREATON_DATE, sortAsc);
+                break;
+            case R.id.database_sort_name:
+                applySort(FartComparator.SORT_NAME, sortAsc);
+                break;
+        }
+        notifyDataSetChanged();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void applySort(String sortProperty, boolean sortAsc) {
+        if (sortAsc)
+            fartsView.sort(new FartComparator(sortProperty));
+        else
+            fartsView.sort(new FartComparator(sortProperty).reversed());
+    }
+
+    private String formatDate(String date) {
+        try {
+            SimpleDateFormat inputformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd.MM.yyyy");
+            Date creationDate = inputformat.parse(date);
+            return outputFormat.format(creationDate);
+        } catch (ParseException ex) {
+            return date;
+        }
     }
 }

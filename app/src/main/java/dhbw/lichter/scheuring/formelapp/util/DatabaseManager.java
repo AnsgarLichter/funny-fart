@@ -8,9 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import dhbw.lichter.scheuring.formelapp.util.Fart;
 
 public class DatabaseManager extends SQLiteOpenHelper {
     private static final String DB_NAME = "FunnyFart";
@@ -66,10 +63,13 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     private static final String READ_ALL_FARTS = "SELECT * FROM " + TABLE_FART + ";";
 
+    private static final String DELETE_FART = "DELETE FROM " + TABLE_FART + " WHERE " + COL_ID + " = " + " ?;";
+
 
     private SQLiteStatement insertFart;
     private SQLiteStatement insertSex;
     private SQLiteStatement insertScore;
+    private SQLiteStatement deleteFart;
 
 
     private Context context;
@@ -81,7 +81,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
         this.context = context;
 
         SQLiteDatabase db = this.getReadableDatabase();
-        insertFart  = db.compileStatement(INSERT_FART);
+        insertFart = db.compileStatement(INSERT_FART);
+        deleteFart = db.compileStatement(DELETE_FART);
     }
 
     @Override
@@ -128,10 +129,22 @@ public class DatabaseManager extends SQLiteOpenHelper {
                     cursor.getDouble(cursor.getColumnIndex(COL_FART_SCORE)),
                     cursor.getString(cursor.getColumnIndex(COL_SEX)),
                     cursor.getString(cursor.getColumnIndex(COL_FART_NAME)),
-                    cursor.getString(cursor.getColumnIndex(COL_CREATION_DATE)));
+                    cursor.getString(cursor.getColumnIndex(COL_CREATION_DATE)),
+                    cursor.getLong(cursor.getColumnIndex(COL_ID)));
             farts.add(fart);
         }
         return farts;
+    }
+
+    public void deleteFart(long id) throws SQLException {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        deleteFart.bindLong(1, id);
+        int deletedRows = deleteFart.executeUpdateDelete();
+
+        if(deletedRows == 0) {
+            throw new SQLException("Deletion failed for fart id " + id);
+        }
     }
 
     private void createFartTable(SQLiteDatabase db) throws SQLException{
