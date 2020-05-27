@@ -1,16 +1,25 @@
 package dhbw.lichter.scheuring.formelapp.util;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import dhbw.lichter.scheuring.formelapp.R;
+import dhbw.lichter.scheuring.formelapp.ui.database.DatabaseFragment;
+import dhbw.lichter.scheuring.formelapp.ui.detail.DetailFragment;
 
-public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, DialogInterface.OnClickListener {
     public Fart fart;
     public CardView cardView;
     public ImageView fartGif;
@@ -19,10 +28,16 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public TextView creationDate;
     public Button bDelete;
     public Button bDetail;
+    private FartAdapter fartAdapter;
+    private DatabaseFragment dbFragment;
 
 
-    FartViewHolder(View itemView) {
+    FartViewHolder(View itemView, DatabaseFragment dbFragment, FartAdapter fartAdapter) {
         super(itemView);
+
+        this.dbFragment = dbFragment;
+        this.fartAdapter = fartAdapter;
+
         cardView = (CardView) itemView.findViewById(R.id.fart_card);
         fartGif = (ImageView) itemView.findViewById(R.id.fart_gif);
         fartName = (TextView) itemView.findViewById(R.id.card_fart_name);
@@ -49,21 +64,52 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         }
     }
 
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        dbFragment.dbHelper.deleteFart(fart.getId());
+        this.fartAdapter.removeFart(getAdapterPosition());
+    }
+
     private void onDetailButtonClicked(View view) {
-        Button bDetail = (Button) view;
-        //TODO: get fart object
-
-        //TODO: navigate to details page
-
-        //TODO: transfer fart object to detail fragment
+        Bundle bundle = this.createBundle();
+        this.navigateToDetailPage(bundle);
     }
 
     public void onDeleteButtonClicked(View view) {
-        Button bDelete = (Button) view;
-        //TODO: get id of fart object
+        Activity activity = dbFragment.getActivity();
+        final long id = fart.getId();
+        String name = fart.getName();
+        String title = activity.getString(R.string.database_delete_security_query_title);
+        String message = activity.getString(R.string.database_delete_security_query_message).replace(":name", name);
 
-        //TODO: security query
+        new AlertDialog.Builder(activity)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(android.R.string.yes, this)
+                .setNegativeButton(android.R.string.no, null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
 
-        //TODO: delete fart object if secuirty query was approved
+    private Bundle createBundle() {
+        Bundle bundle = new Bundle();
+        bundle.putInt("intensity", fart.getIntensity());
+        bundle.putInt("length", fart.getLength());
+        bundle.putInt("embarrassment", fart.getSocialEmbarrassment());
+        bundle.putInt("numberKids", fart.getCountChildren());
+        bundle.putInt("ageListeners", fart.getAverageAge());
+        bundle.putDouble("result", fart.getScore());
+        bundle.putString("strGenderFactor", fart.getSex());
+
+        return bundle;
+    }
+
+    private void navigateToDetailPage(Bundle bundle) {
+        Fragment fragment = new DetailFragment();
+        fragment.setArguments(bundle);
+        FragmentTransaction fragmentTransaction = dbFragment.getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }

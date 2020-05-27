@@ -24,7 +24,8 @@ import dhbw.lichter.scheuring.formelapp.util.Toaster;
 public class DatabaseFragment extends Fragment implements View.OnClickListener {
     private Activity activity;
     private Toaster toaster;
-    private DatabaseManager dbHelper;
+
+    public DatabaseManager dbHelper;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -50,7 +51,7 @@ public class DatabaseFragment extends Fragment implements View.OnClickListener {
         fartItemsView.setLayoutManager(layoutManager);
 
         ArrayList<Fart> items = dbHelper.getFarts();
-        FartAdapter itemsAdapter = new FartAdapter(items);
+        FartAdapter itemsAdapter = new FartAdapter(items, dbHelper, this);
         fartItemsView.setAdapter(itemsAdapter);
     }
 
