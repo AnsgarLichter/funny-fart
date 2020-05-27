@@ -57,7 +57,6 @@ public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
 
     public void removeFart(int position) {
         fartsView.remove(position);
-        farts.remove(position);
         notifyItemRemoved(position);
     }
 
