@@ -36,7 +36,6 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-
     <!-- Specific Styles -->
     <style name="toolbar_title">
         <item name="android:textSize">24dp</item>
