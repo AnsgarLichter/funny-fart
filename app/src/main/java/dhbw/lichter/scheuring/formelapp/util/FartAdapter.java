@@ -1,23 +1,15 @@
 package dhbw.lichter.scheuring.formelapp.util;
 
-import android.content.Context;
-import android.media.Image;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import dhbw.lichter.scheuring.formelapp.R;
-import dhbw.lichter.scheuring.formelapp.ui.database.DatabaseFragment;
-import lombok.Data;
 import lombok.NonNull;
 
 public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {

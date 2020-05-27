@@ -2,13 +2,9 @@ package dhbw.lichter.scheuring.formelapp.ui.database;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
 import android.widget.RadioButton;
 
 import androidx.annotation.NonNull;
