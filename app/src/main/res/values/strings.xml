@@ -44,7 +44,7 @@
     <string name="database_delete_security_query_message">Sind Sie sicher, dass sie Furz :name löschen möchten?</string>
 
     <!-- Fragment Detail -->
-    <string name="detail_title">Sie haben folgenden Furz berechnet.</string>
+    <string name="detail_title">Sie haben folgenden Furz berechnet:</string>
     <string name="detail_intensity">Intensität: </string>
     <string name="detail_length">Länge: </string>
     <string name="detail_social_embarrassment">Peinlichkeitslevel: </string>
