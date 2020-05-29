@@ -20,14 +20,14 @@
     <!-- Fragment Home -->
     <string name="home_title">Berechnen Sie, wie witzig ihr Furz ist.</string>
 
-    <string name="txt_social_embarressment">Peinlichkeitslevel</string>
+    <string name="txt_social_embarrassment">Peinlichkeitslevel</string>
     <string name="txt_gender_factor">Geschlecht der furzenden Person</string>
 
     <string name="btn_create_fart">Berechne neuen Furz</string>
 
-    <string name="hint_intensity">Intensität</string>
-    <string name="hint_length">Länge</string>
-    <string name="hint_number_of_kids">Anwesende Kinder</string>
+    <string name="txt_intensity">Intensität</string>
+    <string name="txt_length">Länge</string>
+    <string name="txt_number_of_kids">Anwesende Kinder</string>
     <string name="hint_age_of_listener">Alter der Zuhörer</string>
 
     <string name="error_empty_field">Geben Sie einen Wert ein.</string>

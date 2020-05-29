@@ -47,6 +47,8 @@ dependencies {
     //noinspection GradleCompatible
     implementation 'com.android.support:design:23.0.0'
 
+    implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
+
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
     //noinspection GradleCompatible
