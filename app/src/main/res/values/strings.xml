@@ -30,6 +30,10 @@
     <string name="txt_number_of_kids">Anwesende Kinder</string>
     <string name="hint_age_of_listener">Alter der Zuhörer</string>
 
+    <string name="home_gender_female">Weiblich</string>
+    <string name="home_gender_male">Männlich</string>
+
+
     <string name="error_empty_field">Geben Sie einen Wert ein.</string>
     <string name="error_toast_field">Es wurden nicht alle Felder ausgefüllt.</string>
     <string name="success_toast_field">Furz berechnen ...</string>
