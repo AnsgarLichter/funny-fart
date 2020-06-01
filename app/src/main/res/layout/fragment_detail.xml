@@ -6,27 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".ui.detail.DetailFragment">
 
-    <LinearLayout
-        android:id="@+id/detail_result_title_background"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/detail_result_title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:background="@color/formHeader"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/detail_title"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-
-        <TextView
-            android:id="@+id/detail_result_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/detail_title"
-            android:textColor="@color/toolbarTitleColor"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp" />
-
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <io.github.kexanie.library.MathView
         android:id="@+id/detail_formula_values"
@@ -136,28 +127,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtView_detail_embarrassment" />
 
-    <LinearLayout
-        android:id="@+id/detail_form_title_background"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="16dp"
         android:background="@color/formHeader"
+        app:layout_constraintTop_toBottomOf="@+id/txtView_detail_result"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/detail_form_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/detail_form_title"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtView_detail_result" >
-
-        <TextView
-            android:id="@+id/detail_form_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/detail_form_title"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            android:textColor="@color/toolbarTitleColor"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp" />
-
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/txtView_detail_result" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_fart_name"
@@ -171,7 +162,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detail_form_title_background">
+        app:layout_constraintTop_toBottomOf="@+id/detail_form_title">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editText_fart_name"
@@ -192,8 +183,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:drawableLeft="@drawable/ic_menu_save"
+        android:drawableStart="@drawable/ic_menu_save"
         android:text="@string/detail_btn_save_fart"
+        android:backgroundTint="@color/formHeader"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
