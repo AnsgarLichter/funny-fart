@@ -139,7 +139,7 @@ public class HomeFragment extends Fragment {
             valueGenderFactor = Double.parseDouble(getResources().getStringArray(R.array.values_gender_factor)[counter]);
 
             //Furz berechnen
-            double fart = (Math.pow((valueIntensity * valueLength), valueEmbarrassment) * valueNumberKids) / (valueAgeListeners * valueGenderFactor);
+            double score = (Math.pow((valueIntensity * valueLength), valueEmbarrassment) * valueNumberKids) / (valueAgeListeners * valueGenderFactor);
 
             //Werte in Bundle schreiben für Datenuebergabe
             //Werte fuer Berechnung
@@ -149,7 +149,7 @@ public class HomeFragment extends Fragment {
             bundle.putInt("numberKids", valueNumberKids);
             bundle.putInt("ageListeners", valueAgeListeners);
             bundle.putDouble("genderFactor", valueGenderFactor);
-            bundle.putDouble("result", fart);
+            bundle.putDouble("result", score);
 
             //Werte fuer die Anzeige
             bundle.putString("strGenderFactor", stringGenderFactor);
