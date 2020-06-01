@@ -6,11 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.appcompat.widget.Toolbar;
 
 import dhbw.lichter.scheuring.formelapp.util.Fart;
 import dhbw.lichter.scheuring.formelapp.R;
@@ -36,7 +36,7 @@ public class DetailFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_detail, container, false);
 
-        androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) getActivity().findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +91,7 @@ public class DetailFragment extends Fragment {
                 .concat(" * ")
                 .concat(String.valueOf(valueGenderFactor))
                 .concat(")} = ")
-                .concat(String.valueOf((int) valueResult))
+                .concat(String.format("%.2f", valueResult))
                 .concat("$$");
         formulaVal.setText(strFormulaVal);
         intensity.setText(getString(R.string.detail_intensity).concat(String.valueOf(" " + valueIntensity + " db")));
