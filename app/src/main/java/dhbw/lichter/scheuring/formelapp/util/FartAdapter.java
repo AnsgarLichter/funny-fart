@@ -62,7 +62,7 @@ public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
     public void filter(String text) {
         List<Fart> filteredFarts = new ArrayList<Fart>();
 
-        if (text == "") {
+        if (text.equals("")) {
             fartsView = farts;
         } else {
             for (Fart fart : farts) {
