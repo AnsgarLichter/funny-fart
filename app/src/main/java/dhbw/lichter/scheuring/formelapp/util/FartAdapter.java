@@ -19,7 +19,6 @@ import java.util.List;
 import dhbw.lichter.scheuring.formelapp.R;
 import dhbw.lichter.scheuring.formelapp.ui.database.DatabaseFragment;
 import lombok.NonNull;
-import lombok.SneakyThrows;
 
 public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
 

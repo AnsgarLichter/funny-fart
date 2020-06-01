@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,7 +33,9 @@ public class HomeFragment extends Fragment {
     public ElegantNumberButton enbSocialEmbarrassment;
     public ElegantNumberButton enbNumberKids;
     public EditText editTextAgeListeners;
-    public Spinner spnGenderFactor;
+    public RadioGroup gender;
+    public RadioButton male;
+    public RadioButton female;
     public Toast toast;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -47,7 +51,9 @@ public class HomeFragment extends Fragment {
         enbSocialEmbarrassment = (ElegantNumberButton) root.findViewById(R.id.enb_social_embarrassment);
         enbNumberKids = (ElegantNumberButton) root.findViewById(R.id.enb_number_kids_present);
         editTextAgeListeners = (EditText) root.findViewById(R.id.editText_age_of_listener);
-        spnGenderFactor = (Spinner) root.findViewById(R.id.spn_gender_factor);
+        male = (RadioButton) root.findViewById(R.id.home_gender_male);
+        gender = (RadioGroup) root.findViewById(R.id.radioGroupGender);
+        female = (RadioButton) root.findViewById(R.id.home_gender_female);
         btnCreateFart = (Button) root.findViewById(R.id.btn_create_fart);
 
         //set Range
@@ -72,7 +78,11 @@ public class HomeFragment extends Fragment {
         String stringNumberKids = enbNumberKids.getNumber();
         String stringAgeListeners = editTextAgeListeners.getText().toString();
         String stringEmbarrassment = enbSocialEmbarrassment.getNumber();
-        String stringGenderFactor = spnGenderFactor.getSelectedItem().toString();
+        String stringGenderFactor = female.getText().toString();
+
+        if(male.isSelected()) {
+            stringGenderFactor = male.getText().toString();
+        }
 
         //TODO: Extract into own method
         boolean calculate = true;
@@ -118,7 +128,7 @@ public class HomeFragment extends Fragment {
             }
             valueEmbarrassment = Integer.parseInt(getResources().getStringArray(R.array.values_social_embarrassment)[counter]);
 
-            //Wert des Spinners GenderFacotr bestimmner
+            //Wert des Spinners GenderFactor bestimmen
             counter = -1;
             for (String el : getResources().getStringArray(R.array.keys_gender_factor)) {
                 counter++;
