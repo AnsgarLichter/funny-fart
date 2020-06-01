@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,7 @@ public class DetailFragment extends Fragment {
     public TextView ageListener;
     public TextView genderFactor;
     public TextView result;
+    public TextView name;
 
     private Button saveFart;
     private DatabaseManager dbHelper;
@@ -55,6 +57,7 @@ public class DetailFragment extends Fragment {
         ageListener = (TextView) root.findViewById(R.id.txtView_detail_age_listeners);
         genderFactor = (TextView) root.findViewById(R.id.txtView_detail_gender_factor);
         result = (TextView) root.findViewById(R.id.txtView_detail_result);
+        name = (EditText) root.findViewById(R.id.editText_fart_name);
         saveFart = (Button) root.findViewById(R.id.btn_detail_save_fart);
         saveFart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,12 +103,19 @@ public class DetailFragment extends Fragment {
         numberKids.setText(getString(R.string.detail_number_kids).concat(String.valueOf(" " + valueNumberKids)));
         ageListener.setText(getString(R.string.detail_age_listener).concat(String.valueOf(" " + valueAgeListeners)));
         genderFactor.setText(getString(R.string.detail_gender_factor).concat(strGenderFactor + " mit Wert " + valueGenderFactor));
-        result.setText(getString(R.string.detail_result).concat(String.valueOf(" " + valueResult)));
+        result.setText(getString(R.string.detail_result).concat(" " + String.format("%.2f", valueResult)));
 
         return root;
     }
 
     public void saveFartInDb() {
+        String name = this.name.getText().toString();
+
+        if(name.equals("") || name.trim().equals("")) {
+            this.name.setError(getResources().getString(R.string.error_empty_field));
+        } else {
+            fart.setName(name);
             this.dbHelper.saveFart(fart);
+        }
     }
 }

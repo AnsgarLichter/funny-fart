@@ -48,7 +48,7 @@
     <string name="database_delete_security_query_message">Sind Sie sicher, dass sie Furz :name löschen möchten?</string>
 
     <!-- Fragment Detail -->
-    <string name="detail_title">Sie haben folgenden Furz berechnet:</string>
+    <string name="detail_title">So witzig ist Ihr Furz:</string>
     <string name="detail_intensity">Intensität: </string>
     <string name="detail_length">Länge: </string>
     <string name="detail_social_embarrassment">Peinlichkeitslevel: </string>
@@ -56,6 +56,8 @@
     <string name="detail_age_listener">Durchschnittsalter der Zuhörer: </string>
     <string name="detail_gender_factor">Geschlecht: </string>
     <string name="detail_result">Wie witzig ist ihr Furz: </string>
+    <string name="detail_form_title">Speichern Sie Ihr Ergebnis:</string>
+    <string name="detail_hint_fart_name">Name des Furzes</string>
     <string name="detail_btn_save_fart">Furz speichern</string>
 
     <!-- Fragment Help -->
