@@ -6,4 +6,5 @@
     <color name="buttonText">#000000</color>
     <color name="buttonColor">#03DAC5</color>
     <color name="toolbarTitleColor">#FFFFFF</color>
+    <color name="formHeader" >#2133FF</color>
 </resources>
