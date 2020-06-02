@@ -200,18 +200,6 @@
             android:text="@string/home_gender_male" />
     </RadioGroup>
 
-    <!--<Spinner
-        android:id="@+id/spn_gender_factor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:entries="@array/keys_gender_factor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.833" />-->
-
     <Button
         android:id="@+id/btn_create_fart"
         android:layout_width="wrap_content"

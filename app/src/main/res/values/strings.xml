@@ -53,9 +53,9 @@
     <string name="detail_length">Länge: </string>
     <string name="detail_social_embarrassment">Peinlichkeitslevel: </string>
     <string name="detail_number_kids">Anwesende Kinder: </string>
-    <string name="detail_age_listener">Durchschnittsalter der Zuhörer: </string>
+    <string name="detail_age_listener">ø-Alter der Zuhörer: </string>
     <string name="detail_gender_factor">Geschlecht: </string>
-    <string name="detail_result">Wie witzig ist ihr Furz: </string>
+    <string name="detail_input_title">Ihre Eingaben:</string>
     <string name="detail_form_title">Speichern Sie Ihr Ergebnis:</string>
     <string name="detail_hint_fart_name">Name des Furzes</string>
     <string name="detail_btn_save_fart">Furz speichern</string>
