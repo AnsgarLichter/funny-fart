@@ -49,6 +49,8 @@
     <string name="card_template_date">Erstellt am:</string>
     <string name="card_template_score">Score:</string>
     <string name="card_template_image">Score Image</string>
+    <string name="card_template_delete">Furz löschen</string>
+    <string name="card_template_detail">Detailansicht</string>
 
     <!-- Fragment Detail -->
     <string name="detail_title">So witzig ist Ihr Furz:</string>
