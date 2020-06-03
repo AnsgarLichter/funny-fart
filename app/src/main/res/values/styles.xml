@@ -34,6 +34,10 @@
         <item name="textColor">@color/colorAccent</item>
     </style>
 
+    <style name="RadioButtonCustomIcon">
+        <item name="android:textColorPrimaryDisableOnly">@color/colorAccent</item>
+    </style>
+
     <style name="RadioButton">
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:buttonTint">@color/colorAccent</item>
