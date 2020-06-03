@@ -312,7 +312,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                android:backgroundTint="@color/formHeader"
                 android:drawableStart="@drawable/ic_menu_save"
                 android:text="@string/detail_btn_save_fart"
                 app:layout_constraintBottom_toBottomOf="parent"

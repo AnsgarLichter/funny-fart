@@ -6,209 +6,227 @@
     android:layout_height="match_parent"
     tools:context="ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/home_title"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.043" />
-
-    <TextView
-        android:id="@+id/label_fart_intensity"
-        android:layout_width="120dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:labelFor="@+id/editText_fart_intensity"
-        android:text="@string/txt_intensity"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_home" />
-
-    <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
-        android:id="@+id/enb_fart_intensity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        app:backGroundColor="@color/toolbarTitleColor"
-        app:initialNumber="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/label_fart_intensity"
-        app:layout_constraintTop_toBottomOf="@+id/text_home"
-        app:textColor="@color/design_default_color_primary_dark" />
-
-    <TextView
-        android:id="@+id/editText_fartLength"
-        android:layout_width="120dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="@string/txt_length"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_fart_intensity" />
-
-    <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
-        android:id="@+id/enb_fart_length"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        app:backGroundColor="@color/toolbarTitleColor"
-        app:initialNumber="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editText_fartLength"
-        app:layout_constraintTop_toBottomOf="@+id/enb_fart_intensity"
-        app:textColor="@color/design_default_color_primary_dark" />
-
-    <TextView
-        android:id="@+id/txtView_social_embarrassment"
-        android:layout_width="120dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="@string/txt_social_embarrassment"
-        android:textAlignment="center"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_fartLength" />
-
-    <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
-        android:id="@+id/enb_social_embarrassment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        app:backGroundColor="@color/toolbarTitleColor"
-        app:initialNumber="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtView_social_embarrassment"
-        app:layout_constraintTop_toBottomOf="@+id/enb_fart_length"
-        app:textColor="@color/design_default_color_primary_dark" />
-
-
-    <TextView
-        android:id="@+id/txtView_number_kids_present"
-        android:layout_width="120dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="@string/txt_number_of_kids"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtView_social_embarrassment" />
-
-    <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
-        android:id="@+id/enb_number_kids_present"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        app:backGroundColor="@color/toolbarTitleColor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtView_number_kids_present"
-        app:layout_constraintTop_toBottomOf="@+id/enb_social_embarrassment"
-        app:textColor="@color/design_default_color_primary_dark" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layout_age_listener"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/fart_card_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:hint="@string/hint_age_of_listener"
+        android:backgroundTint="@color/cardBackground"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="2dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtView_number_kids_present">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editText_age_of_listener"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtView_number_kids_present"
-            app:layout_constraintVertical_bias="0.623" />
+            android:layout_height="wrap_content">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/text_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/home_title"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.043" />
 
-    <TextView
-        android:id="@+id/txtView_gender_factor"
-        android:layout_width="120dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/txt_gender_factor"
-        android:textAlignment="center"
-        android:textSize="14sp"
-        android:gravity="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_age_listener" />
+            <TextView
+                android:id="@+id/label_fart_intensity"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:labelFor="@+id/editText_fart_intensity"
+                android:text="@string/txt_intensity"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_home" />
 
-    <RadioGroup
-        android:id="@+id/radioGroupGender"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtView_gender_factor"
-        app:layout_constraintTop_toBottomOf="@+id/layout_age_listener">
+            <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                android:id="@+id/enb_fart_intensity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:theme="@style/ElegantNumberButton"
+                app:initialNumber="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/label_fart_intensity"
+                app:layout_constraintTop_toBottomOf="@+id/text_home" />
 
-        <RadioButton
-            android:id="@+id/home_gender_female"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_weight="0.33"
-            android:button="@drawable/radio_male"
-            android:text="@string/home_gender_female"
-            android:checked="true"/>
+            <TextView
+                android:id="@+id/editText_fartLength"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:text="@string/txt_length"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_fart_intensity" />
 
-        <RadioButton
-            android:id="@+id/home_gender_male"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_weight="0.33"
-            android:button="@drawable/radio_female"
-            android:text="@string/home_gender_male" />
-    </RadioGroup>
+            <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                android:id="@+id/enb_fart_length"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:theme="@style/ElegantNumberButton"
+                app:initialNumber="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/editText_fartLength"
+                app:layout_constraintTop_toBottomOf="@+id/enb_fart_intensity" />
 
-    <Button
-        android:id="@+id/btn_create_fart"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="32dp"
-        android:drawableLeft="@drawable/ic_btn_calc"
-        android:text="@string/btn_create_fart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtView_gender_factor" />
+            <TextView
+                android:id="@+id/txtView_social_embarrassment"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:text="@string/txt_social_embarrassment"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText_fartLength" />
 
+            <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                android:id="@+id/enb_social_embarrassment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:theme="@style/ElegantNumberButton"
+                app:initialNumber="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/txtView_social_embarrassment"
+                app:layout_constraintTop_toBottomOf="@+id/enb_fart_length" />
+
+
+            <TextView
+                android:id="@+id/txtView_number_kids_present"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:text="@string/txt_number_of_kids"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtView_social_embarrassment" />
+
+            <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                android:id="@+id/enb_number_kids_present"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:theme="@style/ElegantNumberButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/txtView_number_kids_present"
+                app:layout_constraintTop_toBottomOf="@+id/enb_social_embarrassment" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_age_listener"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:theme="@style/TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:hint="@string/hint_age_of_listener"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtView_number_kids_present">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editText_age_of_listener"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtView_number_kids_present"
+                    app:layout_constraintVertical_bias="0.623" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/txtView_gender_factor"
+                android:layout_width="120dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:text="@string/txt_gender_factor"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_age_listener" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupGender"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/txtView_gender_factor"
+                app:layout_constraintTop_toBottomOf="@+id/layout_age_listener">
+
+                <RadioButton
+                    android:id="@+id/home_gender_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_weight="0.33"
+                    android:button="@drawable/radio_male"
+                    android:checked="true"
+                    android:text="@string/home_gender_female"
+                    android:theme="@style/RadioButton" />
+
+                <RadioButton
+                    android:id="@+id/home_gender_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_weight="0.33"
+                    android:button="@drawable/radio_female"
+                    android:text="@string/home_gender_male"
+                    android:theme="@style/RadioButton" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/btn_create_fart"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="32dp"
+                android:drawableStart="@drawable/ic_btn_calc"
+                android:text="@string/btn_create_fart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtView_gender_factor" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
