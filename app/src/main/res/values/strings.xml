@@ -46,6 +46,8 @@
     <string name="database_sort_success">Erfolgreich sortiert</string>
     <string name="database_delete_security_query_title">Furz löschen</string>
     <string name="database_delete_security_query_message">Sind Sie sicher, dass sie Furz :name löschen möchten?</string>
+    <string name="card_template_date">Erstellt am:</string>
+    <string name="card_template_score">Score:</string>
 
     <!-- Fragment Detail -->
     <string name="detail_title">So witzig ist Ihr Furz:</string>
