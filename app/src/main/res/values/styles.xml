@@ -29,6 +29,15 @@
         <item name="android:textColorPrimary">@color/colorAccent</item>
     </style>
 
+    <style name="ElegantNumberButton">
+        <item name="backGroundColor">@color/cardBackground</item>
+        <item name="textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="RadioButton">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
 
     <!-- Element specific Styles -->
     <style name="heading">
