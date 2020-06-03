@@ -6,7 +6,8 @@
     android:layout_height="150dp"
     android:layout_marginTop="16dp"
     android:id="@+id/fart_card"
-    app:cardCornerRadius="3dp"
+    android:backgroundTint="@color/cardBackground"
+    app:cardCornerRadius="30dp"
     app:cardElevation="2dp">
 
     <LinearLayout
@@ -94,20 +95,20 @@
                 android:layout_weight="0.50"
                 android:orientation="horizontal">
 
-                <com.google.android.material.button.MaterialButton
+                <Button
                     android:id="@+id/database_detail"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="0.50"
-                    android:text="Detail View" />
+                    android:drawableStart="@drawable/ic_detail_24" />
 
-                <com.google.android.material.button.MaterialButton
+                <Button
                     android:id="@+id/database_delete"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
                     android:layout_weight="0.50"
-                    android:text="Delete" />
+                    android:drawableStart="@drawable/ic_baseline_delete" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
