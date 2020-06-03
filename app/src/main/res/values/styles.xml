@@ -13,10 +13,10 @@
 
 
     <!-- Global Styles -->
-    <style name="button" parent="Widget.MaterialComponents.Button">
+    <style name="button">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/buttonText</item>
-        <item name="android:background">@drawable/btn_rounded</item>
+        <item name="android:background">@drawable/btn_floating</item>
     </style>
 
     <style name="textView">
@@ -36,6 +36,7 @@
 
     <style name="RadioButton">
         <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:buttonTint">@color/colorAccent</item>
     </style>
 
 
