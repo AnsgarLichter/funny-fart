@@ -205,7 +205,7 @@
                     android:button="@drawable/radio_male"
                     android:checked="true"
                     android:text="@string/home_gender_female"
-                    android:theme="@style/RadioButton" />
+                    android:theme="@style/RadioButtonCustomIcon" />
 
                 <RadioButton
                     android:id="@+id/home_gender_male"
@@ -214,7 +214,7 @@
                     android:layout_weight="0.33"
                     android:button="@drawable/radio_female"
                     android:text="@string/home_gender_male"
-                    android:theme="@style/RadioButton" />
+                    android:theme="@style/RadioButtonCustomIcon" />
             </RadioGroup>
 
             <Button
