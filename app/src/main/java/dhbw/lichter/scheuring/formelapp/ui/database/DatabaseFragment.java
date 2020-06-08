@@ -9,7 +9,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
@@ -49,7 +48,7 @@ public class DatabaseFragment extends Fragment implements View.OnClickListener {
 
         activity = getActivity();
         dbHelper = new DatabaseManager(activity);
-        toaster = new Toaster(activity);
+        toaster = new Toaster(getActivity().getApplicationContext());
 
         this.createCardsForFarts(root);
         this.addClickListenerToRadioButtons(root);

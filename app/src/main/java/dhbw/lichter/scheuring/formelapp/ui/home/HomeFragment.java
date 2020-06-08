@@ -23,6 +23,7 @@ import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 
 import dhbw.lichter.scheuring.formelapp.R;
 import dhbw.lichter.scheuring.formelapp.ui.detail.DetailFragment;
+import dhbw.lichter.scheuring.formelapp.util.Toaster;
 
 public class HomeFragment extends Fragment {
 
@@ -36,7 +37,7 @@ public class HomeFragment extends Fragment {
     public RadioGroup gender;
     public RadioButton male;
     public RadioButton female;
-    public Toast toast;
+    public Toaster toast;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -44,6 +45,9 @@ public class HomeFragment extends Fragment {
 
         androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) getActivity().findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
+        //Instanz of Application Context for displaying a toast
+        toast = new Toaster(getActivity().getApplicationContext());
 
         //Mit View Elementen Verknüpfen
         enbIntensity = (ElegantNumberButton) root.findViewById(R.id.enb_fart_intensity);
@@ -84,21 +88,7 @@ public class HomeFragment extends Fragment {
             stringGenderFactor = male.getText().toString();
         }
 
-        //TODO: Extract into own method
         boolean calculate = true;
-        //Fehleranzeige bei leeren Feldern
-//        if(TextUtils.isEmpty(stringIntensity)) {
-//            editTextIntensity.setError(getResources().getString(R.string.error_empty_field));
-//            calculate = false;
-//        }
-//        if(TextUtils.isEmpty(stringLength)) {
-//            editTextLength.setError(getResources().getString(R.string.error_empty_field));
-//            calculate = false;
-//        }
-//        if(TextUtils.isEmpty(stringNumberKids)) {
-//            editTextNumberKids.setError(getResources().getString(R.string.error_empty_field));
-//            calculate = false;
-//        }
         if(TextUtils.isEmpty(stringAgeListeners)) {
             editTextAgeListeners.setError(getResources().getString(R.string.error_empty_field));
             calculate = false;
@@ -106,9 +96,7 @@ public class HomeFragment extends Fragment {
 
         //TODO: Extract into own method
         if(calculate) {
-            //Erfolgsanzeige
-            toast = Toast.makeText(getActivity(), getString(R.string.success_toast_field),Toast.LENGTH_SHORT);
-            toast.show();
+            toast.showSuccess(R.string.success_toast_field);
 
             //Cast von String zu Int
             int valueIntensity = Integer.parseInt(stringIntensity);
@@ -164,11 +152,7 @@ public class HomeFragment extends Fragment {
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         } else {
-            //TODO: Extract into MessageToastClass
-            toast = Toast.makeText(getActivity(), getResources().getString(R.string.error_toast_field),Toast.LENGTH_SHORT);
-            //TODO: Extract into MessageToastClass
-            toast = Toast.makeText(getActivity(), getString(R.string.error_toast_field),Toast.LENGTH_SHORT);
-            toast.show();
+            toast.showError(R.string.error_toast_field);
         }
     }
 }
