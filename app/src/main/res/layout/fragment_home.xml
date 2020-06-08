@@ -217,10 +217,10 @@
                     android:theme="@style/RadioButtonCustomIcon" />
             </RadioGroup>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_create_fart"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:drawableStart="@drawable/ic_btn_calc"
                 android:text="@string/btn_create_fart"
