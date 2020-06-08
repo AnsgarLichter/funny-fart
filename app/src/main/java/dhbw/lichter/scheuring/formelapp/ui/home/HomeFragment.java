@@ -42,12 +42,13 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+        View toastView = inflater.inflate(R.layout.custom_toast,  (ViewGroup) root.findViewById(R.id.custom_toast_layout));
 
         androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) getActivity().findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         //Instanz of Application Context for displaying a toast
-        toast = new Toaster(getActivity().getApplicationContext());
+        toast = new Toaster(getActivity().getApplicationContext(), toastView);
 
         //Mit View Elementen Verknüpfen
         enbIntensity = (ElegantNumberButton) root.findViewById(R.id.enb_fart_intensity);

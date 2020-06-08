@@ -42,13 +42,14 @@ public class DatabaseFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_database, container, false);
+        View toastView = inflater.inflate(R.layout.custom_toast, (ViewGroup) root.findViewById(R.id.custom_toast_layout));
 
         androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) getActivity().findViewById(R.id.toolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         activity = getActivity();
         dbHelper = new DatabaseManager(activity);
-        toaster = new Toaster(getActivity().getApplicationContext());
+        toaster = new Toaster(getActivity().getApplicationContext(), toastView);
 
         this.createCardsForFarts(root);
         this.addClickListenerToRadioButtons(root);
