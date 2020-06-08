@@ -3,9 +3,11 @@ package dhbw.lichter.scheuring.formelapp.util;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,8 +28,8 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public TextView fartName;
     public TextView fartScore;
     public TextView creationDate;
-    public Button bDelete;
-    public Button bDetail;
+    public ImageButton bDelete;
+    public ImageButton bDetail;
     private FartAdapter fartAdapter;
     private DatabaseFragment dbFragment;
 

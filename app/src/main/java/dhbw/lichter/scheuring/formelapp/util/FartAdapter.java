@@ -19,7 +19,6 @@ import java.util.List;
 import dhbw.lichter.scheuring.formelapp.R;
 import dhbw.lichter.scheuring.formelapp.ui.database.DatabaseFragment;
 import lombok.NonNull;
-import lombok.SneakyThrows;
 
 public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
 
@@ -63,7 +62,7 @@ public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
     public void filter(String text) {
         List<Fart> filteredFarts = new ArrayList<Fart>();
 
-        if (text == "") {
+        if (text.equals("")) {
             fartsView = farts;
         } else {
             for (Fart fart : farts) {

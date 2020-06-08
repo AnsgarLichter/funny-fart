@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,22 +19,24 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+
 import dhbw.lichter.scheuring.formelapp.R;
-import dhbw.lichter.scheuring.formelapp.ui.database.DatabaseFragment;
 import dhbw.lichter.scheuring.formelapp.ui.detail.DetailFragment;
 
 public class HomeFragment extends Fragment {
 
     private Button btnCreateFart;
 
-    public EditText editTextIntensity;
-    public EditText editTextLength;
-    public EditText editTextNumberKids;
+    public ElegantNumberButton enbIntensity;
+    public ElegantNumberButton enbTextLength;
+    public ElegantNumberButton enbSocialEmbarrassment;
+    public ElegantNumberButton enbNumberKids;
     public EditText editTextAgeListeners;
-    public Spinner spnSocialEmbarrassment;
-    public Spinner spnGenderFactor;
+    public RadioGroup gender;
+    public RadioButton male;
+    public RadioButton female;
     public Toast toast;
-    public TextView result;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -42,14 +46,18 @@ public class HomeFragment extends Fragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         //Mit View Elementen Verknüpfen
-        editTextIntensity = (EditText) root.findViewById(R.id.editText_fartIntensity);
-        editTextLength = (EditText) root.findViewById(R.id.editText_fartLength);
-        editTextNumberKids = (EditText) root.findViewById(R.id.editText_number_kids_present);
+        enbIntensity = (ElegantNumberButton) root.findViewById(R.id.enb_fart_intensity);
+        enbTextLength = (ElegantNumberButton) root.findViewById(R.id.enb_fart_length);
+        enbSocialEmbarrassment = (ElegantNumberButton) root.findViewById(R.id.enb_social_embarrassment);
+        enbNumberKids = (ElegantNumberButton) root.findViewById(R.id.enb_number_kids_present);
         editTextAgeListeners = (EditText) root.findViewById(R.id.editText_age_of_listener);
-        spnSocialEmbarrassment = (Spinner) root.findViewById(R.id.spn_social_embarrassment);
-        spnGenderFactor = (Spinner) root.findViewById(R.id.spn_gender_factor);
-        result = (TextView) root.findViewById(R.id.txtView_result);
+        male = (RadioButton) root.findViewById(R.id.home_gender_male);
+        gender = (RadioGroup) root.findViewById(R.id.radioGroupGender);
+        female = (RadioButton) root.findViewById(R.id.home_gender_female);
         btnCreateFart = (Button) root.findViewById(R.id.btn_create_fart);
+
+        //set Range
+        enbSocialEmbarrassment.setRange(1, 3);
 
         btnCreateFart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,28 +73,32 @@ public class HomeFragment extends Fragment {
         Bundle bundle = new Bundle();
 
         //Werte einlesen
-        String stringIntensity = editTextIntensity.getText().toString();
-        String stringLength = editTextLength.getText().toString();
-        String stringNumberKids = editTextNumberKids.getText().toString();
+        String stringIntensity = enbIntensity.getNumber();
+        String stringLength = enbTextLength.getNumber();
+        String stringNumberKids = enbNumberKids.getNumber();
         String stringAgeListeners = editTextAgeListeners.getText().toString();
-        String stringEmbarrassment = spnSocialEmbarrassment.getSelectedItem().toString();
-        String stringGenderFactor = spnGenderFactor.getSelectedItem().toString();
+        String stringEmbarrassment = enbSocialEmbarrassment.getNumber();
+        String stringGenderFactor = female.getText().toString();
+
+        if(male.isSelected()) {
+            stringGenderFactor = male.getText().toString();
+        }
 
         //TODO: Extract into own method
         boolean calculate = true;
         //Fehleranzeige bei leeren Feldern
-        if(TextUtils.isEmpty(stringIntensity)) {
-            editTextIntensity.setError(getResources().getString(R.string.error_empty_field));
-            calculate = false;
-        }
-        if(TextUtils.isEmpty(stringLength)) {
-            editTextLength.setError(getResources().getString(R.string.error_empty_field));
-            calculate = false;
-        }
-        if(TextUtils.isEmpty(stringNumberKids)) {
-            editTextNumberKids.setError(getResources().getString(R.string.error_empty_field));
-            calculate = false;
-        }
+//        if(TextUtils.isEmpty(stringIntensity)) {
+//            editTextIntensity.setError(getResources().getString(R.string.error_empty_field));
+//            calculate = false;
+//        }
+//        if(TextUtils.isEmpty(stringLength)) {
+//            editTextLength.setError(getResources().getString(R.string.error_empty_field));
+//            calculate = false;
+//        }
+//        if(TextUtils.isEmpty(stringNumberKids)) {
+//            editTextNumberKids.setError(getResources().getString(R.string.error_empty_field));
+//            calculate = false;
+//        }
         if(TextUtils.isEmpty(stringAgeListeners)) {
             editTextAgeListeners.setError(getResources().getString(R.string.error_empty_field));
             calculate = false;
@@ -116,7 +128,7 @@ public class HomeFragment extends Fragment {
             }
             valueEmbarrassment = Integer.parseInt(getResources().getStringArray(R.array.values_social_embarrassment)[counter]);
 
-            //Wert des Spinners GenderFacotr bestimmner
+            //Wert des Spinners GenderFactor bestimmen
             counter = -1;
             for (String el : getResources().getStringArray(R.array.keys_gender_factor)) {
                 counter++;
@@ -127,8 +139,7 @@ public class HomeFragment extends Fragment {
             valueGenderFactor = Double.parseDouble(getResources().getStringArray(R.array.values_gender_factor)[counter]);
 
             //Furz berechnen
-            double fart = (Math.pow((valueIntensity * valueLength), valueEmbarrassment) * valueNumberKids) / (valueAgeListeners * valueGenderFactor);
-            result.setText(Double.toString(fart));
+            double score = (Math.pow((valueIntensity * valueLength), valueEmbarrassment) * valueNumberKids) / (valueAgeListeners * valueGenderFactor);
 
             //Werte in Bundle schreiben für Datenuebergabe
             //Werte fuer Berechnung
@@ -138,7 +149,7 @@ public class HomeFragment extends Fragment {
             bundle.putInt("numberKids", valueNumberKids);
             bundle.putInt("ageListeners", valueAgeListeners);
             bundle.putDouble("genderFactor", valueGenderFactor);
-            bundle.putDouble("result", fart);
+            bundle.putDouble("result", score);
 
             //Werte fuer die Anzeige
             bundle.putString("strGenderFactor", stringGenderFactor);

@@ -24,7 +24,8 @@ public class HelpFragment extends Fragment {
 
 
         formula = (MathView) root.findViewById(R.id.help_formula);
-        String strFormula = "$$\\frac{(I * L)^S * K}{(A * g)} = F$$";
+        String strFormula = "$$\\color{white}{\\frac{(I * L)^S * K}{(A * g)} = F}$$";
+        formula.setEngine(MathView.Engine.MATHJAX);
         formula.setText(strFormula);
         return root;
     }

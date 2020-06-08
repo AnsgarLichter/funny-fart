@@ -18,6 +18,8 @@
         android:ems="10"
         android:hint="@string/database_search"
         android:inputType="text"
+        android:textColorHint="@color/colorAccent"
+        android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,6 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.33"
             android:drawableEnd="@drawable/ic_arrow_upward_black_24dp"
+            android:theme="@style/RadioButton"
             android:text="@string/database_sort_date" />
 
         <RadioButton
@@ -49,6 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.33"
             android:drawableEnd="@drawable/ic_arrow_upward_black_24dp"
+            android:theme="@style/RadioButton"
             android:text="@string/database_sort_name" />
 
         <RadioButton
@@ -57,6 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.33"
             android:drawableEnd="@drawable/ic_arrow_upward_black_24dp"
+            android:theme="@style/RadioButton"
             android:text="@string/database_sort_score" />
     </RadioGroup>
 
