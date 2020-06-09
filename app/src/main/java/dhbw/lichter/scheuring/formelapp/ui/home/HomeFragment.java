@@ -9,17 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+
+import java.util.Objects;
 
 import dhbw.lichter.scheuring.formelapp.R;
 import dhbw.lichter.scheuring.formelapp.ui.detail.DetailFragment;
@@ -28,35 +25,34 @@ import dhbw.lichter.scheuring.formelapp.util.Toaster;
 
 public class HomeFragment extends Fragment {
 
-    private Button btnCreateFart;
-
     private ElegantNumberButton enbIntensity;
     private ElegantNumberButton enbTextLength;
     private ElegantNumberButton enbSocialEmbarrassment;
     private ElegantNumberButton enbNumberKids;
     private EditText editTextAgeListeners;
-    private RadioGroup gender;
     private RadioButton male;
     private RadioButton female;
 
     private Toaster toast;
     private Navigator navigator;
 
-    private Bundle source;
+    private Bundle bundle;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         View toastView = inflater.inflate(R.layout.custom_toast,  (ViewGroup) root.findViewById(R.id.custom_toast_layout));
 
-        androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) getActivity().findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        Objects.requireNonNull(((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
 
         //Instanz of Application Context for displaying a toast
         toast = new Toaster(getActivity().getApplicationContext(), toastView);
         navigator = new Navigator(getFragmentManager());
-        source = getArguments();
+        Bundle source = getArguments();
+        bundle = new Bundle();
 
+        //Audio Datei weiterleiten
+        if(source != null)  bundle.putString("audioPath", source.getString("audioPath"));
         //Mit View Elementen Verknüpfen
         enbIntensity = (ElegantNumberButton) root.findViewById(R.id.enb_fart_intensity);
         enbTextLength = (ElegantNumberButton) root.findViewById(R.id.enb_fart_length);
@@ -64,9 +60,8 @@ public class HomeFragment extends Fragment {
         enbNumberKids = (ElegantNumberButton) root.findViewById(R.id.enb_number_kids_present);
         editTextAgeListeners = (EditText) root.findViewById(R.id.editText_age_of_listener);
         male = (RadioButton) root.findViewById(R.id.home_gender_male);
-        gender = (RadioGroup) root.findViewById(R.id.radioGroupGender);
         female = (RadioButton) root.findViewById(R.id.home_gender_female);
-        btnCreateFart = (Button) root.findViewById(R.id.btn_create_fart);
+        Button btnCreateFart = (Button) root.findViewById(R.id.btn_create_fart);
 
         //set Range
         enbSocialEmbarrassment.setRange(1, 3);
@@ -109,47 +104,7 @@ public class HomeFragment extends Fragment {
                     Integer.parseInt(stringAgeListeners),
                     (int) getKeyFromArray(stringEmbarrassment, R.array.keys_social_embarrassment, R.array.values_social_embarrassment),
                     getKeyFromArray(stringGenderFactor, R.array.keys_gender_factor, R.array.values_gender_factor));
-
-            //Wert des Spinners bestimmmen über zweite Arraylist
-            int counter = -1;
-            for (String el : getResources().getStringArray(R.array.keys_social_embarrassment)) {
-                counter++;
-                if (el.equals(stringEmbarrassment)) {
-                    break;
-                }
-            }
-            valueEmbarrassment = Integer.parseInt(getResources().getStringArray(R.array.values_social_embarrassment)[counter]);
-
-            //Wert des Spinners GenderFactor bestimmen
-            counter = -1;
-            for (String el : getResources().getStringArray(R.array.keys_gender_factor)) {
-                counter++;
-                if (el.equals(stringGenderFactor)) {
-                    break;
-                }
-            }
-            valueGenderFactor = Double.parseDouble(getResources().getStringArray(R.array.values_gender_factor)[counter]);
-
-            //Furz berechnen
-            double score = (Math.pow((valueIntensity * valueLength), valueEmbarrassment) * valueNumberKids) / (valueAgeListeners * valueGenderFactor);
-
-            //Werte in Bundle schreiben für Datenuebergabe
-            //Werte fuer Berechnung
-            bundle.putInt("intensity", valueIntensity);
-            bundle.putInt("length", valueLength);
-            bundle.putInt("embarrassment", valueEmbarrassment);
-            bundle.putInt("numberKids", valueNumberKids);
-            bundle.putInt("ageListeners", valueAgeListeners);
-            bundle.putDouble("genderFactor", valueGenderFactor);
-            bundle.putDouble("result", score);
-            bundle.putBoolean("isInDb", false);
-            if(source != null) bundle.putString("audioPath", source.getString("audioPath"));
-
-            //Werte fuer die Anzeige
-            bundle.putString("strGenderFactor", stringGenderFactor);
-            bundle.putString("strSocialEmbarrassment", stringEmbarrassment);
-
-            //TODO: Implement navigate method
+            
             navigator.navigate(new DetailFragment(), true, bundle);
         } else {
             toast.showError(R.string.error_toast_field);
@@ -159,8 +114,6 @@ public class HomeFragment extends Fragment {
 
     public void calculateFart(int valueIntensity, int valueLength, int valueNumberKids, int valueAgeListeners, int valueEmbarrassment, double valueGenderFactor) {
         double score = (Math.pow((valueIntensity * valueLength), valueEmbarrassment) * valueNumberKids) / (valueAgeListeners * valueGenderFactor);
-        //Werte in Bundle schreiben für Datenuebergabe
-        //Werte fuer Berechnung
         bundle.putInt("intensity", valueIntensity);
         bundle.putInt("length", valueLength);
         bundle.putInt("embarrassment", valueEmbarrassment);
