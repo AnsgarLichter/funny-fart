@@ -98,7 +98,8 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     public void onDeleteButtonClicked() {
         Activity activity = dbFragment.getActivity();
-        final long id = fart.getId();
+        assert activity != null;
+
         String name = fart.getName();
         String title = activity.getString(R.string.database_delete_security_query_title);
         String message = activity.getString(R.string.database_delete_security_query_message).replace(":name", "\"" + name + "\"");
@@ -115,7 +116,7 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     private void onPlayButtonClicked() {
         String audioPath = fart.getAudioPath();
 
-        if (audioPath != "") {
+        if (!audioPath.equals("")) {
             Recorder recorder = new Recorder();
             recorder.play(fart.getAudioPath());
         }
@@ -124,6 +125,9 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     private void onShareButtonClicked() {
         File audioFile = new File(fart.getAudioPath());
         Context context = dbFragment.getContext();
+
+        assert context != null;
+
         Uri fileUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", audioFile);
         context.grantUriPermission(context.getPackageName(), fileUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
         Intent share = new Intent();
