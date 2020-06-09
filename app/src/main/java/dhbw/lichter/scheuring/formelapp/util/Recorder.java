@@ -1,11 +1,8 @@
 package dhbw.lichter.scheuring.formelapp.util;
 
-import android.Manifest;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.util.Log;
-
-import androidx.annotation.NonNull;
 
 import java.io.IOException;
 
