@@ -21,7 +21,7 @@ import dhbw.lichter.scheuring.formelapp.ui.database.DatabaseFragment;
 public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
 
     private final DatabaseFragment dbFragment;
-    private List<Fart> farts;
+    private final List<Fart> farts;
     private List<Fart> fartsView;
 
     public FartAdapter(List<Fart> farts, DatabaseFragment dbFragment) {

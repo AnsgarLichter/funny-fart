@@ -7,15 +7,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.cardview.widget.CardView;
 import androidx.core.content.FileProvider;
-
 import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,30 +24,28 @@ import dhbw.lichter.scheuring.formelapp.ui.detail.DetailFragment;
 
 public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, DialogInterface.OnClickListener {
     public Fart fart;
-    public CardView cardView;
-    public ImageView fartGif;
-    public TextView fartName;
-    public TextView fartScore;
-    public TextView creationDate;
-    public ImageButton bDelete;
-    public ImageButton bDetail;
-    public ImageButton bPlay;
-    public ImageButton bShare;
+    public final ImageView fartGif;
+    public final TextView fartName;
+    public final TextView fartScore;
+    public final TextView creationDate;
+    public final ImageButton bDelete;
+    public final ImageButton bDetail;
+    public final ImageButton bPlay;
+    public final ImageButton bShare;
 
 
-    private FartAdapter fartAdapter;
-    private DatabaseFragment dbFragment;
-    private Navigator navigator;
+    private final FartAdapter fartAdapter;
+    private final DatabaseFragment dbFragment;
+    private final Navigator navigator;
 
 
     FartViewHolder(View itemView, DatabaseFragment dbFragment, FartAdapter fartAdapter) {
         super(itemView);
 
         this.dbFragment = dbFragment;
-        this.navigator = new Navigator(dbFragment.getFragmentManager());
+        this.navigator = new Navigator(dbFragment.requireActivity().getSupportFragmentManager());
         this.fartAdapter = fartAdapter;
 
-        cardView = (CardView) itemView.findViewById(R.id.fart_card);
         fartGif = (ImageView) itemView.findViewById(R.id.fart_gif);
         fartName = (TextView) itemView.findViewById(R.id.card_fart_name);
         fartScore = (TextView) itemView.findViewById(R.id.card_fart_score);

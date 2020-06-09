@@ -13,8 +13,8 @@ import lombok.Setter;
 public class Recorder {
     private static final String LOG_TAG = "MediaRecorder";
 
-    private MediaRecorder recorder;
-    private MediaPlayer player;
+    private final MediaRecorder recorder;
+    private final MediaPlayer player;
 
     @Getter @Setter
     private MediaRecorderStatus status;
