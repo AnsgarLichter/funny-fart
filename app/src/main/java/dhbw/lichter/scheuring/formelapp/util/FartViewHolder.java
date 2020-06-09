@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.media.Image;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -82,11 +83,11 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         final long id = fart.getId();
         String name = fart.getName();
         String title = activity.getString(R.string.database_delete_security_query_title);
-        String message = activity.getString(R.string.database_delete_security_query_message).replace(":name", name);
+        String message = activity.getString(R.string.database_delete_security_query_message).replace(":name", "\"" + name + "\"");
 
         new AlertDialog.Builder(activity)
                 .setTitle(title)
-                .setMessage(message)
+                .setMessage(Html.fromHtml("<font color=\"#FFFFFF\">" + message + "</font>"))
                 .setPositiveButton(android.R.string.yes, this)
                 .setNegativeButton(android.R.string.no, null)
                 .setIcon(android.R.drawable.ic_dialog_alert)
