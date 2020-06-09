@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -104,7 +103,7 @@ public class HomeFragment extends Fragment {
                     Integer.parseInt(stringAgeListeners),
                     (int) getKeyFromArray(stringEmbarrassment, R.array.keys_social_embarrassment, R.array.values_social_embarrassment),
                     getKeyFromArray(stringGenderFactor, R.array.keys_gender_factor, R.array.values_gender_factor));
-            
+
             navigator.navigate(new DetailFragment(), true, bundle);
         } else {
             toast.showError(R.string.error_toast_field);
