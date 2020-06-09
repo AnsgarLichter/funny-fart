@@ -37,7 +37,7 @@
 
     <string name="error_empty_field">Geben Sie einen Wert ein.</string>
     <string name="error_toast_field">Es wurden nicht alle Felder ausgefüllt.</string>
-    <string name="success_toast_field">Furz berechnen ...</string>
+    <string name="success_toast_field">Furz berechnen …</string>
 
     <!-- Fragment Database -->
     <string name="database_search">Furz suchen</string>
