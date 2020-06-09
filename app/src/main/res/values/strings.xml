@@ -15,24 +15,29 @@
     <string name="menu_home">Neuen Furz berechnen</string>
     <string name="menu_help">Hilfe</string>
     <string name="menu_detail">Detailansicht</string>
+    <string name="menu_record">Fürze aufnehmen</string>
 
 
     <!-- Fragment Home -->
     <string name="home_title">Berechnen Sie, wie witzig ihr Furz ist.</string>
 
-    <string name="txt_social_embarressment">Peinlichkeitslevel</string>
+    <string name="txt_social_embarrassment">Peinlichkeitslevel</string>
     <string name="txt_gender_factor">Geschlecht der furzenden Person</string>
 
     <string name="btn_create_fart">Berechne neuen Furz</string>
 
-    <string name="hint_intensity">Intensität</string>
-    <string name="hint_length">Länge</string>
-    <string name="hint_number_of_kids">Anwesende Kinder</string>
+    <string name="txt_intensity">Intensität</string>
+    <string name="txt_length">Länge</string>
+    <string name="txt_number_of_kids">Anwesende Kinder</string>
     <string name="hint_age_of_listener">Alter der Zuhörer</string>
+
+    <string name="home_gender_female">Weiblich</string>
+    <string name="home_gender_male">Männlich</string>
+
 
     <string name="error_empty_field">Geben Sie einen Wert ein.</string>
     <string name="error_toast_field">Es wurden nicht alle Felder ausgefüllt.</string>
-    <string name="success_toast_field">Furz berechnen ...</string>
+    <string name="success_toast_field">Furz berechnen …</string>
 
     <!-- Fragment Database -->
     <string name="database_search">Furz suchen</string>
@@ -41,18 +46,31 @@
     <string name="database_sort_score">Score</string>
     <string name="database_sort_success">Erfolgreich sortiert</string>
     <string name="database_delete_security_query_title">Furz löschen</string>
-    <string name="database_delete_security_query_message">Sind Sie sicher, dass sie Furz :name löschen möchten?</string>
+    <string name="database_delete_security_query_message">Sind Sie sicher, dass sie den Furz :name löschen möchten?</string>
+    <string name="card_template_date">Erstellt am:</string>
+    <string name="card_template_score">Score:</string>
+    <string name="card_template_image">Score Image</string>
+    <string name="card_template_delete">Furz löschen</string>
+    <string name="card_template_share">Falls eine Audio mit dem Furz verknüpft ist, können Sie diese in WhatsApp teilen!</string>
+    <string name="card_template_play">Falls eine Audio mit dem Furz verknüpft ist, können Sie diese abspielen!</string>
+    <string name="card_template_detail">Detailansicht</string>
 
     <!-- Fragment Detail -->
-    <string name="detail_title">Sie haben folgenden Furz berechnet:</string>
+    <string name="detail_title">So witzig ist Ihr Furz:</string>
     <string name="detail_intensity">Intensität: </string>
     <string name="detail_length">Länge: </string>
     <string name="detail_social_embarrassment">Peinlichkeitslevel: </string>
     <string name="detail_number_kids">Anwesende Kinder: </string>
-    <string name="detail_age_listener">Durchschnittsalter der Zuhörer: </string>
+    <string name="detail_age_listener">ø-Alter der Zuhörer: </string>
     <string name="detail_gender_factor">Geschlecht: </string>
-    <string name="detail_result">Wie witzig ist ihr Furz: </string>
+    <string name="detail_input_title">Ihre Eingaben:</string>
+    <string name="detail_form_title">Speichern Sie Ihr Ergebnis:</string>
+    <string name="detail_hint_fart_name">Name des Furzes</string>
     <string name="detail_btn_save_fart">Furz speichern</string>
+    <string name="detail_toast_success">Furz erfolgreich gespeichert.</string>
+    <string name="detail_intensity_value">%1$s db</string>
+    <string name="detail_length_value">%1$s Sekunde(n)</string>
+    <string name="detail_gender_factor_value">%1$s, %2$s</string>
 
     <!-- Fragment Help -->
     <string name="help_title">Hilfe</string>
@@ -71,4 +89,10 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
+    <!-- Fragment Record -->
+    <string name="recording_started">Aufnahme gestartet</string>
+    <string name="recording_finished">Aufnahme beendet</string>
+    <string name="file_created">Audio-Datei konnte nicht erstellt werden. Bitte rufen Sie die Seite erneut auf.</string>
+    <string name="permissions_granted">Berechtigungen gewährt</string>
+    <string name="permissions_not_granted">Um Fürze aufnehmen zu können, müssen Sie die Berechtigungen gewähren</string>
 </resources>

@@ -1,28 +1,50 @@
 <resources>
 
     <!-- Base application theme. Adding Global Styles -->
-    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        &lt;!&ndash; Customize your theme here. &ndash;&gt;
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:buttonStyle">@style/button</item>
-        <item name="android:fontFamily">@font/roboto</item>
-    </style>-->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:buttonStyle">@style/button</item>
         <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textViewStyle">@style/textView</item>
+        <item name="android:backgroundTint">@color/background</item>
     </style>
 
+    <style name="TemplateTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="android:buttonStyle">@style/button</item>
+    </style>
 
     <!-- Global Styles -->
-    <style name="button" parent="Widget.MaterialComponents.Button">
+    <style name="button" parent="@android:style/Widget.Button">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/buttonText</item>
-        <item name="android:background">@drawable/btn_rounded</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:background">@drawable/btn_floating</item>
+    </style>
+
+    <style name="textView">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+    </style>
+
+    <style name="ElegantNumberButton">
+        <item name="backGroundColor">@color/cardBackground</item>
+        <item name="textColor">@color/colorAccent</item>
+        <item name="android:theme">@style/TemplateTheme</item>
+    </style>
+
+    <style name="RadioButtonCustomIcon">
+        <item name="android:textColorPrimaryDisableOnly">@color/colorAccent</item>
+    </style>
+
+    <style name="RadioButton">
+        <item name="android:textColorPrimaryDisableOnly">@color/colorAccent</item>
+        <item name="android:buttonTint">@color/colorAccent</item>
     </style>
 
 
@@ -36,10 +58,9 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-
     <!-- Specific Styles -->
     <style name="toolbar_title">
-        <item name="android:textSize">24dp</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/toolbarTitleColor</item>
     </style>
 
@@ -50,17 +71,22 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:backgroundTint">@color/toolbar</item>
+    </style>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="AppTheme.NavigationBar">
+        <item name="android:backgroundTint">@color/navigation</item>
+    </style>
 
     <!-- Material.io Styles -->
-    <style name="TextAppearance.MdcTypographyStyles.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
-        <item name="fontFamily">@font/roboto</item>
-        <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:textSize">96sp</item>
-    </style>
+<!--    <style name="TextAppearance.MdcTypographyStyles.Headline1" parent="TextAppearance.MaterialComponents.Headline1">-->
+<!--        <item name="fontFamily">@font/roboto</item>-->
+<!--        <item name="android:fontFamily">@font/roboto</item>-->
+<!--        <item name="android:textSize">96sp</item>-->
+<!--    </style>-->
 
     <style name="TextAppearance.MdcTypographyStyles.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
         <item name="fontFamily">@font/roboto</item>
@@ -68,41 +94,41 @@
         <item name="android:textSize">60sp</item>
     </style>
 
-    <style name="TextAppearance.MdcTypographyStyles.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
-        <item name="fontFamily">@font/roboto</item>
-        <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:textSize">48sp</item>
-    </style>
+<!--    <style name="TextAppearance.MdcTypographyStyles.Headline3" parent="TextAppearance.MaterialComponents.Headline3">-->
+<!--        <item name="fontFamily">@font/roboto</item>-->
+<!--        <item name="android:fontFamily">@font/roboto</item>-->
+<!--        <item name="android:textSize">48sp</item>-->
+<!--    </style>-->
 
-    <style name="TextAppearance.MdcTypographyStyles.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
-        <item name="fontFamily">@font/roboto</item>
-        <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:textSize">34sp</item>
-    </style>
+<!--    <style name="TextAppearance.MdcTypographyStyles.Headline4" parent="TextAppearance.MaterialComponents.Headline4">-->
+<!--        <item name="fontFamily">@font/roboto</item>-->
+<!--        <item name="android:fontFamily">@font/roboto</item>-->
+<!--        <item name="android:textSize">34sp</item>-->
+<!--    </style>-->
 
-    <style name="TextAppearance.MdcTypographyStyles.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
-        <item name="fontFamily">@font/roboto</item>
-        <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:textSize">24sp</item>
-    </style>
+<!--    <style name="TextAppearance.MdcTypographyStyles.Headline5" parent="TextAppearance.MaterialComponents.Headline5">-->
+<!--        <item name="fontFamily">@font/roboto</item>-->
+<!--        <item name="android:fontFamily">@font/roboto</item>-->
+<!--        <item name="android:textSize">24sp</item>-->
+<!--    </style>-->
 
-    <style name="TextAppearance.MdcTypographyStyles.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
-        <item name="fontFamily">@font/roboto</item>
-        <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:textSize">20sp</item>
-    </style>
+<!--    <style name="TextAppearance.MdcTypographyStyles.Headline6" parent="TextAppearance.MaterialComponents.Headline6">-->
+<!--        <item name="fontFamily">@font/roboto</item>-->
+<!--        <item name="android:fontFamily">@font/roboto</item>-->
+<!--        <item name="android:textSize">20sp</item>-->
+<!--    </style>-->
 
-    <style name="TextAppearance.MdcTypographyStyles.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
-        <item name="fontFamily">@font/roboto</item>
-        <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:textSize">16sp</item>
-    </style>
+<!--    <style name="TextAppearance.MdcTypographyStyles.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">-->
+<!--        <item name="fontFamily">@font/roboto</item>-->
+<!--        <item name="android:fontFamily">@font/roboto</item>-->
+<!--        <item name="android:textSize">16sp</item>-->
+<!--    </style>-->
 
-    <style name="TextAppearance.MdcTypographyStyles.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
-        <item name="fontFamily">@font/roboto</item>
-        <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:textSize">14sp</item>
-    </style>
+<!--    <style name="TextAppearance.MdcTypographyStyles.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">-->
+<!--        <item name="fontFamily">@font/roboto</item>-->
+<!--        <item name="android:fontFamily">@font/roboto</item>-->
+<!--        <item name="android:textSize">14sp</item>-->
+<!--    </style>-->
 
     <style name="TextAppearance.MdcTypographyStyles.Body1" parent="TextAppearance.MaterialComponents.Body1">
         <item name="fontFamily">@font/roboto</item>
@@ -110,27 +136,27 @@
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="TextAppearance.MdcTypographyStyles.Body2" parent="TextAppearance.MaterialComponents.Body2">
-        <item name="fontFamily">@font/roboto</item>
-        <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:textSize">14sp</item>
-    </style>
+<!--    <style name="TextAppearance.MdcTypographyStyles.Body2" parent="TextAppearance.MaterialComponents.Body2">-->
+<!--        <item name="fontFamily">@font/roboto</item>-->
+<!--        <item name="android:fontFamily">@font/roboto</item>-->
+<!--        <item name="android:textSize">14sp</item>-->
+<!--    </style>-->
 
-    <style name="TextAppearance.MdcTypographyStyles.Button" parent="TextAppearance.MaterialComponents.Button">
-        <item name="fontFamily">@font/roboto</item>
-        <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:textSize">14sp</item>
-    </style>
+<!--    <style name="TextAppearance.MdcTypographyStyles.Button" parent="TextAppearance.MaterialComponents.Button">-->
+<!--        <item name="fontFamily">@font/roboto</item>-->
+<!--        <item name="android:fontFamily">@font/roboto</item>-->
+<!--        <item name="android:textSize">14sp</item>-->
+<!--    </style>-->
 
-    <style name="TextAppearance.MdcTypographyStyles.Caption" parent="TextAppearance.MaterialComponents.Caption">
-        <item name="fontFamily">@font/roboto</item>
-        <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:textSize">12sp</item>
-    </style>
+<!--    <style name="TextAppearance.MdcTypographyStyles.Caption" parent="TextAppearance.MaterialComponents.Caption">-->
+<!--        <item name="fontFamily">@font/roboto</item>-->
+<!--        <item name="android:fontFamily">@font/roboto</item>-->
+<!--        <item name="android:textSize">12sp</item>-->
+<!--    </style>-->
 
-    <style name="TextAppearance.MdcTypographyStyles.Overline" parent="TextAppearance.MaterialComponents.Overline">
-        <item name="fontFamily">@font/roboto</item>
-        <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:textSize">10sp</item>
-    </style>
+<!--    <style name="TextAppearance.MdcTypographyStyles.Overline" parent="TextAppearance.MaterialComponents.Overline">-->
+<!--        <item name="fontFamily">@font/roboto</item>-->
+<!--        <item name="android:fontFamily">@font/roboto</item>-->
+<!--        <item name="android:textSize">10sp</item>-->
+<!--    </style>-->
 </resources>

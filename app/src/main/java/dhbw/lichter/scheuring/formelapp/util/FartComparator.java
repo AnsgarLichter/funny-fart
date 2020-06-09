@@ -3,7 +3,7 @@ package dhbw.lichter.scheuring.formelapp.util;
 import java.util.Comparator;
 
 public class FartComparator implements Comparator<Fart> {
-    private String sortProperty;
+    private final String sortProperty;
 
     public final static String SORT_SCORE = "score";
     public final static String SORT_NAME = "name";
@@ -27,21 +27,11 @@ public class FartComparator implements Comparator<Fart> {
     }
 
     private int compareId(Fart o1, Fart o2) {
-        if (o1.getScore() < o2.getScore())
-            return -1;
-        else if (o1.getScore() > o2.getScore())
-            return 1;
-        else
-            return 0;
+        return Double.compare(o1.getScore(), o2.getScore());
     }
 
     private int compareScore(Fart o1, Fart o2) {
-        if (o1.getScore() < o2.getScore())
-            return -1;
-        else if (o1.getScore() > o2.getScore())
-            return 1;
-        else
-            return 0;
+        return Double.compare(o1.getScore(), o2.getScore());
     }
 
     private int compareCreationDate(Fart o1, Fart o2) {
