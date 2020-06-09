@@ -31,6 +31,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public static final String COL_FART_GIF = "fart_gif";
     public static final String COL_FART_NAME = "fart_name";
     public static final String COL_CREATION_DATE = "creation_date";
+    public static final String COL_AUDIO_PATH = "audio_path";
 
 
     private static final String CREATE_TABLE_FART = "CREATE TABLE " + TABLE_FART + " (" +
@@ -43,6 +44,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
             COL_COUNT_CHILDREN + " INTEGER NOT NULL, " +
             COL_AVERAGE_AGE + " INTEGER NOT NULL, " +
             COL_SEX + " TEXT NOT NULL, " +
+            COL_AUDIO_PATH + " TEXT, " +
             COL_CREATION_DATE + " DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL )";
     private static final String CREATE_TABLE_SEX = "CREATE TABLE " + TABLE_SEX + " (" +
             COL_SEX + " PRIMARY KEY NOT NULL, " +
@@ -54,8 +56,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
 
     private static final String INSERT_FART = "INSERT INTO " + TABLE_FART +
-            "(" + COL_FART_SCORE + ", " + COL_FART_NAME + ", " + COL_INTENSITY + ", " + COL_LENGTH + ", " + COL_SOCIAL_EMBARRASSMENT + ", " + COL_COUNT_CHILDREN + ", " + COL_AVERAGE_AGE + ", " + COL_SEX + ")" +
-            "VALUES ( ?, ?, ?, ?, ?, ?, ?, ? ) ";
+            "(" + COL_FART_SCORE + ", " + COL_FART_NAME + ", " + COL_INTENSITY + ", " + COL_LENGTH + ", " + COL_SOCIAL_EMBARRASSMENT + ", " + COL_COUNT_CHILDREN + ", " + COL_AVERAGE_AGE + ", " + COL_SEX + ", " + COL_AUDIO_PATH + ")" +
+            "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ? ) ";
     private static final String INSERT_SEX = "INSERT INTO " + TABLE_SEX +
             "(" + COL_SEX + ", " + COL_SEX_FACTOR + ") VALUES ( ?, ?)";
     private static final String INSERT_SCORE_GIF = "INSERT INTO " + TABLE_SCORE_GIF +
@@ -67,18 +69,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
 
     private SQLiteStatement insertFart;
-    private SQLiteStatement insertSex;
-    private SQLiteStatement insertScore;
     private SQLiteStatement deleteFart;
-
-
-    private Context context;
-
 
 
     public DatabaseManager(Context context) {
         super(context, DB_NAME, null, VERSION);
-        this.context = context;
 
         SQLiteDatabase db = this.getReadableDatabase();
         insertFart = db.compileStatement(INSERT_FART);
@@ -104,8 +99,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
     }
 
     public void saveFart(final Fart fart) throws SQLException {
-        SQLiteDatabase db = this.getWritableDatabase();
-
         insertFart = fart.prepareInsertStatement(insertFart);
         long id = insertFart.executeInsert();
 
@@ -118,10 +111,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = db.rawQuery(READ_ALL_FARTS, null);
-        ArrayList<Fart> farts = new ArrayList<Fart>();
+        ArrayList<Fart> farts = new ArrayList<>();
 
         for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-            Fart fart = new Fart(cursor.getInt(cursor.getColumnIndex(COL_INTENSITY)),
+            Fart fart = new Fart(
+                    cursor.getInt(cursor.getColumnIndex(COL_INTENSITY)),
                     cursor.getInt(cursor.getColumnIndex(COL_LENGTH)),
                     cursor.getInt(cursor.getColumnIndex(COL_SOCIAL_EMBARRASSMENT)),
                     cursor.getInt(cursor.getColumnIndex(COL_COUNT_CHILDREN)),
@@ -129,16 +123,17 @@ public class DatabaseManager extends SQLiteOpenHelper {
                     cursor.getDouble(cursor.getColumnIndex(COL_FART_SCORE)),
                     cursor.getString(cursor.getColumnIndex(COL_SEX)),
                     cursor.getString(cursor.getColumnIndex(COL_FART_NAME)),
+                    cursor.getString(cursor.getColumnIndex(COL_AUDIO_PATH)),
                     cursor.getString(cursor.getColumnIndex(COL_CREATION_DATE)),
                     cursor.getLong(cursor.getColumnIndex(COL_ID)));
+
             farts.add(fart);
         }
+        cursor.close();
         return farts;
     }
 
     public void deleteFart(long id) throws SQLException {
-        SQLiteDatabase db = this.getWritableDatabase();
-
         deleteFart.bindLong(1, id);
         int deletedRows = deleteFart.executeUpdateDelete();
 
@@ -153,7 +148,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     private void createSexTable(SQLiteDatabase db) throws SQLException{
         db.execSQL(CREATE_TABLE_SEX);
-        insertSex  = db.compileStatement(INSERT_SEX);
+        SQLiteStatement insertSex = db.compileStatement(INSERT_SEX);
 
         insertSex.bindString(1, "männlich");
         insertSex.bindString(2, "1.00");
@@ -170,7 +165,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     private void createScoreGifTable(SQLiteDatabase db) throws SQLException{
         db.execSQL(CREATE_TABLE_SCORE_GIF);
-        insertScore  = db.compileStatement(INSERT_SCORE_GIF);
+        SQLiteStatement insertScore = db.compileStatement(INSERT_SCORE_GIF);
 
         //TODO: Insert path to GIFs as soon as selected
     }
