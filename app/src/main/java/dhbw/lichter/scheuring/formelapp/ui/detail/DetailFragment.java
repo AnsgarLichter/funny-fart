@@ -1,5 +1,6 @@
 package dhbw.lichter.scheuring.formelapp.ui.detail;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,9 @@ import androidx.fragment.app.Fragment;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.card.MaterialCardView;
+
+import java.util.Locale;
+import java.util.Objects;
 
 import dhbw.lichter.scheuring.formelapp.util.Fart;
 import dhbw.lichter.scheuring.formelapp.R;
@@ -32,23 +36,23 @@ public class DetailFragment extends Fragment {
     public TextView genderFactor;
     public TextView name;
 
-    private Button saveFart;
     private Toaster toaster;
     private DatabaseManager dbHelper;
     private Fart fart;
     private MaterialCardView saveView;
 
+    @SuppressLint("StringFormatMatches")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_detail, container, false);
         View toastView = inflater.inflate(R.layout.custom_toast, (ViewGroup) root.findViewById(R.id.custom_toast_layout));
 
-        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Toolbar toolbar = (Toolbar) Objects.requireNonNull(getActivity()).findViewById(R.id.toolbar);
+        Objects.requireNonNull(((AppCompatActivity) getActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().onBackPressed();
+                Objects.requireNonNull(getActivity()).onBackPressed();
             }
         });
         toaster = new Toaster(getActivity().getApplicationContext(), toastView);
@@ -62,7 +66,7 @@ public class DetailFragment extends Fragment {
         ageListener = (TextView) root.findViewById(R.id.txtView_detail_age_listeners);
         genderFactor = (TextView) root.findViewById(R.id.txtView_detail_gender_factor);
         name = (EditText) root.findViewById(R.id.editText_fart_name);
-        saveFart = (Button) root.findViewById(R.id.btn_detail_save_fart);
+        Button saveFart = (Button) root.findViewById(R.id.btn_detail_save_fart);
         saveFart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,6 +77,8 @@ public class DetailFragment extends Fragment {
 
         //TODO: Extract into own method
         Bundle bundle = getArguments();
+        assert bundle != null;
+
         int valueIntensity = bundle.getInt("intensity");
         int valueLength = bundle.getInt("length");
         int valueEmbarrassment = bundle.getInt("embarrassment");
@@ -81,10 +87,15 @@ public class DetailFragment extends Fragment {
         double valueGenderFactor = bundle.getDouble("genderFactor");
         double valueResult = bundle.getDouble("result");
         String strGenderFactor = bundle.getString("strGenderFactor");
-        Boolean is_in_db = bundle.getBoolean("isInDb");
-        //TODO
-        String valueName ="Name";
-        this.fart = new Fart(valueIntensity, valueLength, valueEmbarrassment, valueNumberKids, valueAgeListeners, valueResult, strGenderFactor, valueName);
+        String valueAudioPath = bundle.getString("audioPath");
+        boolean is_in_db = bundle.getBoolean("isInDb");
+
+        if(valueAudioPath != null && !valueAudioPath.equals("")) {
+            this.fart = new Fart(valueIntensity, valueLength, valueEmbarrassment, valueNumberKids, valueAgeListeners, valueResult, strGenderFactor, valueAudioPath);
+        } else {
+            this.fart = new Fart(valueIntensity, valueLength, valueEmbarrassment, valueNumberKids, valueAgeListeners, valueResult, strGenderFactor);
+        }
+
 
         //TODO: Extract into own method
         String strFormulaVal = "$$\\color{white}{\\frac{("
@@ -100,16 +111,16 @@ public class DetailFragment extends Fragment {
                 .concat(" * ")
                 .concat(String.valueOf(valueGenderFactor))
                 .concat(")} = ")
-                .concat(String.format("%.2f", valueResult))
+                .concat(String.format(Locale.GERMANY, "%.2f", valueResult))
                 .concat("}$$");
         formulaVal.setEngine(MathView.Engine.MATHJAX);
         formulaVal.setText(strFormulaVal);
-        intensity.setText(valueIntensity + " db");
-        length.setText(valueLength + " Sekunde(n)");
-        embarrassment.setText("" + valueEmbarrassment);
-        numberKids.setText("" + valueNumberKids);
-        ageListener.setText("" + valueAgeListeners);
-        genderFactor.setText(strGenderFactor + ", " + valueGenderFactor);
+        intensity.setText(String.format(getString(R.string.detail_intensity_value), valueIntensity));
+        length.setText(String.format(getString(R.string.detail_length_value), valueLength));
+        embarrassment.setText(String.valueOf(valueEmbarrassment));
+        numberKids.setText(String.valueOf(valueNumberKids));
+        ageListener.setText(String.valueOf(valueAgeListeners));
+        genderFactor.setText(String.format(getString(R.string.detail_gender_factor_value), strGenderFactor, valueGenderFactor));
 
         if(is_in_db) {
             saveView.setVisibility(View.GONE);

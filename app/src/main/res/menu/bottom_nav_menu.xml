@@ -13,5 +13,8 @@
         android:id="@+id/nav_help"
         android:icon="@drawable/ic_menu_help"
         android:title="@string/menu_help" />
-
+    <item
+        android:id="@+id/nav_record"
+        android:icon="@drawable/ic_baseline_mic"
+        android:title="@string/menu_record" />
 </menu>

@@ -15,6 +15,7 @@
     <string name="menu_home">Neuen Furz berechnen</string>
     <string name="menu_help">Hilfe</string>
     <string name="menu_detail">Detailansicht</string>
+    <string name="menu_record">Fürze aufnehmen</string>
 
 
     <!-- Fragment Home -->
@@ -50,6 +51,8 @@
     <string name="card_template_score">Score:</string>
     <string name="card_template_image">Score Image</string>
     <string name="card_template_delete">Furz löschen</string>
+    <string name="card_template_share">Falls eine Audio mit dem Furz verknüpft ist, können Sie diese in WhatsApp teilen!</string>
+    <string name="card_template_play">Falls eine Audio mit dem Furz verknüpft ist, können Sie diese abspielen!</string>
     <string name="card_template_detail">Detailansicht</string>
 
     <!-- Fragment Detail -->
@@ -65,6 +68,9 @@
     <string name="detail_hint_fart_name">Name des Furzes</string>
     <string name="detail_btn_save_fart">Furz speichern</string>
     <string name="detail_toast_success">Furz erfolgreich gespeichert.</string>
+    <string name="detail_intensity_value">%1$s db</string>
+    <string name="detail_length_value">%1$s Sekunde(n)</string>
+    <string name="detail_gender_factor_value">%1$s, %2$s</string>
 
     <!-- Fragment Help -->
     <string name="help_title">Hilfe</string>
@@ -83,4 +89,9 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
+    <!-- Fragment Record -->
+    <string name="recording_started">Aufnahme gestartet</string>
+    <string name="recording_finished">Aufnahme beendet</string>
+    <string name="permissions_granted">Berechtigungen gewährt</string>
+    <string name="permissions_not_granted">Um Fürze aufnehmen zu können, müssen Sie die Berechtigungen gewähren</string>
 </resources>
