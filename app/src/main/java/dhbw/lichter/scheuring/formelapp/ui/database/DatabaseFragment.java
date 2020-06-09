@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import dhbw.lichter.scheuring.formelapp.R;
 import dhbw.lichter.scheuring.formelapp.util.DatabaseManager;
@@ -30,7 +31,6 @@ import dhbw.lichter.scheuring.formelapp.util.Toaster;
 public class DatabaseFragment extends Fragment implements View.OnClickListener {
     private Activity activity;
     private Toaster toaster;
-    private ArrayList<Fart> farts;
     private FartAdapter fartAdapter;
 
     private int sortProperty;
@@ -44,8 +44,7 @@ public class DatabaseFragment extends Fragment implements View.OnClickListener {
         View root = inflater.inflate(R.layout.fragment_database, container, false);
         View toastView = inflater.inflate(R.layout.custom_toast, (ViewGroup) root.findViewById(R.id.custom_toast_layout));
 
-        androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) getActivity().findViewById(R.id.toolbar);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        Objects.requireNonNull(((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
 
         activity = getActivity();
         dbHelper = new DatabaseManager(activity);
@@ -62,8 +61,8 @@ public class DatabaseFragment extends Fragment implements View.OnClickListener {
         LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
         fartItemsView.setLayoutManager(layoutManager);
 
-        farts = dbHelper.getFarts();
-        fartAdapter = new FartAdapter(farts, dbHelper, this);
+        ArrayList<Fart> farts = dbHelper.getFarts();
+        fartAdapter = new FartAdapter(farts, this);
         fartItemsView.setAdapter(fartAdapter);
     }
 
