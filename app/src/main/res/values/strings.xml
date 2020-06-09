@@ -68,6 +68,9 @@
     <string name="detail_hint_fart_name">Name des Furzes</string>
     <string name="detail_btn_save_fart">Furz speichern</string>
     <string name="detail_toast_success">Furz erfolgreich gespeichert.</string>
+    <string name="detail_intensity_value">%1$s db</string>
+    <string name="detail_length_value">%1$s Sekunde(n)</string>
+    <string name="detail_gender_factor_value">%1$s, %2$s</string>
 
     <!-- Fragment Help -->
     <string name="help_title">Hilfe</string>
