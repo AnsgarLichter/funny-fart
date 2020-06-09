@@ -110,6 +110,41 @@ public class HomeFragment extends Fragment {
                     (int) getKeyFromArray(stringEmbarrassment, R.array.keys_social_embarrassment, R.array.values_social_embarrassment),
                     getKeyFromArray(stringGenderFactor, R.array.keys_gender_factor, R.array.values_gender_factor));
 
+            //Wert des Spinners bestimmmen über zweite Arraylist
+            int counter = -1;
+            for (String el : getResources().getStringArray(R.array.keys_social_embarrassment)) {
+                counter++;
+                if (el.equals(stringEmbarrassment)) {
+                    break;
+                }
+            }
+            valueEmbarrassment = Integer.parseInt(getResources().getStringArray(R.array.values_social_embarrassment)[counter]);
+
+            //Wert des Spinners GenderFactor bestimmen
+            counter = -1;
+            for (String el : getResources().getStringArray(R.array.keys_gender_factor)) {
+                counter++;
+                if (el.equals(stringGenderFactor)) {
+                    break;
+                }
+            }
+            valueGenderFactor = Double.parseDouble(getResources().getStringArray(R.array.values_gender_factor)[counter]);
+
+            //Furz berechnen
+            double score = (Math.pow((valueIntensity * valueLength), valueEmbarrassment) * valueNumberKids) / (valueAgeListeners * valueGenderFactor);
+
+            //Werte in Bundle schreiben für Datenuebergabe
+            //Werte fuer Berechnung
+            bundle.putInt("intensity", valueIntensity);
+            bundle.putInt("length", valueLength);
+            bundle.putInt("embarrassment", valueEmbarrassment);
+            bundle.putInt("numberKids", valueNumberKids);
+            bundle.putInt("ageListeners", valueAgeListeners);
+            bundle.putDouble("genderFactor", valueGenderFactor);
+            bundle.putDouble("result", score);
+            bundle.putBoolean("isInDb", false);
+            if(source != null) bundle.putString("audioPath", source.getString("audioPath"));
+
             //Werte fuer die Anzeige
             bundle.putString("strGenderFactor", stringGenderFactor);
             bundle.putString("strSocialEmbarrassment", stringEmbarrassment);
