@@ -16,6 +16,7 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.FileProvider;
 
+import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
@@ -106,7 +107,7 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
         new AlertDialog.Builder(activity)
                 .setTitle(title)
-                .setMessage(Html.fromHtml("<font color=\"#FFFFFF\">" + message + "</font>"))
+                .setMessage(HtmlCompat.fromHtml("<font color=\"#FFFFFF\">" + message + "</font>", HtmlCompat.FROM_HTML_MODE_LEGACY))
                 .setPositiveButton(android.R.string.yes, this)
                 .setNegativeButton(android.R.string.no, null)
                 .setIcon(android.R.drawable.ic_dialog_alert)
