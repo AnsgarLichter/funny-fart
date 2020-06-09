@@ -139,6 +139,7 @@ public class HomeFragment extends Fragment {
             bundle.putInt("ageListeners", valueAgeListeners);
             bundle.putDouble("genderFactor", valueGenderFactor);
             bundle.putDouble("result", score);
+            bundle.putBoolean("isInDb", false);
 
             //Werte fuer die Anzeige
             bundle.putString("strGenderFactor", stringGenderFactor);

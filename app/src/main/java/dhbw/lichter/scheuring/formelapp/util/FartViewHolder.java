@@ -103,6 +103,7 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         bundle.putInt("ageListeners", fart.getAverageAge());
         bundle.putDouble("result", fart.getScore());
         bundle.putString("strGenderFactor", fart.getSex());
+        bundle.putBoolean("isInDb", true);
 
         return bundle;
     }

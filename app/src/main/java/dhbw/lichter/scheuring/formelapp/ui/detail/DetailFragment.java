@@ -13,9 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.card.MaterialCardView;
+
 import dhbw.lichter.scheuring.formelapp.util.Fart;
 import dhbw.lichter.scheuring.formelapp.R;
 import dhbw.lichter.scheuring.formelapp.util.DatabaseManager;
+import dhbw.lichter.scheuring.formelapp.util.Toaster;
 import io.github.kexanie.library.MathView;
 
 public class DetailFragment extends Fragment {
@@ -30,12 +33,15 @@ public class DetailFragment extends Fragment {
     public TextView name;
 
     private Button saveFart;
+    private Toaster toaster;
     private DatabaseManager dbHelper;
     private Fart fart;
+    private MaterialCardView saveView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_detail, container, false);
+        View toastView = inflater.inflate(R.layout.custom_toast, (ViewGroup) root.findViewById(R.id.custom_toast_layout));
 
         Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -45,7 +51,7 @@ public class DetailFragment extends Fragment {
                 getActivity().onBackPressed();
             }
         });
-
+        toaster = new Toaster(getActivity().getApplicationContext(), toastView);
         dbHelper = new DatabaseManager(getActivity());
 
         formulaVal = (MathView) root.findViewById(R.id.detail_formula_values);
@@ -63,6 +69,7 @@ public class DetailFragment extends Fragment {
                 saveFartInDb();
             }
         });
+        saveView = (MaterialCardView) root.findViewById(R.id.fart_card_save);
 
         //TODO: Extract into own method
         Bundle bundle = getArguments();
@@ -74,6 +81,7 @@ public class DetailFragment extends Fragment {
         double valueGenderFactor = bundle.getDouble("genderFactor");
         double valueResult = bundle.getDouble("result");
         String strGenderFactor = bundle.getString("strGenderFactor");
+        Boolean is_in_db = bundle.getBoolean("isInDb");
         //TODO
         String valueName ="Name";
         this.fart = new Fart(valueIntensity, valueLength, valueEmbarrassment, valueNumberKids, valueAgeListeners, valueResult, strGenderFactor, valueName);
@@ -103,6 +111,12 @@ public class DetailFragment extends Fragment {
         ageListener.setText("" + valueAgeListeners);
         genderFactor.setText(strGenderFactor + ", " + valueGenderFactor);
 
+        if(is_in_db) {
+            saveView.setVisibility(View.GONE);
+        } else {
+            saveView.setVisibility(View.VISIBLE);
+        }
+
         return root;
     }
 
@@ -114,6 +128,8 @@ public class DetailFragment extends Fragment {
         } else {
             fart.setName(name);
             this.dbHelper.saveFart(fart);
+            toaster.showSuccess(R.string.detail_toast_success);
+            saveView.setVisibility(View.GONE);
         }
     }
 }
