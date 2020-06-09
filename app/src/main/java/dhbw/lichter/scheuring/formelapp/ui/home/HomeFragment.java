@@ -81,13 +81,10 @@ public class HomeFragment extends Fragment {
         String stringNumberKids = enbNumberKids.getNumber();
         String stringAgeListeners = editTextAgeListeners.getText().toString();
         String stringEmbarrassment = enbSocialEmbarrassment.getNumber();
-        String stringGenderFactor = "Fehler";
+        String stringGenderFactor = stringGenderFactor = female.getText().toString();;
 
         if(male.isChecked()) {
             stringGenderFactor = male.getText().toString();
-        }
-        if(female.isChecked()) {
-            stringGenderFactor = female.getText().toString();
         }
         bundle.putString("strGenderFactor", stringGenderFactor);
 
