@@ -5,21 +5,17 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 import androidx.core.content.FileProvider;
-import androidx.fragment.app.Fragment;
 
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
@@ -134,7 +130,6 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         share.setAction(Intent.ACTION_SEND);
         share.setType("audio/*");
         share.putExtra(Intent.EXTRA_STREAM, fileUri);
-        share.setPackage("com.whatsapp");
         share.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         dbFragment.startActivity(share);
     }
