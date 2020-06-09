@@ -48,7 +48,7 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
         View root = inflater.inflate(R.layout.fragment_record, container, false);
         View toastView = inflater.inflate(R.layout.custom_toast,  (ViewGroup) root.findViewById(R.id.custom_toast_layout));
 
-        Objects.requireNonNull(((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
 
         ImageButton input = root.findViewById(R.id.recorder_record);
         input.setOnClickListener(this);
@@ -65,7 +65,7 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
         long timestamp = System.currentTimeMillis() / 1000;
         boolean created = false;
         if(recorder.getStatus() != MediaRecorderStatus.RECORD) {
-            file = new File(Objects.requireNonNull(getContext()).getFilesDir(), "funnyFart" + timestamp + ".ogg");
+            file = new File(requireContext().getFilesDir(), "funnyFart" + timestamp + ".ogg");
             if(!file.exists()) {
                 try {
                     created = file.createNewFile();
