@@ -2,12 +2,9 @@ package dhbw.lichter.scheuring.formelapp.util;
 
 import android.database.sqlite.SQLiteStatement;
 
-import java.util.Date;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @Data
