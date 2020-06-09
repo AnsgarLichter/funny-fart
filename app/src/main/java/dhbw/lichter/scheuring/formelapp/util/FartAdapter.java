@@ -1,13 +1,11 @@
 package dhbw.lichter.scheuring.formelapp.util;
 
 
-import android.os.Build;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.RequiresApi;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.ParseException;
@@ -15,22 +13,20 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import dhbw.lichter.scheuring.formelapp.R;
 import dhbw.lichter.scheuring.formelapp.ui.database.DatabaseFragment;
-import lombok.NonNull;
 
 public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
 
     private final DatabaseFragment dbFragment;
     private List<Fart> farts;
     private List<Fart> fartsView;
-    private DatabaseManager dbHelper;
 
-    public FartAdapter(List<Fart> farts, DatabaseManager dbHelper, DatabaseFragment dbFragment) {
+    public FartAdapter(List<Fart> farts, DatabaseFragment dbFragment) {
         this.farts = farts;
         this.fartsView = farts;
-        this.dbHelper = dbHelper;
         this.dbFragment = dbFragment;
     }
 
@@ -39,8 +35,9 @@ public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
         return fartsView.size();
     }
 
+    @NonNull
     @Override
-    public FartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FartViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_card_template, parent, false);
         return new FartViewHolder(view, dbFragment, this);
     }
@@ -51,14 +48,13 @@ public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
 
         fartViewHolder.fart = fart;
         fartViewHolder.fartName.setText(fart.getName());
-        fartViewHolder.fartScore.setText(String.format("%.2f", fart.getScore()));
+        fartViewHolder.fartScore.setText(String.format(Locale.GERMANY, "%.2f", fart.getScore()));
         fartViewHolder.creationDate.setText(formatDate(fart.getCreationDate()));
         fartViewHolder.fartGif.setImageResource(R.drawable.im_funny_fart);
 
         if(fart.getAudioPath().equals("")) {
             fartViewHolder.bPlay.setEnabled(false);
             fartViewHolder.bShare.setEnabled(false);
-            // fartViewHolder.bPlay.setBackgroundColor(dbFragment.getResources().getColor(R.color.buttonColorDisabled));
         }
     }
 
@@ -68,7 +64,7 @@ public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
     }
 
     public void filter(String text) {
-        List<Fart> filteredFarts = new ArrayList<Fart>();
+        List<Fart> filteredFarts = new ArrayList<>();
 
         if (text.equals("")) {
             fartsView = farts;
@@ -83,8 +79,6 @@ public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
         notifyDataSetChanged();
     }
 
-    //TODO: Update to API24
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public void sort(int id, boolean sortAsc) {
         switch (id) {
             case R.id.database_sort_score:
@@ -100,7 +94,7 @@ public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
         notifyDataSetChanged();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     private void applySort(String sortProperty, boolean sortAsc) {
         if (sortAsc)
             fartsView.sort(new FartComparator(sortProperty));
@@ -110,9 +104,11 @@ public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
 
     private String formatDate(String date) {
         try {
-            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            SimpleDateFormat outputFormat = new SimpleDateFormat("dd.MM.yyyy");
-            Date creationDate = inputFormat.parse(date);
+            SimpleDateFormat inputformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.GERMANY);
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
+            Date creationDate = inputformat.parse(date);
+            assert creationDate != null;
+
             return outputFormat.format(creationDate);
         } catch (ParseException ex) {
             return date;
