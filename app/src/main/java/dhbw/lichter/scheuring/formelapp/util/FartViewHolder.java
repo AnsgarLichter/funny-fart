@@ -128,7 +128,7 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     private void onShareButtonClicked() {
         File audioFile = new File(fart.getAudioPath());
         Context context = dbFragment.getContext();
-        Uri fileUri = FileProvider.getUriForFile(dbFragment.getContext(), context.getApplicationContext().getPackageName() + ".provider", audioFile);
+        Uri fileUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", audioFile);
         context.grantUriPermission(context.getPackageName(), fileUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
         Intent share = new Intent();
         share.setAction(Intent.ACTION_SEND);

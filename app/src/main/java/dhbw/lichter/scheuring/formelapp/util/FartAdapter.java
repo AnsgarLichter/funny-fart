@@ -57,6 +57,7 @@ public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
 
         if(fart.getAudioPath().equals("")) {
             fartViewHolder.bPlay.setEnabled(false);
+            fartViewHolder.bShare.setEnabled(false);
             // fartViewHolder.bPlay.setBackgroundColor(dbFragment.getResources().getColor(R.color.buttonColorDisabled));
         }
     }
