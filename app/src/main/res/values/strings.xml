@@ -87,4 +87,6 @@
     <!-- Fragment Record -->
     <string name="recording_started">Aufnahme gestartet</string>
     <string name="recording_finished">Aufnahme beendet</string>
+    <string name="permissions_granted">Berechtigungen gewährt</string>
+    <string name="permissions_not_granted">Um Fürze aufnehmen zu können, müssen Sie die Berechtigungen gewähren</string>
 </resources>
