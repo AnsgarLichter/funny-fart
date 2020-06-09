@@ -64,6 +64,7 @@
     <string name="detail_form_title">Speichern Sie Ihr Ergebnis:</string>
     <string name="detail_hint_fart_name">Name des Furzes</string>
     <string name="detail_btn_save_fart">Furz speichern</string>
+    <string name="detail_toast_success">Furz erfolgreich gespeichert.</string>
 
     <!-- Fragment Help -->
     <string name="help_title">Hilfe</string>
