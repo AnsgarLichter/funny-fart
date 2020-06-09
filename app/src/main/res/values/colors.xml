@@ -10,6 +10,7 @@
     <color name="colorAccent">#FFFFFF</color>
     <color name="buttonText">#000000</color>
     <color name="buttonColor">#03DAC5</color>
+    <color name="buttonColorDisabled">#808080</color>
 
 
     <color name="cardBackground">#6281FF</color>

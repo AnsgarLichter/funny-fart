@@ -6,6 +6,7 @@ import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,9 @@ import java.io.File;
 import java.io.IOException;
 
 import dhbw.lichter.scheuring.formelapp.R;
+import dhbw.lichter.scheuring.formelapp.ui.home.HomeFragment;
 import dhbw.lichter.scheuring.formelapp.util.MediaRecorderStatus;
+import dhbw.lichter.scheuring.formelapp.util.Navigator;
 import dhbw.lichter.scheuring.formelapp.util.Recorder;
 import dhbw.lichter.scheuring.formelapp.util.Toaster;
 
@@ -38,9 +41,13 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
 
 
     private Recorder recorder = new Recorder();
+    private Navigator navigator;
+    private File file = new File("");
+
     private Toaster toaster;
-    private String outputFile;
     private ImageButton input;
+
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -53,7 +60,7 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
         input = root.findViewById(R.id.recorder_record);
         input.setOnClickListener(this);
         toaster = new Toaster(getActivity(), toastView);
-
+        navigator = new Navigator(getFragmentManager());
         requestPermissions(permissions, REQUEST_RECORD_AUDIO_PERMISSION);
 
         return root;
@@ -62,17 +69,28 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-
+        Long timestamp = System.currentTimeMillis() / 1000;
         if(recorder.getStatus() != MediaRecorderStatus.RECORD) {
-            outputFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/recording.mp4";
-            File file = new File(outputFile);
-            recorder.startRecording(outputFile);
+            file = new File(getContext().getFilesDir(), "funnyFart" + timestamp.toString() + ".ogg");
+            if(!file.exists()) {
+                try {
+                    file.createNewFile();
+                } catch (IOException ioe) {
+                    Log.e("Create File Exception", "Unable to Create File", ioe);
+                }
+            }
+            recorder.startRecording(file.getAbsolutePath());
             toaster.showSuccess(R.string.recording_started);
         } else {
             recorder.finishRecording();
             toaster.showSuccess(R.string.recording_finished);
 
-            recorder.play(outputFile);
+            Bundle bundle = new Bundle();
+            bundle.putString("audioPath", file.getAbsolutePath());
+            navigator.navigate(new HomeFragment(), true, bundle);
+
+            // recorder.play(file.getAbsolutePath());
+
         }
     }
 

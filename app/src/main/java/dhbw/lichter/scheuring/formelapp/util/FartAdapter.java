@@ -47,11 +47,18 @@ public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
 
     @Override
     public void onBindViewHolder(FartViewHolder fartViewHolder, int i) {
-        fartViewHolder.fart = fartsView.get(i);
-        fartViewHolder.fartName.setText(fartViewHolder.fart.getName());
-        fartViewHolder.fartScore.setText(String.format("%.2f", fartViewHolder.fart.getScore()));
-        fartViewHolder.creationDate.setText(formatDate(fartViewHolder.fart.getCreationDate()));
+        Fart fart = fartsView.get(i);
+
+        fartViewHolder.fart = fart;
+        fartViewHolder.fartName.setText(fart.getName());
+        fartViewHolder.fartScore.setText(String.format("%.2f", fart.getScore()));
+        fartViewHolder.creationDate.setText(formatDate(fart.getCreationDate()));
         fartViewHolder.fartGif.setImageResource(R.drawable.im_funny_fart);
+
+        if(fart.getAudioPath().equals("")) {
+            fartViewHolder.bPlay.setEnabled(false);
+            // fartViewHolder.bPlay.setBackgroundColor(dbFragment.getResources().getColor(R.color.buttonColorDisabled));
+        }
     }
 
     public void removeFart(int position) {
