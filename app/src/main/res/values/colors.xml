@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="toolbar">#1655cb</color>
+    <color name="toolbar">#1655CB</color>
     <color name="toolbarTitleColor">#FFFFFF</color>
 
     <color name="background">#232F34</color>
