@@ -69,18 +69,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
 
     private SQLiteStatement insertFart;
-    private SQLiteStatement insertSex;
-    private SQLiteStatement insertScore;
     private SQLiteStatement deleteFart;
-
-
-    private Context context;
-
 
 
     public DatabaseManager(Context context) {
         super(context, DB_NAME, null, VERSION);
-        this.context = context;
 
         SQLiteDatabase db = this.getReadableDatabase();
         insertFart = db.compileStatement(INSERT_FART);
@@ -106,8 +99,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
     }
 
     public void saveFart(final Fart fart) throws SQLException {
-        SQLiteDatabase db = this.getWritableDatabase();
-
         insertFart = fart.prepareInsertStatement(insertFart);
         long id = insertFart.executeInsert();
 
@@ -120,7 +111,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = db.rawQuery(READ_ALL_FARTS, null);
-        ArrayList<Fart> farts = new ArrayList<Fart>();
+        ArrayList<Fart> farts = new ArrayList<>();
 
         for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
             Fart fart = new Fart(
@@ -138,12 +129,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
             farts.add(fart);
         }
+        cursor.close();
         return farts;
     }
 
     public void deleteFart(long id) throws SQLException {
-        SQLiteDatabase db = this.getWritableDatabase();
-
         deleteFart.bindLong(1, id);
         int deletedRows = deleteFart.executeUpdateDelete();
 
@@ -158,7 +148,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     private void createSexTable(SQLiteDatabase db) throws SQLException{
         db.execSQL(CREATE_TABLE_SEX);
-        insertSex  = db.compileStatement(INSERT_SEX);
+        SQLiteStatement insertSex = db.compileStatement(INSERT_SEX);
 
         insertSex.bindString(1, "männlich");
         insertSex.bindString(2, "1.00");
@@ -175,7 +165,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     private void createScoreGifTable(SQLiteDatabase db) throws SQLException{
         db.execSQL(CREATE_TABLE_SCORE_GIF);
-        insertScore  = db.compileStatement(INSERT_SCORE_GIF);
+        SQLiteStatement insertScore = db.compileStatement(INSERT_SCORE_GIF);
 
         //TODO: Insert path to GIFs as soon as selected
     }
