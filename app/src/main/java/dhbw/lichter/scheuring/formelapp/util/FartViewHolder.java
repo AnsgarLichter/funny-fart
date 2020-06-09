@@ -2,8 +2,11 @@ package dhbw.lichter.scheuring.formelapp.util;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,10 +15,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.io.File;
 
 import dhbw.lichter.scheuring.formelapp.R;
 import dhbw.lichter.scheuring.formelapp.ui.database.DatabaseFragment;
@@ -30,14 +36,20 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public TextView creationDate;
     public ImageButton bDelete;
     public ImageButton bDetail;
+    public ImageButton bPlay;
+    public ImageButton bShare;
+
+
     private FartAdapter fartAdapter;
     private DatabaseFragment dbFragment;
+    private Navigator navigator;
 
 
     FartViewHolder(View itemView, DatabaseFragment dbFragment, FartAdapter fartAdapter) {
         super(itemView);
 
         this.dbFragment = dbFragment;
+        this.navigator = new Navigator(dbFragment.getFragmentManager());
         this.fartAdapter = fartAdapter;
 
         cardView = (CardView) itemView.findViewById(R.id.fart_card);
@@ -47,19 +59,29 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         creationDate = (TextView) itemView.findViewById(R.id.card_creation_date);
         bDelete = itemView.findViewById(R.id.database_delete);
         bDetail = itemView.findViewById(R.id.database_detail);
+        bPlay = itemView.findViewById(R.id.database_play);
+        bShare = itemView.findViewById(R.id.database_share);
 
         bDelete.setOnClickListener(this);
         bDetail.setOnClickListener(this);
+        bPlay.setOnClickListener(this);
+        bShare.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.database_delete:
-                this.onDeleteButtonClicked(view);
+                this.onDeleteButtonClicked();
                 break;
             case R.id.database_detail:
-                this.onDetailButtonClicked(view);
+                this.onDetailButtonClicked();
+                break;
+            case R.id.database_play:
+                this.onPlayButtonClicked();
+                break;
+            case R.id.database_share:
+                this.onShareButtonClicked();
                 break;
             default:
                 //Do nothing
@@ -72,12 +94,12 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         this.fartAdapter.removeFart(getAdapterPosition());
     }
 
-    private void onDetailButtonClicked(View view) {
+    private void onDetailButtonClicked() {
         Bundle bundle = this.createBundle();
-        this.navigateToDetailPage(bundle);
+        navigator.navigate(new DetailFragment(), true, bundle);
     }
 
-    public void onDeleteButtonClicked(View view) {
+    public void onDeleteButtonClicked() {
         Activity activity = dbFragment.getActivity();
         final long id = fart.getId();
         String name = fart.getName();
@@ -93,6 +115,29 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
                 .show();
     }
 
+    private void onPlayButtonClicked() {
+        String audioPath = fart.getAudioPath();
+
+        if (audioPath != "") {
+            Recorder recorder = new Recorder();
+            recorder.play(fart.getAudioPath());
+        }
+    }
+
+    private void onShareButtonClicked() {
+        File audioFile = new File(fart.getAudioPath());
+        Context context = dbFragment.getContext();
+        Uri fileUri = FileProvider.getUriForFile(dbFragment.getContext(), context.getApplicationContext().getPackageName() + ".provider", audioFile);
+        context.grantUriPermission(context.getPackageName(), fileUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        Intent share = new Intent();
+        share.setAction(Intent.ACTION_SEND);
+        share.setType("audio/*");
+        share.putExtra(Intent.EXTRA_STREAM, fileUri);
+        share.setPackage("com.whatsapp");
+        share.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        dbFragment.startActivity(share);
+    }
+
     private Bundle createBundle() {
         //TODO: use fart object
         Bundle bundle = new Bundle();
@@ -106,14 +151,5 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         bundle.putBoolean("isInDb", true);
 
         return bundle;
-    }
-
-    private void navigateToDetailPage(Bundle bundle) {
-        Fragment fragment = new DetailFragment();
-        fragment.setArguments(bundle);
-        FragmentTransaction fragmentTransaction = dbFragment.getFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
     }
 }

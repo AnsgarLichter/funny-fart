@@ -23,21 +23,26 @@ import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 
 import dhbw.lichter.scheuring.formelapp.R;
 import dhbw.lichter.scheuring.formelapp.ui.detail.DetailFragment;
+import dhbw.lichter.scheuring.formelapp.util.Navigator;
 import dhbw.lichter.scheuring.formelapp.util.Toaster;
 
 public class HomeFragment extends Fragment {
 
     private Button btnCreateFart;
 
-    public ElegantNumberButton enbIntensity;
-    public ElegantNumberButton enbTextLength;
-    public ElegantNumberButton enbSocialEmbarrassment;
-    public ElegantNumberButton enbNumberKids;
-    public EditText editTextAgeListeners;
-    public RadioGroup gender;
-    public RadioButton male;
-    public RadioButton female;
-    public Toaster toast;
+    private ElegantNumberButton enbIntensity;
+    private ElegantNumberButton enbTextLength;
+    private ElegantNumberButton enbSocialEmbarrassment;
+    private ElegantNumberButton enbNumberKids;
+    private EditText editTextAgeListeners;
+    private RadioGroup gender;
+    private RadioButton male;
+    private RadioButton female;
+
+    private Toaster toast;
+    private Navigator navigator;
+
+    private Bundle source;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -49,6 +54,8 @@ public class HomeFragment extends Fragment {
 
         //Instanz of Application Context for displaying a toast
         toast = new Toaster(getActivity().getApplicationContext(), toastView);
+        navigator = new Navigator(getFragmentManager());
+        source = getArguments();
 
         //Mit View Elementen Verknüpfen
         enbIntensity = (ElegantNumberButton) root.findViewById(R.id.enb_fart_intensity);
@@ -140,19 +147,14 @@ public class HomeFragment extends Fragment {
             bundle.putDouble("genderFactor", valueGenderFactor);
             bundle.putDouble("result", score);
             bundle.putBoolean("isInDb", false);
+            if(source != null) bundle.putString("audioPath", source.getString("audioPath"));
 
             //Werte fuer die Anzeige
             bundle.putString("strGenderFactor", stringGenderFactor);
             bundle.putString("strSocialEmbarrassment", stringEmbarrassment);
 
             //TODO: Implement navigate method
-            Fragment fragment = new DetailFragment();
-            fragment.setArguments(bundle);
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.nav_host_fragment, fragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            navigator.navigate(new DetailFragment(), true, bundle);
         } else {
             toast.showError(R.string.error_toast_field);
         }

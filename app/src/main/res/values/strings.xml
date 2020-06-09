@@ -51,6 +51,8 @@
     <string name="card_template_score">Score:</string>
     <string name="card_template_image">Score Image</string>
     <string name="card_template_delete">Furz löschen</string>
+    <string name="card_template_share">Falls eine Audio mit dem Furz verknüpft ist, können Sie diese in WhatsApp teilen!</string>
+    <string name="card_template_play">Falls eine Audio mit dem Furz verknüpft ist, können Sie diese abspielen!</string>
     <string name="card_template_detail">Detailansicht</string>
 
     <!-- Fragment Detail -->
