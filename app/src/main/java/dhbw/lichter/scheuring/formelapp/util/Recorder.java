@@ -1,8 +1,11 @@
 package dhbw.lichter.scheuring.formelapp.util;
 
+import android.Manifest;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import java.io.IOException;
 
@@ -13,9 +16,10 @@ import lombok.Setter;
 public class Recorder {
     private MediaRecorder recorder;
     private MediaPlayer player;
-    @Getter
-    @Setter
+
+    @Getter @Setter
     private MediaRecorderStatus status;
+
 
 
     public Recorder() {
@@ -28,18 +32,18 @@ public class Recorder {
     public void startRecording(String path) {
         recorder.reset();
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        //recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
-        //recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-        recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+        //recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        //recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
         recorder.setOutputFile(path);
         try {
             recorder.prepare();
             recorder.start();
+            status = MediaRecorderStatus.RECORD;
         } catch (IOException ioe) {
-            /// make something
+            Log.e("Recorder Exception", "Unable to start the audio recorder", ioe);
         }
-        status = MediaRecorderStatus.RECORD;
     }
 
     public void finishRecording() {
