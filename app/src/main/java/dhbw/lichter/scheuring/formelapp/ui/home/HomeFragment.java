@@ -42,11 +42,11 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         View toastView = inflater.inflate(R.layout.custom_toast,  (ViewGroup) root.findViewById(R.id.custom_toast_layout));
 
-        Objects.requireNonNull(((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
 
         //Instanz of Application Context for displaying a toast
-        toast = new Toaster(getActivity().getApplicationContext(), toastView);
-        navigator = new Navigator(getFragmentManager());
+        toast = new Toaster(requireActivity().getApplicationContext(), toastView);
+        navigator = new Navigator(requireActivity().getSupportFragmentManager());
         Bundle source = getArguments();
         bundle = new Bundle();
 
@@ -81,7 +81,7 @@ public class HomeFragment extends Fragment {
         String stringNumberKids = enbNumberKids.getNumber();
         String stringAgeListeners = editTextAgeListeners.getText().toString();
         String stringEmbarrassment = enbSocialEmbarrassment.getNumber();
-        String stringGenderFactor = stringGenderFactor = female.getText().toString();;
+        String stringGenderFactor = female.getText().toString();
 
         if(male.isChecked()) {
             stringGenderFactor = male.getText().toString();

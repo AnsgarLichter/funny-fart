@@ -47,15 +47,15 @@ public class DetailFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_detail, container, false);
         View toastView = inflater.inflate(R.layout.custom_toast, (ViewGroup) root.findViewById(R.id.custom_toast_layout));
 
-        Toolbar toolbar = (Toolbar) Objects.requireNonNull(getActivity()).findViewById(R.id.toolbar);
-        Objects.requireNonNull(((AppCompatActivity) getActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        Toolbar toolbar = (Toolbar) requireActivity().findViewById(R.id.toolbar);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Objects.requireNonNull(getActivity()).onBackPressed();
+                requireActivity().onBackPressed();
             }
         });
-        toaster = new Toaster(getActivity().getApplicationContext(), toastView);
+        toaster = new Toaster(requireActivity().getApplicationContext(), toastView);
         dbHelper = new DatabaseManager(getActivity());
 
         formulaVal = (MathView) root.findViewById(R.id.detail_formula_values);

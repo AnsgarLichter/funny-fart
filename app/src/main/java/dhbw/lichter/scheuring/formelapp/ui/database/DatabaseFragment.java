@@ -44,11 +44,11 @@ public class DatabaseFragment extends Fragment implements View.OnClickListener {
         View root = inflater.inflate(R.layout.fragment_database, container, false);
         View toastView = inflater.inflate(R.layout.custom_toast, (ViewGroup) root.findViewById(R.id.custom_toast_layout));
 
-        Objects.requireNonNull(((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
 
         activity = getActivity();
         dbHelper = new DatabaseManager(activity);
-        toaster = new Toaster(getActivity().getApplicationContext(), toastView);
+        toaster = new Toaster(requireActivity().getApplicationContext(), toastView);
 
         this.createCardsForFarts(root);
         this.addClickListenerToRadioButtons(root);

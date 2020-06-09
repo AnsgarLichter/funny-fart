@@ -11,10 +11,10 @@ import dhbw.lichter.scheuring.formelapp.R;
 
 public class Toaster {
 
-    private Toast toast;
-    private View view;
-    private ImageView icon;
-    private TextView text;
+    private final Toast toast;
+    private final View view;
+    private final ImageView icon;
+    private final TextView text;
 
     public Toaster(Context applicationContext, View view) {
         toast = new Toast(applicationContext);
