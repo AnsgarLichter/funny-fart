@@ -84,4 +84,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
+    <!-- Fragment Record -->
+    <string name="recording_started">Aufnahme gestartet</string>
+    <string name="recording_finished">Aufnahme beendet</string>
 </resources>
