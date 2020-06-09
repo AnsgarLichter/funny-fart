@@ -81,10 +81,15 @@ public class DetailFragment extends Fragment {
         double valueGenderFactor = bundle.getDouble("genderFactor");
         double valueResult = bundle.getDouble("result");
         String strGenderFactor = bundle.getString("strGenderFactor");
+        String valueAudioPath = bundle.getString("audioPath");
         Boolean is_in_db = bundle.getBoolean("isInDb");
-        //TODO
-        String valueName ="Name";
-        this.fart = new Fart(valueIntensity, valueLength, valueEmbarrassment, valueNumberKids, valueAgeListeners, valueResult, strGenderFactor, valueName);
+
+        if(valueAudioPath != null && valueAudioPath != "") {
+            this.fart = new Fart(valueIntensity, valueLength, valueEmbarrassment, valueNumberKids, valueAgeListeners, valueResult, strGenderFactor, valueAudioPath);
+        } else {
+            this.fart = new Fart(valueIntensity, valueLength, valueEmbarrassment, valueNumberKids, valueAgeListeners, valueResult, strGenderFactor);
+        }
+
 
         //TODO: Extract into own method
         String strFormulaVal = "$$\\color{white}{\\frac{("

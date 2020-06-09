@@ -31,6 +31,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public static final String COL_FART_GIF = "fart_gif";
     public static final String COL_FART_NAME = "fart_name";
     public static final String COL_CREATION_DATE = "creation_date";
+    public static final String COL_AUDIO_PATH = "audio_path";
 
 
     private static final String CREATE_TABLE_FART = "CREATE TABLE " + TABLE_FART + " (" +
@@ -43,6 +44,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
             COL_COUNT_CHILDREN + " INTEGER NOT NULL, " +
             COL_AVERAGE_AGE + " INTEGER NOT NULL, " +
             COL_SEX + " TEXT NOT NULL, " +
+            COL_AUDIO_PATH + " TEXT, " +
             COL_CREATION_DATE + " DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL )";
     private static final String CREATE_TABLE_SEX = "CREATE TABLE " + TABLE_SEX + " (" +
             COL_SEX + " PRIMARY KEY NOT NULL, " +
@@ -54,8 +56,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
 
     private static final String INSERT_FART = "INSERT INTO " + TABLE_FART +
-            "(" + COL_FART_SCORE + ", " + COL_FART_NAME + ", " + COL_INTENSITY + ", " + COL_LENGTH + ", " + COL_SOCIAL_EMBARRASSMENT + ", " + COL_COUNT_CHILDREN + ", " + COL_AVERAGE_AGE + ", " + COL_SEX + ")" +
-            "VALUES ( ?, ?, ?, ?, ?, ?, ?, ? ) ";
+            "(" + COL_FART_SCORE + ", " + COL_FART_NAME + ", " + COL_INTENSITY + ", " + COL_LENGTH + ", " + COL_SOCIAL_EMBARRASSMENT + ", " + COL_COUNT_CHILDREN + ", " + COL_AVERAGE_AGE + ", " + COL_SEX + ", " + COL_AUDIO_PATH + ")" +
+            "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ? ) ";
     private static final String INSERT_SEX = "INSERT INTO " + TABLE_SEX +
             "(" + COL_SEX + ", " + COL_SEX_FACTOR + ") VALUES ( ?, ?)";
     private static final String INSERT_SCORE_GIF = "INSERT INTO " + TABLE_SCORE_GIF +
@@ -121,7 +123,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
         ArrayList<Fart> farts = new ArrayList<Fart>();
 
         for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-            Fart fart = new Fart(cursor.getInt(cursor.getColumnIndex(COL_INTENSITY)),
+            Fart fart = new Fart(
+                    cursor.getInt(cursor.getColumnIndex(COL_INTENSITY)),
                     cursor.getInt(cursor.getColumnIndex(COL_LENGTH)),
                     cursor.getInt(cursor.getColumnIndex(COL_SOCIAL_EMBARRASSMENT)),
                     cursor.getInt(cursor.getColumnIndex(COL_COUNT_CHILDREN)),
@@ -129,8 +132,10 @@ public class DatabaseManager extends SQLiteOpenHelper {
                     cursor.getDouble(cursor.getColumnIndex(COL_FART_SCORE)),
                     cursor.getString(cursor.getColumnIndex(COL_SEX)),
                     cursor.getString(cursor.getColumnIndex(COL_FART_NAME)),
+                    cursor.getString(cursor.getColumnIndex(COL_AUDIO_PATH)),
                     cursor.getString(cursor.getColumnIndex(COL_CREATION_DATE)),
                     cursor.getLong(cursor.getColumnIndex(COL_ID)));
+
             farts.add(fart);
         }
         return farts;
