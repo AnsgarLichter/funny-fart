@@ -47,10 +47,10 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         this.navigator = new Navigator(dbFragment.getParentFragmentManager());
         this.fartAdapter = fartAdapter;
 
-        fartGif = (ImageView) itemView.findViewById(R.id.fart_gif);
-        fartName = (TextView) itemView.findViewById(R.id.card_fart_name);
-        fartScore = (TextView) itemView.findViewById(R.id.card_fart_score);
-        creationDate = (TextView) itemView.findViewById(R.id.card_creation_date);
+        fartGif = itemView.findViewById(R.id.fart_gif);
+        fartName = itemView.findViewById(R.id.card_fart_name);
+        fartScore = itemView.findViewById(R.id.card_fart_score);
+        creationDate = itemView.findViewById(R.id.card_creation_date);
         bDelete = itemView.findViewById(R.id.database_delete);
         bDetail = itemView.findViewById(R.id.database_detail);
         bPlay = itemView.findViewById(R.id.database_play);

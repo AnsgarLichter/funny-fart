@@ -1,1 +1,1 @@
-mjp_2020_gruppe08
+mjp_2020_group_08

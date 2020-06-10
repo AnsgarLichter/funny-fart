@@ -11,7 +11,7 @@
 
 
     <color name="cardBackground">#6281FF</color>
-    <color name="mtrl_textinput_default_box_stroke_color" tools:ignore="PrivateResource">#FFFFFF</color>
+    <color name="text_input_default_box_stroke_color" tools:ignore="PrivateResource">#FFFFFF</color>
 
     <color name="navigation">#9bb0ff</color>
 

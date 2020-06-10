@@ -44,23 +44,23 @@ public class HomeFragment extends Fragment {
 
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
 
-        //Instanz of Application Context for displaying a toast
+        //Instance of Application Context for displaying a toast
         toast = new Toaster(requireActivity().getApplicationContext(), toastView);
         navigator = new Navigator(getParentFragmentManager());
         Bundle source = getArguments();
         bundle = new Bundle();
 
-        //Audio Datei weiterleiten
+        //Share Audio File
         if(source != null)  bundle.putString("audioPath", source.getString("audioPath"));
-        //Mit View Elementen verknüpfen
-        enbIntensity = (ElegantNumberButton) root.findViewById(R.id.enb_fart_intensity);
-        enbTextLength = (ElegantNumberButton) root.findViewById(R.id.enb_fart_length);
-        enbSocialEmbarrassment = (ElegantNumberButton) root.findViewById(R.id.enb_social_embarrassment);
-        enbNumberKids = (ElegantNumberButton) root.findViewById(R.id.enb_number_kids_present);
-        editTextAgeListeners = (EditText) root.findViewById(R.id.editText_age_of_listener);
-        male = (RadioButton) root.findViewById(R.id.home_gender_male);
-        female = (RadioButton) root.findViewById(R.id.home_gender_female);
-        Button btnCreateFart = (Button) root.findViewById(R.id.btn_create_fart);
+        //Connect with View Elements
+        enbIntensity = root.findViewById(R.id.enb_fart_intensity);
+        enbTextLength = root.findViewById(R.id.enb_fart_length);
+        enbSocialEmbarrassment = root.findViewById(R.id.enb_social_embarrassment);
+        enbNumberKids = root.findViewById(R.id.enb_number_kids_present);
+        editTextAgeListeners = root.findViewById(R.id.editText_age_of_listener);
+        male = root.findViewById(R.id.home_gender_male);
+        female = root.findViewById(R.id.home_gender_female);
+        Button btnCreateFart = root.findViewById(R.id.btn_create_fart);
 
         //set Range
         enbSocialEmbarrassment.setRange(1, 3);
@@ -75,7 +75,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void createFart() {
-        //Werte einlesen
+        //Import Values
         String stringIntensity = enbIntensity.getNumber();
         String stringLength = enbTextLength.getNumber();
         String stringNumberKids = enbNumberKids.getNumber();

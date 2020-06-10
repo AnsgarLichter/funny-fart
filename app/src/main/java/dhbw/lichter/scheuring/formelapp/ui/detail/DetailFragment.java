@@ -47,7 +47,7 @@ public class DetailFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_detail, container, false);
         View toastView = inflater.inflate(R.layout.custom_toast, (ViewGroup) root.findViewById(R.id.custom_toast_layout));
 
-        Toolbar toolbar = (Toolbar) requireActivity().findViewById(R.id.toolbar);
+        Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,22 +58,22 @@ public class DetailFragment extends Fragment {
         toaster = new Toaster(requireActivity().getApplicationContext(), toastView);
         dbHelper = new DatabaseManager(getActivity());
 
-        formulaVal = (MathView) root.findViewById(R.id.detail_formula_values);
-        intensity = (TextView) root.findViewById(R.id.txtView_detail_intensity);
-        length = (TextView) root.findViewById(R.id.txtView_detail_length);
-        embarrassment = (TextView) root.findViewById(R.id.txtView_detail_embarrassment);
-        numberKids = (TextView) root.findViewById(R.id.txtView_detail_number_kids);
-        ageListener = (TextView) root.findViewById(R.id.txtView_detail_age_listeners);
-        genderFactor = (TextView) root.findViewById(R.id.txtView_detail_gender_factor);
+        formulaVal = root.findViewById(R.id.detail_formula_values);
+        intensity = root.findViewById(R.id.txtView_detail_intensity);
+        length = root.findViewById(R.id.txtView_detail_length);
+        embarrassment = root.findViewById(R.id.txtView_detail_embarrassment);
+        numberKids = root.findViewById(R.id.txtView_detail_number_kids);
+        ageListener = root.findViewById(R.id.txtView_detail_age_listeners);
+        genderFactor = root.findViewById(R.id.txtView_detail_gender_factor);
         name = (EditText) root.findViewById(R.id.editText_fart_name);
-        Button saveFart = (Button) root.findViewById(R.id.btn_detail_save_fart);
+        Button saveFart = root.findViewById(R.id.btn_detail_save_fart);
         saveFart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 saveFartInDb();
             }
         });
-        saveView = (MaterialCardView) root.findViewById(R.id.fart_card_save);
+        saveView = root.findViewById(R.id.fart_card_save);
 
         //TODO: Extract into own method
         Bundle bundle = getArguments();
@@ -98,6 +98,7 @@ public class DetailFragment extends Fragment {
 
 
         //TODO: Extract into own method
+        @SuppressWarnings("SpellCheckingInspection")
         String strFormulaVal = "$$\\color{white}{\\frac{("
                 .concat(String.valueOf(valueIntensity))
                 .concat(" * ")

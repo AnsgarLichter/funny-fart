@@ -157,10 +157,4 @@
 <!--        <item name="android:fontFamily">@font/roboto</item>-->
 <!--        <item name="android:textSize">12sp</item>-->
 <!--    </style>-->
-
-<!--    <style name="TextAppearance.MdcTypographyStyles.Overline" parent="TextAppearance.MaterialComponents.Overline">-->
-<!--        <item name="fontFamily">@font/roboto</item>-->
-<!--        <item name="android:fontFamily">@font/roboto</item>-->
-<!--        <item name="android:textSize">10sp</item>-->
-<!--    </style>-->
 </resources>
