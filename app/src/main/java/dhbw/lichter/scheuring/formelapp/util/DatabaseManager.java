@@ -69,7 +69,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
 
     private SQLiteStatement insertFart;
-    private SQLiteStatement deleteFart;
+    private final SQLiteStatement deleteFart;
 
 
     public DatabaseManager(Context context) {

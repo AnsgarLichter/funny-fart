@@ -29,14 +29,14 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
 
 
     private boolean permissionToRecordAccepted = false;
-    private String[] permissions = {
+    private final String[] permissions = {
             Manifest.permission.RECORD_AUDIO,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE
         };
 
 
-    private Recorder recorder = new Recorder();
+    private final Recorder recorder = new Recorder();
     private Navigator navigator;
     private File file = new File("");
 

@@ -9,6 +9,8 @@
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textViewStyle">@style/textView</item>
         <item name="android:backgroundTint">@color/background</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="TemplateTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
@@ -73,16 +75,11 @@
 
 
     <!-- Project Styles -->
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
+    <style name="AppTheme.NoActionBar"></style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:backgroundTint">@color/toolbar</item>
     </style>
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="AppTheme.NavigationBar">
         <item name="backgroundTint">@color/navigation</item>

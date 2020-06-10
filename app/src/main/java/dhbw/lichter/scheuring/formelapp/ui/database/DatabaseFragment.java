@@ -48,7 +48,7 @@ public class DatabaseFragment extends Fragment implements View.OnClickListener {
 
         activity = getActivity();
         dbHelper = new DatabaseManager(activity);
-        toaster = new Toaster(getActivity().getApplicationContext(), toastView);
+        toaster = new Toaster(requireActivity().getApplicationContext(), toastView);
 
         this.createCardsForFarts(root);
         this.addClickListenerToRadioButtons(root);

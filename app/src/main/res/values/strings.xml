@@ -1,20 +1,14 @@
 <resources>
     <!-- Build Strings -->
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_desc">Navigation header</string>
 
     <!-- Eigene Strings -->
     <string name="app_name">Funny Fart</string>
 
 
     <!-- Bottom Menu -->
-    <string name="nav_header_title">Funny Fart</string>
-    <string name="nav_header_subtitle">Ist Ihr Furz wirklich witzig?</string>
     <string name="menu_database">Gespeicherte Fürze</string>
     <string name="menu_home">Neuen Furz berechnen</string>
     <string name="menu_help">Hilfe</string>
-    <string name="menu_detail">Detailansicht</string>
     <string name="menu_record">Fürze aufnehmen</string>
 
 
@@ -73,8 +67,6 @@
     <string name="detail_gender_factor_value">%1$s, %2$s</string>
 
     <!-- Fragment Help -->
-    <string name="help_title">Hilfe</string>
-    <string name="help_image_description">Funny Fart Formula</string>
     <string name="help_parameters">Parameter</string>
     <string name="help_i">I: Intensität des Furzes in Dezibel (dB) </string>
     <string name="help_l">L: Länge des Furzes in Sekunden (s) </string>
@@ -84,15 +76,10 @@
     <string name="help_g">g: Geschlecht des Täters (männlich oder weiblich) </string>
     <string name="help_result">Ergebnis</string>
     <string name="help_f">F beschreibt als Ergebniswert, wie witzig der Furz zu bewerten ist. \nEs gilt: Je höher der Wert, desto witziger!</string>
-    <string name="title_activity_main2">Main2Activity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
 
     <!-- Fragment Record -->
     <string name="recording_started">Aufnahme gestartet</string>
     <string name="recording_finished">Aufnahme beendet</string>
     <string name="file_created">Audio-Datei konnte nicht erstellt werden. Bitte rufen Sie die Seite erneut auf.</string>
-    <string name="permissions_granted">Berechtigungen gewährt</string>
     <string name="permissions_not_granted">Um Fürze aufnehmen zu können, müssen Sie die Berechtigungen gewähren</string>
 </resources>
