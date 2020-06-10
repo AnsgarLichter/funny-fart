@@ -53,7 +53,7 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
         ImageButton input = root.findViewById(R.id.recorder_record);
         input.setOnClickListener(this);
         toaster = new Toaster(getActivity(), toastView);
-        navigator = new Navigator(getFragmentManager());
+        navigator = new Navigator(getParentFragmentManager());
         requestPermissions(permissions, REQUEST_RECORD_AUDIO_PERMISSION);
 
         return root;

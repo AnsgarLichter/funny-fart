@@ -44,7 +44,7 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         super(itemView);
 
         this.dbFragment = dbFragment;
-        this.navigator = new Navigator(dbFragment.getFragmentManager());
+        this.navigator = new Navigator(dbFragment.getParentFragmentManager());
         this.fartAdapter = fartAdapter;
 
         fartGif = (ImageView) itemView.findViewById(R.id.fart_gif);

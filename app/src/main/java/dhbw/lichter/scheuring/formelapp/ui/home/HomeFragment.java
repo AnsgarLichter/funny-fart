@@ -46,7 +46,7 @@ public class HomeFragment extends Fragment {
 
         //Instanz of Application Context for displaying a toast
         toast = new Toaster(requireActivity().getApplicationContext(), toastView);
-        navigator = new Navigator(getFragmentManager());
+        navigator = new Navigator(getParentFragmentManager());
         Bundle source = getArguments();
         bundle = new Bundle();
 
