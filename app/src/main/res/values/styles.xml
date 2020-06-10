@@ -75,7 +75,7 @@
 
 
     <!-- Project Styles -->
-    <style name="AppTheme.NoActionBar"></style>
+    <style name="AppTheme.NoActionBar" />
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:backgroundTint">@color/toolbar</item>
