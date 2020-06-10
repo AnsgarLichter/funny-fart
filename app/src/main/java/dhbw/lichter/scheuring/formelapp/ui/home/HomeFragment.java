@@ -52,7 +52,7 @@ public class HomeFragment extends Fragment {
 
         //Audio Datei weiterleiten
         if(source != null)  bundle.putString("audioPath", source.getString("audioPath"));
-        //Mit View Elementen Verknüpfen
+        //Mit View Elementen verknüpfen
         enbIntensity = (ElegantNumberButton) root.findViewById(R.id.enb_fart_intensity);
         enbTextLength = (ElegantNumberButton) root.findViewById(R.id.enb_fart_length);
         enbSocialEmbarrassment = (ElegantNumberButton) root.findViewById(R.id.enb_social_embarrassment);
