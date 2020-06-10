@@ -35,9 +35,9 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public final ImageButton bShare;
 
 
-    private FartAdapter fartAdapter;
-    private DatabaseFragment dbFragment;
-    private Navigator navigator;
+    private final FartAdapter fartAdapter;
+    private final DatabaseFragment dbFragment;
+    private final Navigator navigator;
 
 
     FartViewHolder(View itemView, DatabaseFragment dbFragment, FartAdapter fartAdapter) {

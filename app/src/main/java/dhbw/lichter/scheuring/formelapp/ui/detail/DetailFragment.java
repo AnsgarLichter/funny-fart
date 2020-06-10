@@ -55,7 +55,7 @@ public class DetailFragment extends Fragment {
                 requireActivity().onBackPressed();
             }
         });
-        toaster = new Toaster(getActivity().getApplicationContext(), toastView);
+        toaster = new Toaster(requireActivity().getApplicationContext(), toastView);
         dbHelper = new DatabaseManager(getActivity());
 
         formulaVal = (MathView) root.findViewById(R.id.detail_formula_values);
