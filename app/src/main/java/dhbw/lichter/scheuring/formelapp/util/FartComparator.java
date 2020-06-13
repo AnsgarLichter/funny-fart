@@ -7,7 +7,6 @@ public class FartComparator implements Comparator<Fart> {
 
     public final static String SORT_SCORE = "score";
     public final static String SORT_NAME = "name";
-    @SuppressWarnings("SpellCheckingInspection")
     public final static String SORT_CREATON_DATE = "creationDate";
 
     public FartComparator(String sortProperty) {

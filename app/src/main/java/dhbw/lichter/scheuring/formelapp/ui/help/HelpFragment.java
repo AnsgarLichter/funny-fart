@@ -25,7 +25,6 @@ public class HelpFragment extends Fragment {
 
 
         formula = root.findViewById(R.id.help_formula);
-        @SuppressWarnings("SpellCheckingInspection")
         String strFormula = "$$\\color{white}{\\frac{(I * L)^S * K}{(A * g)} = F}$$";
         formula.setEngine(MathView.Engine.MATHJAX);
         formula.setText(strFormula);

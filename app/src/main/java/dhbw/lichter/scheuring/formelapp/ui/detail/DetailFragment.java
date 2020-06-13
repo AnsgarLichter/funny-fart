@@ -98,7 +98,6 @@ public class DetailFragment extends Fragment {
 
 
         //TODO: Extract into own method
-        @SuppressWarnings("SpellCheckingInspection")
         String strFormulaVal = "$$\\color{white}{\\frac{("
                 .concat(String.valueOf(valueIntensity))
                 .concat(" * ")
