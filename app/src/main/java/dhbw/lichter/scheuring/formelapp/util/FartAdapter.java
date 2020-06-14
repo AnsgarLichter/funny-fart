@@ -53,8 +53,8 @@ public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
         fartViewHolder.fartGif.setImageResource(R.drawable.im_funny_fart);
 
         if(fart.getAudioPath().equals("")) {
-            fartViewHolder.bPlay.setEnabled(false);
-            fartViewHolder.bShare.setEnabled(false);
+            fartViewHolder.bPlay.setVisibility(View.GONE);
+            fartViewHolder.bShare.setVisibility(View.GONE);
         }
     }
 
