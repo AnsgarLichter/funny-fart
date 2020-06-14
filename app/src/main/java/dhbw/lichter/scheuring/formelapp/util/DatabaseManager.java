@@ -116,7 +116,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         }
     }
 
-    public ArrayList<Fart> getFarts() throws SQLException {
+    public ArrayList<Fart> getFarts() {
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = db.rawQuery(READ_ALL_FARTS, null);
@@ -151,11 +151,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
         }
     }
 
-    private void createFartTable(SQLiteDatabase db) throws SQLException{
+    private void createFartTable(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_FART);
     }
 
-    private void createSexTable(SQLiteDatabase db) throws SQLException{
+    private void createSexTable(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_SEX);
         SQLiteStatement insertSex = db.compileStatement(INSERT_SEX);
 
@@ -172,7 +172,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         }
     }
 
-    private void createScoreGifTable(SQLiteDatabase db) throws SQLException{
+    private void createScoreGifTable(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_SCORE_GIF);
         SQLiteStatement insertScore = db.compileStatement(INSERT_SCORE_GIF);
 
