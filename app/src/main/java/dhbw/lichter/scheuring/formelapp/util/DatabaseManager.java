@@ -80,6 +80,18 @@ public class DatabaseManager extends SQLiteOpenHelper {
         deleteFart = db.compileStatement(DELETE_FART);
     }
 
+    /*
+     * If there is a update of the database, please implement the change as an
+     * alter statement in the onUpgrade method and as an create statement
+     * in the onCreate method.
+     *
+     * Pattern onCreate (Just adapt the existing create statement:
+     *  db.execSQL(CREATE_STATEMENT_UPDATE)
+     *
+     * Pattern onUpdate:
+     *   if(oldVersion < X) db.execSQL(ALTER_STATEMENT_UPDATE);
+     *
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
@@ -91,11 +103,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
         }
     }
 
-
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
 
     public void saveFart(final Fart fart) throws SQLException {
