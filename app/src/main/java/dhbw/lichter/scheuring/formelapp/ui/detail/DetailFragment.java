@@ -1,7 +1,9 @@
 package dhbw.lichter.scheuring.formelapp.ui.detail;
 
 import android.annotation.SuppressLint;
+import android.database.SQLException;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +28,8 @@ import dhbw.lichter.scheuring.formelapp.util.Toaster;
 import io.github.kexanie.library.MathView;
 
 public class DetailFragment extends Fragment {
+    private final String LOG_TAG = requireActivity().getClass().getName();
+
 
     public MathView formulaVal;
     public TextView intensity;
@@ -35,6 +39,7 @@ public class DetailFragment extends Fragment {
     public TextView ageListener;
     public TextView genderFactor;
     public TextView name;
+
 
     private Toaster toaster;
     private DatabaseManager dbHelper;
@@ -137,10 +142,15 @@ public class DetailFragment extends Fragment {
         if(name.equals("") || name.trim().equals("")) {
             this.name.setError(getResources().getString(R.string.error_empty_field));
         } else {
-            fart.setName(name);
-            this.dbHelper.saveFart(fart);
-            toaster.showSuccess(R.string.detail_toast_success);
-            saveView.setVisibility(View.GONE);
+            try{
+                fart.setName(name);
+                this.dbHelper.saveFart(fart);
+                toaster.showSuccess(R.string.detail_toast_success);
+                saveView.setVisibility(View.GONE);
+            } catch (SQLException ex) {
+                toaster.showError(R.string.detail_toast_error);
+                Log.e(LOG_TAG, "Fart couldn't be saved to database", ex);
+            }
         }
     }
 }
