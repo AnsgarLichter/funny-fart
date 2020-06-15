@@ -50,7 +50,16 @@ public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
         fartViewHolder.fartName.setText(fart.getName());
         fartViewHolder.fartScore.setText(String.format(Locale.GERMANY, "%.2f", fart.getScore()));
         fartViewHolder.creationDate.setText(formatDate(fart.getCreationDate()));
-        fartViewHolder.fartGif.setImageResource(R.drawable.im_funny_fart);
+        if (fart.getScore() <= 10.0) {
+            fartViewHolder.fartGif.setImageResource(R.drawable.im_low_score);
+        } else if (fart.getScore() <= 20.0) {
+            fartViewHolder.fartGif.setImageResource(R.drawable.im_middle_score);
+        } else if (fart.getScore() <= 40.0) {
+            fartViewHolder.fartGif.setImageResource(R.drawable.im_high_score);
+        }
+        else {
+            fartViewHolder.fartGif.setImageResource(R.drawable.im_super_score);
+        }
 
         if(fart.getAudioPath().equals("")) {
             fartViewHolder.bPlay.setVisibility(View.GONE);
