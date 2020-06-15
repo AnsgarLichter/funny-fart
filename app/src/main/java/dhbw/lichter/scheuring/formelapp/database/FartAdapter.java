@@ -1,9 +1,10 @@
-package dhbw.lichter.scheuring.formelapp.util;
+package dhbw.lichter.scheuring.formelapp.database;
 
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,7 +22,7 @@ import dhbw.lichter.scheuring.formelapp.ui.database.DatabaseFragment;
 public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
 
     private final DatabaseFragment dbFragment;
-    private List<Fart> farts;
+    private final List<Fart> farts;
     private List<Fart> fartsView;
 
     public FartAdapter(List<Fart> farts, DatabaseFragment dbFragment) {
@@ -45,16 +46,26 @@ public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
     @Override
     public void onBindViewHolder(FartViewHolder fartViewHolder, int i) {
         Fart fart = fartsView.get(i);
+        ImageView fartGif = fartViewHolder.fartGif;
 
         fartViewHolder.fart = fart;
         fartViewHolder.fartName.setText(fart.getName());
         fartViewHolder.fartScore.setText(String.format(Locale.GERMANY, "%.2f", fart.getScore()));
         fartViewHolder.creationDate.setText(formatDate(fart.getCreationDate()));
-        fartViewHolder.fartGif.setImageResource(R.drawable.im_funny_fart);
+
+        int drawable = R.drawable.im_super_score;
+        if (fart.getScore() <= 10.0) {
+            drawable = R.drawable.im_low_score;
+        } else if (fart.getScore() <= 20.0) {
+            drawable = R.drawable.im_middle_score;
+        } else if (fart.getScore() <= 40.0) {
+            drawable = R.drawable.im_high_score;
+        }
+        fartGif.setImageResource(drawable);
 
         if(fart.getAudioPath().equals("")) {
-            fartViewHolder.bPlay.setEnabled(false);
-            fartViewHolder.bShare.setEnabled(false);
+            fartViewHolder.bPlay.setVisibility(View.GONE);
+            fartViewHolder.bShare.setVisibility(View.GONE);
         }
     }
 
@@ -104,9 +115,9 @@ public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
 
     private String formatDate(String date) {
         try {
-            SimpleDateFormat inputformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.GERMANY);
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.GERMANY);
             SimpleDateFormat outputFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
-            Date creationDate = inputformat.parse(date);
+            Date creationDate = inputFormat.parse(date);
             assert creationDate != null;
 
             return outputFormat.format(creationDate);

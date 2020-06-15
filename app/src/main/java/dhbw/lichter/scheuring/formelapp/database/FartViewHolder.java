@@ -1,4 +1,4 @@
-package dhbw.lichter.scheuring.formelapp.util;
+package dhbw.lichter.scheuring.formelapp.database;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -7,15 +7,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.cardview.widget.CardView;
 import androidx.core.content.FileProvider;
-
 import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,37 +21,37 @@ import java.io.File;
 import dhbw.lichter.scheuring.formelapp.R;
 import dhbw.lichter.scheuring.formelapp.ui.database.DatabaseFragment;
 import dhbw.lichter.scheuring.formelapp.ui.detail.DetailFragment;
+import dhbw.lichter.scheuring.formelapp.util.Recorder;
+import dhbw.lichter.scheuring.formelapp.util.Toaster;
 
 public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, DialogInterface.OnClickListener {
     public Fart fart;
-    public CardView cardView;
-    public ImageView fartGif;
-    public TextView fartName;
-    public TextView fartScore;
-    public TextView creationDate;
-    public ImageButton bDelete;
-    public ImageButton bDetail;
-    public ImageButton bPlay;
-    public ImageButton bShare;
+    public final ImageView fartGif;
+    public final TextView fartName;
+    public final TextView fartScore;
+    public final TextView creationDate;
+    public final ImageButton bDelete;
+    public final ImageButton bDetail;
+    public final ImageButton bPlay;
+    public final ImageButton bShare;
 
 
-    private FartAdapter fartAdapter;
-    private DatabaseFragment dbFragment;
-    private Navigator navigator;
+    private final FartAdapter fartAdapter;
+    private final DatabaseFragment dbFragment;
+    private final Toaster toaster;
 
 
     FartViewHolder(View itemView, DatabaseFragment dbFragment, FartAdapter fartAdapter) {
         super(itemView);
 
         this.dbFragment = dbFragment;
-        this.navigator = new Navigator(dbFragment.getFragmentManager());
         this.fartAdapter = fartAdapter;
+        this.toaster = dbFragment.toaster;
 
-        cardView = (CardView) itemView.findViewById(R.id.fart_card);
-        fartGif = (ImageView) itemView.findViewById(R.id.fart_gif);
-        fartName = (TextView) itemView.findViewById(R.id.card_fart_name);
-        fartScore = (TextView) itemView.findViewById(R.id.card_fart_score);
-        creationDate = (TextView) itemView.findViewById(R.id.card_creation_date);
+        fartGif = itemView.findViewById(R.id.fart_gif);
+        fartName = itemView.findViewById(R.id.card_fart_name);
+        fartScore = itemView.findViewById(R.id.card_fart_score);
+        creationDate = itemView.findViewById(R.id.card_creation_date);
         bDelete = itemView.findViewById(R.id.database_delete);
         bDetail = itemView.findViewById(R.id.database_detail);
         bPlay = itemView.findViewById(R.id.database_play);
@@ -94,7 +91,7 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     private void onDetailButtonClicked() {
         Bundle bundle = this.createBundle();
-        navigator.navigate(new DetailFragment(), true, bundle);
+        dbFragment.navigator.navigate(new DetailFragment(), true, bundle);
     }
 
     public void onDeleteButtonClicked() {
@@ -129,18 +126,22 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
         assert context != null;
 
-        Uri fileUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", audioFile);
-        context.grantUriPermission(context.getPackageName(), fileUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        Intent share = new Intent();
-        share.setAction(Intent.ACTION_SEND);
-        share.setType("audio/*");
-        share.putExtra(Intent.EXTRA_STREAM, fileUri);
-        share.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        dbFragment.startActivity(share);
+        try {
+            Uri fileUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", audioFile);
+            context.grantUriPermission(context.getPackageName(), fileUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            Intent share = new Intent();
+            share.setAction(Intent.ACTION_SEND);
+            share.setType("audio/*");
+            share.putExtra(Intent.EXTRA_STREAM, fileUri);
+            share.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            dbFragment.startActivity(share);
+        } catch (Exception ex) {
+            toaster.showError(R.string.database_share_error);
+        }
+
     }
 
     private Bundle createBundle() {
-        //TODO: use fart object
         Bundle bundle = new Bundle();
         bundle.putInt("intensity", fart.getIntensity());
         bundle.putInt("length", fart.getLength());

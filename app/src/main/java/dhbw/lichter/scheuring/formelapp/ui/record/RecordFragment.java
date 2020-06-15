@@ -29,14 +29,14 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
 
 
     private boolean permissionToRecordAccepted = false;
-    private String[] permissions = {
+    private final String[] permissions = {
             Manifest.permission.RECORD_AUDIO,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE
         };
 
 
-    private Recorder recorder = new Recorder();
+    private final Recorder recorder = new Recorder();
     private Navigator navigator;
     private File file = new File("");
 
@@ -48,12 +48,12 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
         View root = inflater.inflate(R.layout.fragment_record, container, false);
         View toastView = inflater.inflate(R.layout.custom_toast,  (ViewGroup) root.findViewById(R.id.custom_toast_layout));
 
-        Objects.requireNonNull(((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
 
         ImageButton input = root.findViewById(R.id.recorder_record);
         input.setOnClickListener(this);
         toaster = new Toaster(getActivity(), toastView);
-        navigator = new Navigator(getFragmentManager());
+        navigator = new Navigator(getParentFragmentManager());
         requestPermissions(permissions, REQUEST_RECORD_AUDIO_PERMISSION);
 
         return root;
@@ -65,7 +65,7 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
         long timestamp = System.currentTimeMillis() / 1000;
         boolean created = false;
         if(recorder.getStatus() != MediaRecorderStatus.RECORD) {
-            file = new File(Objects.requireNonNull(getContext()).getFilesDir(), "funnyFart" + timestamp + ".ogg");
+            file = new File(requireContext().getFilesDir(), "funnyFart" + timestamp + ".ogg");
             if(!file.exists()) {
                 try {
                     created = file.createNewFile();

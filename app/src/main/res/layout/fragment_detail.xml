@@ -7,7 +7,7 @@
     android:fillViewport="true">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ui.detail.DetailFragment">
 
     <com.google.android.material.card.MaterialCardView
@@ -29,7 +29,6 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/detail_result_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -291,14 +290,14 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_fart_name"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/AppTheme.TextInputLayout"
+                android:theme="@style/AppTheme.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
                 android:hint="@string/detail_hint_fart_name"
-                android:theme="@style/TextInputLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -308,7 +307,8 @@
                     android:id="@+id/editText_fart_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    style="@style/AppTheme.TextInputEditText"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 

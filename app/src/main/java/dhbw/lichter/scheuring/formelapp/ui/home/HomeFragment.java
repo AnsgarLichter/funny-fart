@@ -18,6 +18,7 @@ import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import java.util.Objects;
 
 import dhbw.lichter.scheuring.formelapp.R;
+import dhbw.lichter.scheuring.formelapp.database.DatabaseManager;
 import dhbw.lichter.scheuring.formelapp.ui.detail.DetailFragment;
 import dhbw.lichter.scheuring.formelapp.util.Navigator;
 import dhbw.lichter.scheuring.formelapp.util.Toaster;
@@ -34,6 +35,7 @@ public class HomeFragment extends Fragment {
 
     private Toaster toast;
     private Navigator navigator;
+    private DatabaseManager dbHelper;
 
     private Bundle bundle;
 
@@ -42,27 +44,28 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         View toastView = inflater.inflate(R.layout.custom_toast,  (ViewGroup) root.findViewById(R.id.custom_toast_layout));
 
-        Objects.requireNonNull(((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
 
-        //Instanz of Application Context for displaying a toast
-        toast = new Toaster(getActivity().getApplicationContext(), toastView);
-        navigator = new Navigator(getFragmentManager());
+        //Instance of Application Context for displaying a toast
+        toast = new Toaster(requireActivity().getApplicationContext(), toastView);
+        navigator = new Navigator(getParentFragmentManager());
+        dbHelper = new DatabaseManager(requireActivity());
         Bundle source = getArguments();
         bundle = new Bundle();
 
-        //Audio Datei weiterleiten
+        //Share Audio File
         if(source != null)  bundle.putString("audioPath", source.getString("audioPath"));
-        //Mit View Elementen Verknüpfen
-        enbIntensity = (ElegantNumberButton) root.findViewById(R.id.enb_fart_intensity);
-        enbTextLength = (ElegantNumberButton) root.findViewById(R.id.enb_fart_length);
-        enbSocialEmbarrassment = (ElegantNumberButton) root.findViewById(R.id.enb_social_embarrassment);
-        enbNumberKids = (ElegantNumberButton) root.findViewById(R.id.enb_number_kids_present);
-        editTextAgeListeners = (EditText) root.findViewById(R.id.editText_age_of_listener);
-        male = (RadioButton) root.findViewById(R.id.home_gender_male);
-        female = (RadioButton) root.findViewById(R.id.home_gender_female);
-        Button btnCreateFart = (Button) root.findViewById(R.id.btn_create_fart);
+        //Connect with View Elements
+        enbIntensity = root.findViewById(R.id.enb_fart_intensity);
+        enbTextLength = root.findViewById(R.id.enb_fart_length);
+        enbSocialEmbarrassment = root.findViewById(R.id.enb_social_embarrassment);
+        enbNumberKids = root.findViewById(R.id.enb_number_kids_present);
+        editTextAgeListeners = root.findViewById(R.id.editText_age_of_listener);
+        male = root.findViewById(R.id.home_gender_male);
+        female = root.findViewById(R.id.home_gender_female);
+        Button btnCreateFart = root.findViewById(R.id.btn_create_fart);
 
-        //set Range
+        //Set Range
         enbSocialEmbarrassment.setRange(1, 3);
 
         btnCreateFart.setOnClickListener(new View.OnClickListener() {
@@ -75,13 +78,13 @@ public class HomeFragment extends Fragment {
     }
 
     public void createFart() {
-        //Werte einlesen
+        //Import Values
         String stringIntensity = enbIntensity.getNumber();
         String stringLength = enbTextLength.getNumber();
         String stringNumberKids = enbNumberKids.getNumber();
         String stringAgeListeners = editTextAgeListeners.getText().toString();
         String stringEmbarrassment = enbSocialEmbarrassment.getNumber();
-        String stringGenderFactor = stringGenderFactor = female.getText().toString();;
+        String stringGenderFactor = female.getText().toString();
 
         if(male.isChecked()) {
             stringGenderFactor = male.getText().toString();
@@ -102,8 +105,8 @@ public class HomeFragment extends Fragment {
                     Integer.parseInt(stringLength),
                     Integer.parseInt(stringNumberKids),
                     Integer.parseInt(stringAgeListeners),
-                    (int) getKeyFromArray(stringEmbarrassment, R.array.keys_social_embarrassment, R.array.values_social_embarrassment),
-                    getKeyFromArray(stringGenderFactor, R.array.keys_gender_factor, R.array.values_gender_factor));
+                    getKeyFromArray(stringEmbarrassment, R.array.keys_social_embarrassment, R.array.values_social_embarrassment),
+                    dbHelper.getSexFactor(stringGenderFactor));
 
             navigator.navigate(new DetailFragment(), true, bundle);
         } else {
@@ -125,7 +128,7 @@ public class HomeFragment extends Fragment {
     }
 
 
-    public double getKeyFromArray(String text, int keyID, int valID) {
+    public int getKeyFromArray(String text, int keyID, int valID) {
         int counter = -1;
         for (String el : getResources().getStringArray(keyID)) {
             counter++;
@@ -133,7 +136,7 @@ public class HomeFragment extends Fragment {
                 break;
             }
         }
-        return Double.parseDouble(getResources().getStringArray(valID)[counter]);
+        return Integer.parseInt(getResources().getStringArray(valID)[counter]);
     }
 
 }

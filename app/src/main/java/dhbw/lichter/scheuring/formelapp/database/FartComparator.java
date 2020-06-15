@@ -1,9 +1,9 @@
-package dhbw.lichter.scheuring.formelapp.util;
+package dhbw.lichter.scheuring.formelapp.database;
 
 import java.util.Comparator;
 
 public class FartComparator implements Comparator<Fart> {
-    private String sortProperty;
+    private final String sortProperty;
 
     public final static String SORT_SCORE = "score";
     public final static String SORT_NAME = "name";

@@ -1,20 +1,14 @@
 <resources>
     <!-- Build Strings -->
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_desc">Navigation header</string>
 
-    <!-- Eigene Strings -->
+    <!-- Own Strings -->
     <string name="app_name">Funny Fart</string>
 
 
     <!-- Bottom Menu -->
-    <string name="nav_header_title">Funny Fart</string>
-    <string name="nav_header_subtitle">Ist Ihr Furz wirklich witzig?</string>
     <string name="menu_database">Gespeicherte Fürze</string>
     <string name="menu_home">Neuen Furz berechnen</string>
     <string name="menu_help">Hilfe</string>
-    <string name="menu_detail">Detailansicht</string>
     <string name="menu_record">Fürze aufnehmen</string>
 
 
@@ -47,6 +41,7 @@
     <string name="database_sort_success">Erfolgreich sortiert</string>
     <string name="database_delete_security_query_title">Furz löschen</string>
     <string name="database_delete_security_query_message">Sind Sie sicher, dass sie den Furz :name löschen möchten?</string>
+    <string name="database_share_error">Ihre Audio konnte leider nicht gefunden werden!</string>
     <string name="card_template_date">Erstellt am:</string>
     <string name="card_template_score">Score:</string>
     <string name="card_template_image">Score Image</string>
@@ -68,13 +63,21 @@
     <string name="detail_hint_fart_name">Name des Furzes</string>
     <string name="detail_btn_save_fart">Furz speichern</string>
     <string name="detail_toast_success">Furz erfolgreich gespeichert.</string>
+    <string name="detail_toast_error">Furz konnte nicht gespeichert werden. Bitte versuchen Sie es erneut!</string>
     <string name="detail_intensity_value">%1$s db</string>
     <string name="detail_length_value">%1$s Sekunde(n)</string>
     <string name="detail_gender_factor_value">%1$s, %2$s</string>
+    <string name="detail_formula">\$\$\\color{white}{\\frac{(%1$s * %2$s)^%3$s * %4$s}{(%5$s * %6$s)} = %7$s}\$\$</string>
 
     <!-- Fragment Help -->
-    <string name="help_title">Hilfe</string>
-    <string name="help_image_description">Funny Fart Formula</string>
+    <string name="help_title">Die Formel</string>
+    <string name="help_description">
+        Die Formel für den witzigsten Furz der Welt wurde von Beano in Zusammenarbeit von mit Dr. Helen Pitcher und Voice-Over-Artist Grant Leat erstellt. Sie haben untersucht, warum Blähungen für uns Menschen so witzig sein können.
+        Dabei haben Sie 176 verschiedene Furzgeräusche untersucht. Diese reichen von niedriger bis hoher Intensität, von kurz bis lang, von trocken bis feucht, von laut bis flatternd.
+        Das Ergebnis der wissenschaftlichen Studien ist, dass der witzigste Furz lang, laut und feucht ist.
+        Wenn du selbst entscheiden möchtest, was der witzigste Furz ist, dann kannst auf der Startseite loslegen!
+    </string>
+    <string name="help_formula">\$\$\\color{white}{\\frac{(I * L)^S * K}{(A * g)} = F}\$\$</string>
     <string name="help_parameters">Parameter</string>
     <string name="help_i">I: Intensität des Furzes in Dezibel (dB) </string>
     <string name="help_l">L: Länge des Furzes in Sekunden (s) </string>
@@ -84,15 +87,16 @@
     <string name="help_g">g: Geschlecht des Täters (männlich oder weiblich) </string>
     <string name="help_result">Ergebnis</string>
     <string name="help_f">F beschreibt als Ergebniswert, wie witzig der Furz zu bewerten ist. \nEs gilt: Je höher der Wert, desto witziger!</string>
-    <string name="title_activity_main2">Main2Activity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="help_origin_title">Quellen:</string>
+    <string name="help_origin_text">
+        <a href="https://www.beano.com/posts/the-worlds-funniest-fart">https://www.beano.com/posts/the-worlds-funniest-fart</a>\n\n
+        <a href="https://www.itv.com/news/2019-08-21/formula-for-worlds-funniest-fart-revealed/">https://www.itv.com/news/2019-08-21/formula-for-worlds-funniest-fart-revealed/</a>\n
+        <a href="https://www.thesun.co.uk/tech/9765024/flatulence-formula-worlds-funniest-fart/">https://www.thesun.co.uk/tech/9765024/flatulence-formula-worlds-funniest-fart/</a>
+    </string>
 
     <!-- Fragment Record -->
     <string name="recording_started">Aufnahme gestartet</string>
     <string name="recording_finished">Aufnahme beendet</string>
     <string name="file_created">Audio-Datei konnte nicht erstellt werden. Bitte rufen Sie die Seite erneut auf.</string>
-    <string name="permissions_granted">Berechtigungen gewährt</string>
     <string name="permissions_not_granted">Um Fürze aufnehmen zu können, müssen Sie die Berechtigungen gewähren</string>
 </resources>

@@ -23,19 +23,21 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import dhbw.lichter.scheuring.formelapp.R;
-import dhbw.lichter.scheuring.formelapp.util.DatabaseManager;
-import dhbw.lichter.scheuring.formelapp.util.Fart;
-import dhbw.lichter.scheuring.formelapp.util.FartAdapter;
+import dhbw.lichter.scheuring.formelapp.database.DatabaseManager;
+import dhbw.lichter.scheuring.formelapp.database.Fart;
+import dhbw.lichter.scheuring.formelapp.database.FartAdapter;
+import dhbw.lichter.scheuring.formelapp.util.Navigator;
 import dhbw.lichter.scheuring.formelapp.util.Toaster;
 
 public class DatabaseFragment extends Fragment implements View.OnClickListener {
     private Activity activity;
-    private Toaster toaster;
     private FartAdapter fartAdapter;
 
     private int sortProperty;
     private boolean sortAsc;
 
+    public Navigator navigator;
+    public Toaster toaster;
     public DatabaseManager dbHelper;
 
     @Override
@@ -44,15 +46,17 @@ public class DatabaseFragment extends Fragment implements View.OnClickListener {
         View root = inflater.inflate(R.layout.fragment_database, container, false);
         View toastView = inflater.inflate(R.layout.custom_toast, (ViewGroup) root.findViewById(R.id.custom_toast_layout));
 
-        Objects.requireNonNull(((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
 
         activity = getActivity();
         dbHelper = new DatabaseManager(activity);
-        toaster = new Toaster(getActivity().getApplicationContext(), toastView);
+        toaster = new Toaster(requireActivity().getApplicationContext(), toastView);
+        navigator = new Navigator(getParentFragmentManager());
 
         this.createCardsForFarts(root);
         this.addClickListenerToRadioButtons(root);
         this.addTextChangedListenerToSearchInput(root);
+
         return root;
     }
 

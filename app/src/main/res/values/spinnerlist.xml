@@ -12,13 +12,4 @@
         <item>3</item>
     </string-array>
 
-    <string-array name="keys_gender_factor">
-        <item>Weiblich</item>
-        <item>Männlich</item>
-    </string-array>
-
-    <string-array name="values_gender_factor">
-        <item>1.05</item>
-        <item>1</item>
-    </string-array>
 </resources>
