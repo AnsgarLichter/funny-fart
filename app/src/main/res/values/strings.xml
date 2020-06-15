@@ -66,6 +66,7 @@
     <string name="detail_intensity_value">%1$s db</string>
     <string name="detail_length_value">%1$s Sekunde(n)</string>
     <string name="detail_gender_factor_value">%1$s, %2$s</string>
+    <string name="detail_formula">\$\$\\color{white}{\\frac{(%1$s * %2$s)^%3$s * %4$s}{(%5$s * %6$s)} = %7$s}\$\$</string>
 
     <!-- Fragment Help -->
     <string name="help_title">Die Formel</string>
@@ -75,6 +76,7 @@
         Das Ergebnis der wissenschaftlichen Studien ist, dass der witzigste Furz lang, laut und feucht ist.
         Wenn du selbst entscheiden möchtest, was der witzigste Furz ist, dann kannst auf der Startseite loslegen!
     </string>
+    <string name="help_formula">\$\$\\color{white}{\\frac{(I * L)^S * K}{(A * g)} = F}\$\$</string>
     <string name="help_parameters">Parameter</string>
     <string name="help_i">I: Intensität des Furzes in Dezibel (dB) </string>
     <string name="help_l">L: Länge des Furzes in Sekunden (s) </string>

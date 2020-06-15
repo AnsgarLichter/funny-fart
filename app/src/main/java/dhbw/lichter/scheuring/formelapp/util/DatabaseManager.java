@@ -16,7 +16,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     public static final String TABLE_FART = "fart";
     public static final String TABLE_SEX = "sex";
-    public static final String TABLE_SCORE_GIF = "score_gif";
 
 
     public static final String COL_ID = "fart_id";
@@ -28,7 +27,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public static final String COL_AVERAGE_AGE = "average_age";
     public static final String COL_SEX = "sex";
     public static final String COL_SEX_FACTOR = "sex_factor";
-    public static final String COL_FART_GIF = "fart_gif";
     public static final String COL_FART_NAME = "fart_name";
     public static final String COL_CREATION_DATE = "creation_date";
     public static final String COL_AUDIO_PATH = "audio_path";
@@ -50,9 +48,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
             COL_SEX + " PRIMARY KEY NOT NULL, " +
             COL_SEX_FACTOR + " REAL NOT NULL, " +
             "FOREIGN KEY (" + COL_SEX + ") REFERENCES " + TABLE_FART + "(" + COL_SEX + "));";
-    private static final String CREATE_TABLE_SCORE_GIF = "CREATE TABLE "+ TABLE_SCORE_GIF + " (" +
-            COL_FART_SCORE + " PRIMARY KEY NOT NULL, " +
-            COL_FART_GIF + " REAL NOT NULL)";
 
 
     private static final String INSERT_FART = "INSERT INTO " + TABLE_FART +
@@ -60,8 +55,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
             "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ? ) ";
     private static final String INSERT_SEX = "INSERT INTO " + TABLE_SEX +
             "(" + COL_SEX + ", " + COL_SEX_FACTOR + ") VALUES ( ?, ?)";
-    private static final String INSERT_SCORE_GIF = "INSERT INTO " + TABLE_SCORE_GIF +
-            " (" + COL_FART_SCORE + ", " + COL_FART_GIF + ") VALUES (?, ?)";
 
     private static final String READ_ALL_FARTS = "SELECT * FROM " + TABLE_FART + ";";
 
@@ -97,7 +90,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
         try {
             this.createFartTable(db);
             this.createSexTable(db);
-            this.createScoreGifTable(db);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -172,10 +164,5 @@ public class DatabaseManager extends SQLiteOpenHelper {
         }
     }
 
-    private void createScoreGifTable(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE_SCORE_GIF);
-        SQLiteStatement insertScore = db.compileStatement(INSERT_SCORE_GIF);
 
-        //TODO: Insert path to GIFs as soon as selected
-    }
 }

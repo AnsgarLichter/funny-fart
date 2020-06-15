@@ -13,17 +13,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.Locale;
 import java.util.Objects;
 
-import dhbw.lichter.scheuring.formelapp.util.Fart;
 import dhbw.lichter.scheuring.formelapp.R;
 import dhbw.lichter.scheuring.formelapp.util.DatabaseManager;
+import dhbw.lichter.scheuring.formelapp.util.Fart;
 import dhbw.lichter.scheuring.formelapp.util.Toaster;
 import io.github.kexanie.library.MathView;
 
@@ -79,7 +79,6 @@ public class DetailFragment extends Fragment {
         });
         saveView = root.findViewById(R.id.fart_card_save);
 
-        //TODO: Extract into own method
         Bundle bundle = getArguments();
         assert bundle != null;
 
@@ -100,25 +99,9 @@ public class DetailFragment extends Fragment {
             this.fart = new Fart(valueIntensity, valueLength, valueEmbarrassment, valueNumberKids, valueAgeListeners, valueResult, strGenderFactor);
         }
 
-
-        //TODO: Extract into own method
-        String strFormulaVal = "$$\\color{white}{\\frac{("
-                .concat(String.valueOf(valueIntensity))
-                .concat(" * ")
-                .concat(String.valueOf(valueLength))
-                .concat(")^")
-                .concat(String.valueOf(valueEmbarrassment))
-                .concat(" * ")
-                .concat(String.valueOf(valueNumberKids))
-                .concat("}{(")
-                .concat(String.valueOf(valueAgeListeners))
-                .concat(" * ")
-                .concat(String.valueOf(valueGenderFactor))
-                .concat(")} = ")
-                .concat(String.format(Locale.GERMANY, "%.2f", valueResult))
-                .concat("}$$");
+        String stringResult = String.format(Locale.GERMANY, "%.2f", valueResult);
         formulaVal.setEngine(MathView.Engine.MATHJAX);
-        formulaVal.setText(strFormulaVal);
+        formulaVal.setText(String.format(getString(R.string.detail_formula), valueIntensity, valueLength, valueEmbarrassment, valueNumberKids, valueAgeListeners, valueGenderFactor, stringResult));
         intensity.setText(String.format(getString(R.string.detail_intensity_value), valueIntensity));
         length.setText(String.format(getString(R.string.detail_length_value), valueLength));
         embarrassment.setText(String.valueOf(valueEmbarrassment));

@@ -136,7 +136,6 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     }
 
     private Bundle createBundle() {
-        //TODO: use fart object
         Bundle bundle = new Bundle();
         bundle.putInt("intensity", fart.getIntensity());
         bundle.putInt("length", fart.getLength());
