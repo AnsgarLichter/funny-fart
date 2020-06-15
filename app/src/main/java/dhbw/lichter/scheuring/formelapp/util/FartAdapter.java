@@ -56,8 +56,7 @@ public class FartAdapter extends RecyclerView.Adapter<FartViewHolder> {
             fartViewHolder.fartGif.setImageResource(R.drawable.im_middle_score);
         } else if (fart.getScore() <= 40.0) {
             fartViewHolder.fartGif.setImageResource(R.drawable.im_high_score);
-        }
-        else {
+        } else {
             fartViewHolder.fartGif.setImageResource(R.drawable.im_super_score);
         }
 
