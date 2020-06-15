@@ -22,6 +22,7 @@ import dhbw.lichter.scheuring.formelapp.R;
 import dhbw.lichter.scheuring.formelapp.ui.database.DatabaseFragment;
 import dhbw.lichter.scheuring.formelapp.ui.detail.DetailFragment;
 import dhbw.lichter.scheuring.formelapp.util.Recorder;
+import dhbw.lichter.scheuring.formelapp.util.Toaster;
 
 public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, DialogInterface.OnClickListener {
     public Fart fart;
@@ -37,6 +38,7 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     private final FartAdapter fartAdapter;
     private final DatabaseFragment dbFragment;
+    private final Toaster toaster;
 
 
     FartViewHolder(View itemView, DatabaseFragment dbFragment, FartAdapter fartAdapter) {
@@ -44,6 +46,7 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
         this.dbFragment = dbFragment;
         this.fartAdapter = fartAdapter;
+        this.toaster = dbFragment.toaster;
 
         fartGif = itemView.findViewById(R.id.fart_gif);
         fartName = itemView.findViewById(R.id.card_fart_name);
@@ -123,14 +126,19 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
         assert context != null;
 
-        Uri fileUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", audioFile);
-        context.grantUriPermission(context.getPackageName(), fileUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        Intent share = new Intent();
-        share.setAction(Intent.ACTION_SEND);
-        share.setType("audio/*");
-        share.putExtra(Intent.EXTRA_STREAM, fileUri);
-        share.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        dbFragment.startActivity(share);
+        try {
+            Uri fileUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", audioFile);
+            context.grantUriPermission(context.getPackageName(), fileUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            Intent share = new Intent();
+            share.setAction(Intent.ACTION_SEND);
+            share.setType("audio/*");
+            share.putExtra(Intent.EXTRA_STREAM, fileUri);
+            share.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            dbFragment.startActivity(share);
+        } catch (Exception ex) {
+            toaster.showError(R.string.database_share_error);
+        }
+
     }
 
     private Bundle createBundle() {

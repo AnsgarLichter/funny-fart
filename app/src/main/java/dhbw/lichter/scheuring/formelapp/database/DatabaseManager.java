@@ -6,6 +6,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -93,7 +94,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
             this.createFartTable(db);
             this.createSexTable(db);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            Log.e("SQLiteDatabase", "Failed to create", ex);
         }
     }
 

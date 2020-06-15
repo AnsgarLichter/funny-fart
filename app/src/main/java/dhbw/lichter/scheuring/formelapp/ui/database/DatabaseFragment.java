@@ -31,13 +31,13 @@ import dhbw.lichter.scheuring.formelapp.util.Toaster;
 
 public class DatabaseFragment extends Fragment implements View.OnClickListener {
     private Activity activity;
-    private Toaster toaster;
     private FartAdapter fartAdapter;
 
     private int sortProperty;
     private boolean sortAsc;
 
     public Navigator navigator;
+    public Toaster toaster;
     public DatabaseManager dbHelper;
 
     @Override
@@ -56,7 +56,6 @@ public class DatabaseFragment extends Fragment implements View.OnClickListener {
         this.createCardsForFarts(root);
         this.addClickListenerToRadioButtons(root);
         this.addTextChangedListenerToSearchInput(root);
-        Bundle bundle = new Bundle();
 
         return root;
     }

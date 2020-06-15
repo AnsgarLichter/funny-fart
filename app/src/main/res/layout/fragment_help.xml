@@ -52,7 +52,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/detail_help_formula_title" />
 
                 <TextView
-                    android:id="@+id/textViewDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
