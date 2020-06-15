@@ -87,16 +87,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="4dp"
+                android:gravity="center"
                 android:baselineAligned="false"
                 android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_weight="0.25"
-                    android:gravity="center"
-                    android:orientation="horizontal">
 
                     <ImageButton
                         android:id="@+id/database_detail"
@@ -105,16 +98,8 @@
                         android:background="@drawable/btn_floating"
                         android:contentDescription="@string/card_template_detail"
                         android:padding="8dp"
+                        android:layout_margin="4dp"
                         android:src="@drawable/ic_detail_24" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="4dp"
-                    android:layout_weight="0.25"
-                    android:gravity="center"
-                    android:orientation="horizontal">
 
                     <ImageButton
                         android:id="@+id/database_play"
@@ -124,16 +109,8 @@
                         android:background="@drawable/btn_floating"
                         android:contentDescription="@string/card_template_play"
                         android:padding="8dp"
+                        android:layout_margin="4dp"
                         android:src="@drawable/ic_baseline_play" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="4dp"
-                    android:layout_weight="0.25"
-                    android:gravity="center"
-                    android:orientation="horizontal">
 
                     <ImageButton
                         android:id="@+id/database_delete"
@@ -143,16 +120,8 @@
                         android:background="@drawable/btn_floating"
                         android:contentDescription="@string/card_template_delete"
                         android:padding="8dp"
+                        android:layout_margin="4dp"
                         android:src="@drawable/ic_baseline_delete" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="4dp"
-                    android:layout_weight="0.25"
-                    android:gravity="center"
-                    android:orientation="horizontal">
 
                     <ImageButton
                         android:id="@+id/database_share"
@@ -162,8 +131,8 @@
                         android:background="@drawable/btn_floating"
                         android:contentDescription="@string/card_template_share"
                         android:padding="8dp"
+                        android:layout_margin="4dp"
                         android:src="@drawable/ic_baseline_share" />
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
