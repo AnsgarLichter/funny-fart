@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="toolbar">#1655CB</color>
+    <color name="toolbarTitleColor">#FFFFFF</color>
+
+    <color name="background">#232F34</color>
+
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
-    <color name="buttonText">#000000</color>
-    <color name="buttonColor">#03DAC5</color>
+    <color name="colorAccent">#FFFFFF</color>
+
+
+    <color name="cardBackground">#6281FF</color>
+    <color name="mtrl_textinput_default_box_stroke_color" tools:ignore="PrivateResource">#FFFFFF</color>
+
+    <color name="navigation">#9bb0ff</color>
+
 </resources>

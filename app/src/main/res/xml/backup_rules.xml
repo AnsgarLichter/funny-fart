@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!--By default, Auto Backup includes files in most of the directories that are assigned to your app by the system:
+        Shared preferences files.
+            Files saved to your app's internal storage, accessed by getFilesDir() or getDir(String, int).
+            Files in the directory returned by getDatabasePath(String), which also includes files created with the SQLiteOpenHelper class.
+            Files on external storage in the directory returned by getExternalFilesDir(String).-->
+</full-backup-content>
