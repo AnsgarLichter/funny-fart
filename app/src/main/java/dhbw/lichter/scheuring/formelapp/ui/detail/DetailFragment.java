@@ -28,9 +28,7 @@ import dhbw.lichter.scheuring.formelapp.util.Toaster;
 import io.github.kexanie.library.MathView;
 
 public class DetailFragment extends Fragment {
-    private final String LOG_TAG = requireActivity().getClass().getName();
-
-
+    private String LOG_TAG;
     public MathView formulaVal;
     public TextView intensity;
     public TextView length;
@@ -52,6 +50,7 @@ public class DetailFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_detail, container, false);
         View toastView = inflater.inflate(R.layout.custom_toast, (ViewGroup) root.findViewById(R.id.custom_toast_layout));
 
+        LOG_TAG = requireActivity().getClass().getName();
         Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
