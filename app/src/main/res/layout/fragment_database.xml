@@ -47,6 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.33"
+            android:checked="true"
             android:drawableEnd="@drawable/ic_arrow_upward_black_24dp"
             android:theme="@style/RadioButton"
             android:text="@string/database_sort_date" />
