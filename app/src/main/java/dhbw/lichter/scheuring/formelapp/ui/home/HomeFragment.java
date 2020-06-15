@@ -18,6 +18,7 @@ import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import java.util.Objects;
 
 import dhbw.lichter.scheuring.formelapp.R;
+import dhbw.lichter.scheuring.formelapp.database.DatabaseManager;
 import dhbw.lichter.scheuring.formelapp.ui.detail.DetailFragment;
 import dhbw.lichter.scheuring.formelapp.util.Navigator;
 import dhbw.lichter.scheuring.formelapp.util.Toaster;
@@ -34,6 +35,7 @@ public class HomeFragment extends Fragment {
 
     private Toaster toast;
     private Navigator navigator;
+    private DatabaseManager dbHelper;
 
     private Bundle bundle;
 
@@ -47,6 +49,7 @@ public class HomeFragment extends Fragment {
         //Instance of Application Context for displaying a toast
         toast = new Toaster(requireActivity().getApplicationContext(), toastView);
         navigator = new Navigator(getParentFragmentManager());
+        dbHelper = new DatabaseManager(requireActivity());
         Bundle source = getArguments();
         bundle = new Bundle();
 
@@ -62,7 +65,7 @@ public class HomeFragment extends Fragment {
         female = root.findViewById(R.id.home_gender_female);
         Button btnCreateFart = root.findViewById(R.id.btn_create_fart);
 
-        //set Range
+        //Set Range
         enbSocialEmbarrassment.setRange(1, 3);
 
         btnCreateFart.setOnClickListener(new View.OnClickListener() {
@@ -102,8 +105,8 @@ public class HomeFragment extends Fragment {
                     Integer.parseInt(stringLength),
                     Integer.parseInt(stringNumberKids),
                     Integer.parseInt(stringAgeListeners),
-                    (int) getKeyFromArray(stringEmbarrassment, R.array.keys_social_embarrassment, R.array.values_social_embarrassment),
-                    getKeyFromArray(stringGenderFactor, R.array.keys_gender_factor, R.array.values_gender_factor));
+                    getKeyFromArray(stringEmbarrassment, R.array.keys_social_embarrassment, R.array.values_social_embarrassment),
+                    dbHelper.getSexFactor(stringGenderFactor));
 
             navigator.navigate(new DetailFragment(), true, bundle);
         } else {
@@ -125,7 +128,7 @@ public class HomeFragment extends Fragment {
     }
 
 
-    public double getKeyFromArray(String text, int keyID, int valID) {
+    public int getKeyFromArray(String text, int keyID, int valID) {
         int counter = -1;
         for (String el : getResources().getStringArray(keyID)) {
             counter++;
@@ -133,7 +136,7 @@ public class HomeFragment extends Fragment {
                 break;
             }
         }
-        return Double.parseDouble(getResources().getStringArray(valID)[counter]);
+        return Integer.parseInt(getResources().getStringArray(valID)[counter]);
     }
 
 }

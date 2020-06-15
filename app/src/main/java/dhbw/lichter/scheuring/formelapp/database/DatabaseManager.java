@@ -43,11 +43,12 @@ public class DatabaseManager extends SQLiteOpenHelper {
             COL_AVERAGE_AGE + " INTEGER NOT NULL, " +
             COL_SEX + " TEXT NOT NULL, " +
             COL_AUDIO_PATH + " TEXT, " +
-            COL_CREATION_DATE + " DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL )";
+            COL_CREATION_DATE + " DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL," +
+            "FOREIGN KEY (" + COL_SEX + ") REFERENCES " + TABLE_SEX + "(" + COL_SEX + ") )";
+
     private static final String CREATE_TABLE_SEX = "CREATE TABLE " + TABLE_SEX + " (" +
             COL_SEX + " PRIMARY KEY NOT NULL, " +
-            COL_SEX_FACTOR + " REAL NOT NULL, " +
-            "FOREIGN KEY (" + COL_SEX + ") REFERENCES " + TABLE_FART + "(" + COL_SEX + "));";
+            COL_SEX_FACTOR + " REAL NOT NULL);";
 
 
     private static final String INSERT_FART = "INSERT INTO " + TABLE_FART +
@@ -57,6 +58,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
             "(" + COL_SEX + ", " + COL_SEX_FACTOR + ") VALUES ( ?, ?)";
 
     private static final String READ_ALL_FARTS = "SELECT * FROM " + TABLE_FART + ";";
+    private static final String READ_SEX_FACTOR = "SELECT " + COL_SEX_FACTOR + " FROM " + TABLE_SEX + " WHERE " + COL_SEX + " = ?;";
 
     private static final String DELETE_FART = "DELETE FROM " + TABLE_FART + " WHERE " + COL_ID + " = " + " ?;";
 
@@ -103,18 +105,18 @@ public class DatabaseManager extends SQLiteOpenHelper {
         insertFart = fart.prepareInsertStatement(insertFart);
         long id = insertFart.executeInsert();
 
-        if(id == -1) {
+        if (id == -1) {
             throw new SQLException("Insertion of the new fart resulted in an error!");
         }
     }
 
     public ArrayList<Fart> getFarts() {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery(READ_ALL_FARTS, null);
         ArrayList<Fart> farts = new ArrayList<>();
 
-        for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+        for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
             Fart fart = new Fart(
                     cursor.getInt(cursor.getColumnIndex(COL_INTENSITY)),
                     cursor.getInt(cursor.getColumnIndex(COL_LENGTH)),
@@ -138,9 +140,22 @@ public class DatabaseManager extends SQLiteOpenHelper {
         deleteFart.bindLong(1, id);
         int deletedRows = deleteFart.executeUpdateDelete();
 
-        if(deletedRows == 0) {
+        if (deletedRows == 0) {
             throw new SQLException("Deletion failed for fart id " + id);
         }
+    }
+
+    public Double getSexFactor(String sex) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] args = new String[]{sex};
+        Cursor cursor = db.rawQuery(READ_SEX_FACTOR, args);
+
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            Double sexFactor = cursor.getDouble(cursor.getColumnIndex(COL_SEX_FACTOR));
+            cursor.close();
+            return sexFactor;
+        } else return -1.0;
     }
 
     private void createFartTable(SQLiteDatabase db) {
@@ -151,15 +166,15 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_SEX);
         SQLiteStatement insertSex = db.compileStatement(INSERT_SEX);
 
-        insertSex.bindString(1, "männlich");
+        insertSex.bindString(1, "Männlich");
         insertSex.bindString(2, "1.00");
         long idMale = insertSex.executeInsert();
 
-        insertSex.bindString(1, "weiblich");
+        insertSex.bindString(1, "Weiblich");
         insertSex.bindString(2, "1.05");
         long idFemale = insertSex.executeInsert();
 
-        if(idMale == 0 || idFemale == 0) {
+        if (idMale == 0 || idFemale == 0) {
             throw new SQLException("Could not insert male and female entry");
         }
     }

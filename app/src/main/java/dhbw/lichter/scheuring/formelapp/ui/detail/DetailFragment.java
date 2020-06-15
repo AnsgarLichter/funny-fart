@@ -91,9 +91,10 @@ public class DetailFragment extends Fragment {
         int valueEmbarrassment = bundle.getInt("embarrassment");
         int valueNumberKids = bundle.getInt("numberKids");
         int valueAgeListeners = bundle.getInt("ageListeners");
-        double valueGenderFactor = bundle.getDouble("genderFactor");
         double valueResult = bundle.getDouble("result");
         String strGenderFactor = bundle.getString("strGenderFactor");
+        assert strGenderFactor != null;
+        double valueGenderFactor = dbHelper.getSexFactor(strGenderFactor);
         String valueAudioPath = bundle.getString("audioPath");
         boolean is_in_db = bundle.getBoolean("isInDb");
 
