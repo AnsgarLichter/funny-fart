@@ -1,4 +1,4 @@
-package dhbw.lichter.scheuring.formelapp.util;
+package dhbw.lichter.scheuring.formelapp.database;
 
 
 import android.view.LayoutInflater;

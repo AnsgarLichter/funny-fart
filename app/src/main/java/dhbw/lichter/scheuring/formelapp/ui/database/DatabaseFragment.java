@@ -23,9 +23,10 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import dhbw.lichter.scheuring.formelapp.R;
-import dhbw.lichter.scheuring.formelapp.util.DatabaseManager;
-import dhbw.lichter.scheuring.formelapp.util.Fart;
-import dhbw.lichter.scheuring.formelapp.util.FartAdapter;
+import dhbw.lichter.scheuring.formelapp.database.DatabaseManager;
+import dhbw.lichter.scheuring.formelapp.database.Fart;
+import dhbw.lichter.scheuring.formelapp.database.FartAdapter;
+import dhbw.lichter.scheuring.formelapp.util.Navigator;
 import dhbw.lichter.scheuring.formelapp.util.Toaster;
 
 public class DatabaseFragment extends Fragment implements View.OnClickListener {
@@ -36,6 +37,7 @@ public class DatabaseFragment extends Fragment implements View.OnClickListener {
     private int sortProperty;
     private boolean sortAsc;
 
+    public Navigator navigator;
     public DatabaseManager dbHelper;
 
     @Override
@@ -49,10 +51,13 @@ public class DatabaseFragment extends Fragment implements View.OnClickListener {
         activity = getActivity();
         dbHelper = new DatabaseManager(activity);
         toaster = new Toaster(requireActivity().getApplicationContext(), toastView);
+        navigator = new Navigator(getParentFragmentManager());
 
         this.createCardsForFarts(root);
         this.addClickListenerToRadioButtons(root);
         this.addTextChangedListenerToSearchInput(root);
+        Bundle bundle = new Bundle();
+
         return root;
     }
 

@@ -1,4 +1,4 @@
-package dhbw.lichter.scheuring.formelapp.util;
+package dhbw.lichter.scheuring.formelapp.database;
 
 import android.content.Context;
 import android.database.Cursor;

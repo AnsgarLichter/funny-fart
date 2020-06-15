@@ -1,4 +1,4 @@
-package dhbw.lichter.scheuring.formelapp.util;
+package dhbw.lichter.scheuring.formelapp.database;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.core.content.FileProvider;
-
 import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,6 +21,7 @@ import java.io.File;
 import dhbw.lichter.scheuring.formelapp.R;
 import dhbw.lichter.scheuring.formelapp.ui.database.DatabaseFragment;
 import dhbw.lichter.scheuring.formelapp.ui.detail.DetailFragment;
+import dhbw.lichter.scheuring.formelapp.util.Recorder;
 
 public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, DialogInterface.OnClickListener {
     public Fart fart;
@@ -37,14 +37,12 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     private final FartAdapter fartAdapter;
     private final DatabaseFragment dbFragment;
-    private final Navigator navigator;
 
 
     FartViewHolder(View itemView, DatabaseFragment dbFragment, FartAdapter fartAdapter) {
         super(itemView);
 
         this.dbFragment = dbFragment;
-        this.navigator = new Navigator(dbFragment.getParentFragmentManager());
         this.fartAdapter = fartAdapter;
 
         fartGif = itemView.findViewById(R.id.fart_gif);
@@ -90,7 +88,7 @@ public class FartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     private void onDetailButtonClicked() {
         Bundle bundle = this.createBundle();
-        navigator.navigate(new DetailFragment(), true, bundle);
+        dbFragment.navigator.navigate(new DetailFragment(), true, bundle);
     }
 
     public void onDeleteButtonClicked() {

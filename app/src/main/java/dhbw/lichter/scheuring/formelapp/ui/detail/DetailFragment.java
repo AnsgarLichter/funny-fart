@@ -22,8 +22,8 @@ import java.util.Locale;
 import java.util.Objects;
 
 import dhbw.lichter.scheuring.formelapp.R;
-import dhbw.lichter.scheuring.formelapp.util.DatabaseManager;
-import dhbw.lichter.scheuring.formelapp.util.Fart;
+import dhbw.lichter.scheuring.formelapp.database.DatabaseManager;
+import dhbw.lichter.scheuring.formelapp.database.Fart;
 import dhbw.lichter.scheuring.formelapp.util.Toaster;
 import io.github.kexanie.library.MathView;
 
@@ -56,7 +56,11 @@ public class DetailFragment extends Fragment {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                requireActivity().onBackPressed();
+                if (getParentFragmentManager().getBackStackEntryCount() > 0) {
+                    getParentFragmentManager().popBackStack();
+                } else {
+                    DetailFragment.super.requireActivity().onBackPressed();
+                }
             }
         });
         toaster = new Toaster(requireActivity().getApplicationContext(), toastView);
