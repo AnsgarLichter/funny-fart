@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/fart_gif"
-            android:layout_width="wrap_content"
-            android:layout_height="150dp"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
             android:layout_weight="0.50"
             android:contentDescription="@string/card_template_image"
             android:scaleType="fitXY"
