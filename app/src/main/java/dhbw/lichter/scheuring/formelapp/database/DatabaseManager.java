@@ -53,6 +53,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
     private static final String INSERT_FART = "INSERT INTO " + TABLE_FART +
             "(" + COL_FART_SCORE + ", " + COL_FART_NAME + ", " + COL_INTENSITY + ", " + COL_LENGTH + ", " + COL_SOCIAL_EMBARRASSMENT + ", " + COL_COUNT_CHILDREN + ", " + COL_AVERAGE_AGE + ", " + COL_SEX + ", " + COL_AUDIO_PATH + ")" +
             "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ? ) ";
+    private static final String INSERT_SEX = "INSERT INTO " + TABLE_SEX +
+            "(" + COL_SEX + ", " + COL_SEX_FACTOR + ") VALUES ( ?, ?)";
 
     private static final String READ_ALL_FARTS = "SELECT * FROM " + TABLE_FART + ";";
 
@@ -87,6 +89,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         try {
             this.createFartTable(db);
+            this.createSexTable(db);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -143,4 +146,23 @@ public class DatabaseManager extends SQLiteOpenHelper {
     private void createFartTable(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_FART);
     }
+
+    private void createSexTable(SQLiteDatabase db) {
+        db.execSQL(CREATE_TABLE_SEX);
+        SQLiteStatement insertSex = db.compileStatement(INSERT_SEX);
+
+        insertSex.bindString(1, "männlich");
+        insertSex.bindString(2, "1.00");
+        long idMale = insertSex.executeInsert();
+
+        insertSex.bindString(1, "weiblich");
+        insertSex.bindString(2, "1.05");
+        long idFemale = insertSex.executeInsert();
+
+        if(idMale == 0 || idFemale == 0) {
+            throw new SQLException("Could not insert male and female entry");
+        }
+    }
+
+
 }
