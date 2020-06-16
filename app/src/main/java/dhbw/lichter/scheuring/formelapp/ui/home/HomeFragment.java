@@ -105,7 +105,7 @@ public class HomeFragment extends Fragment {
                     Integer.parseInt(stringLength),
                     Integer.parseInt(stringNumberKids),
                     Integer.parseInt(stringAgeListeners),
-                    getKeyFromArray(stringEmbarrassment, R.array.keys_social_embarrassment, R.array.values_social_embarrassment),
+                    Integer.parseInt(stringEmbarrassment),
                     dbHelper.getSexFactor(stringGenderFactor));
 
             navigator.navigate(new DetailFragment(), true, bundle);
@@ -126,17 +126,4 @@ public class HomeFragment extends Fragment {
         bundle.putDouble("result", score);
         bundle.putBoolean("isInDb", false);
     }
-
-
-    public int getKeyFromArray(String text, int keyID, int valID) {
-        int counter = -1;
-        for (String el : getResources().getStringArray(keyID)) {
-            counter++;
-            if (el.equals(text)) {
-                break;
-            }
-        }
-        return Integer.parseInt(getResources().getStringArray(valID)[counter]);
-    }
-
 }
