@@ -93,6 +93,14 @@
         <a href="https://www.itv.com/news/2019-08-21/formula-for-worlds-funniest-fart-revealed/">https://www.itv.com/news/2019-08-21/formula-for-worlds-funniest-fart-revealed/</a>\n
         <a href="https://www.thesun.co.uk/tech/9765024/flatulence-formula-worlds-funniest-fart/">https://www.thesun.co.uk/tech/9765024/flatulence-formula-worlds-funniest-fart/</a>
     </string>
+    <string name="help_packages_title">Verwendete Bibliotheken und Ressourcen: </string>
+    <string name="help_packages_text">
+        Diese App benutzt folgende Bibliotheken: \n\n
+        &#8226; ElegantNumberButton: <a href="https://github.com/ashik94vc/ElegantNumberButton">https://github.com/ashik94vc/ElegantNumberButton</a>\n
+        &#8226; MathView: <a href="https://github.com/jianzhongli/MathView">https://github.com/jianzhongli/MathView</a>\n\n
+        Diese Bibliotheken verwenden die Apache  License 2.0 (siehe: <a href="http://www.apache.org/licenses/LICENSE-2.0.txt">http://www.apache.org/licenses/LICENSE-2.0.txt</a>\n\n
+        Eine Kopie der Apache License und der Quellcode der App kann im GitHub-Repository (siehe: <a href="https://github.com/AnsgarLichter/funny-fart">https://github.com/AnsgarLichter/funny-fart</a>) eingesehen werden.
+    </string>
 
     <!-- Fragment Record -->
     <string name="recording_started">Aufnahme gestartet</string>

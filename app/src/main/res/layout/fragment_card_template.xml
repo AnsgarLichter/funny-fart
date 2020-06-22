@@ -20,8 +20,7 @@
             android:layout_height="match_parent"
             android:layout_weight="0.50"
             android:contentDescription="@string/card_template_image"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/im_funny_fart" />
+            android:scaleType="fitXY" />
 
         <LinearLayout
             android:layout_width="match_parent"
