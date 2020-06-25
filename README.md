@@ -21,7 +21,7 @@ The app was developed for a project in the lecture "Mobile Java Programming" at 
 ## Play Store
 This app is going to be available in the Google Play Store. The details will be shared as soon as the app is available.
 
-# Libs & Ressources
+## Libs & Ressources
 The app uses the following ressources:
 * [MathView](https://github.com/jianzhongli/MathView)
 * [ElegantNumberButton](https://github.com/ashik94vc/ElegantNumberButton)
