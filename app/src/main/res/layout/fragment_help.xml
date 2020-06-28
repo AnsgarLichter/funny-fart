@@ -307,6 +307,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_marginTop="16dp"
+                    android:gravity="center"
                     android:text="@string/help_packages_title"
                     android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline2"
                     app:layout_constraintEnd_toEndOf="parent"
