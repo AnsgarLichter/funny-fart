@@ -29,7 +29,6 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
 
 
-    private boolean permissionToRecordAccepted = false;
     private final String[] permissions = {
             Manifest.permission.RECORD_AUDIO,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -66,9 +65,9 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         long timestamp = System.currentTimeMillis() / 1000;
         boolean created = false;
-        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             if (recorder.getStatus() != MediaRecorderStatus.RECORD) {
                 file = new File(requireContext().getFilesDir(), "funnyFart" + timestamp + ".ogg");
                 if (!file.exists()) {
@@ -81,14 +80,14 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
 
                 if (created) {
                     recorder.startRecording(file.getAbsolutePath());
-                    input.setBackgroundTintList(getContext().getColorStateList(R.color.activeRecorder));
+                    input.setBackgroundTintList(requireContext().getColorStateList(R.color.activeRecorder));
                     toaster.showSuccess(R.string.recording_started);
                 } else {
                     toaster.showSuccess(R.string.file_created);
                 }
             } else {
                 recorder.finishRecording();
-                input.setBackgroundTintList(getContext().getColorStateList(R.color.toolbar));
+                input.setBackgroundTintList(requireContext().getColorStateList(R.color.toolbar));
                 toaster.showSuccess(R.string.recording_finished);
 
                 Bundle bundle = new Bundle();
@@ -108,12 +107,10 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
             boolean recordAudio = grantResults[0] == PackageManager.PERMISSION_GRANTED;
             boolean writeExternalStorage = grantResults[1] == PackageManager.PERMISSION_GRANTED;
             boolean readExternalStorage = grantResults[2] == PackageManager.PERMISSION_GRANTED;
-            if (recordAudio && writeExternalStorage && readExternalStorage) {
-                permissionToRecordAccepted = true;
+            if (!recordAudio || !writeExternalStorage || !readExternalStorage) {
+                toaster.showError(R.string.permissions_not_granted);
             }
         }
-
-        if(!permissionToRecordAccepted) toaster.showError(R.string.permissions_not_granted);
     }
 
 }
