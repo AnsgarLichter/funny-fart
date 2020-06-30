@@ -9,7 +9,7 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#FFFFFF</color>
 
-
+    <color name="activeRecorder">#90CAF9</color>
     <color name="cardBackground">#6281FF</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:ignore="PrivateResource">#FFFFFF</color>
 
