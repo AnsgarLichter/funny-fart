@@ -11,7 +11,7 @@ The app uses a formula of Beano Studies (see link: https://www.beano.com/posts/t
 
 
 ## Requirements for development in Android Studio
-* The app uses the android lombok package. Therefore you must install the plugin "Lombok".
+* The app uses the android lombok package. Therefore you must install the plugin (Lombok)[https://plugins.jetbrains.com/plugin/6317-lombok].
 
 
 ## Education
