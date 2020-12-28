@@ -6,7 +6,7 @@ The app uses a formula of Beano Studies (see link: https://www.beano.com/posts/t
 ## Functionalities
 * Calculate score for farts
 * Save calculated scores to database
-* Record farts audio and save it to the databse with farts score
+* Record farts audio and save it to the database with farts score
 * Share farts audio
 
 
