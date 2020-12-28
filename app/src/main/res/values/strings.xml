@@ -101,6 +101,9 @@
         Diese Bibliotheken verwenden die Apache  License 2.0 (siehe: <a href="http://www.apache.org/licenses/LICENSE-2.0.txt">http://www.apache.org/licenses/LICENSE-2.0.txt</a>\n\n
         Eine Kopie der Apache License und der Quellcode der App kann im GitHub-Repository (siehe: <a href="https://github.com/AnsgarLichter/funny-fart">https://github.com/AnsgarLichter/funny-fart</a>) eingesehen werden.
     </string>
+    <string name="help_privacy_policy">
+        Hier können Sie unserer Datenschutzerklärung finden: <a href="https://funnyfart.markusscheuring.de/">https://funnyfart.markusscheuring.de/</a> \n
+    </string>
 
     <!-- Fragment Record -->
     <string name="recording_started">Aufnahme gestartet</string>
